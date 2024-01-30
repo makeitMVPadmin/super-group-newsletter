@@ -1,11 +1,11 @@
 import './App.css'
+const { REACT_APP_OPENAI_API_KEY } = process.env;
 
 function App() {
 
   async function callOpenAIAPI(){
 
-    // const API_KEY = process.env.REACT_APP_OPENAI_API_KEY; Trying to get this to work with the .env file
-    const API_KEY = "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"
+    const API_KEY = REACT_APP_OPENAI_API_KEY; 
 
     const APIBody = {
       "messages": [{"role": "user",
