@@ -1,23 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
 
 function App() {
+
+  async function callOpenAIAPI(){
+
+    // const API_KEY = process.env.REACT_APP_OPENAI_API_KEY; Trying to get this to work with the .env file
+    const API_KEY = "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"
+
+    const APIBody = {
+      "messages": [{"role": "user",
+                "content": "Please just tell me 'Hello World! I live!'"},
+              {"role": "system",
+                "content": "You are Alex, a helpful, astute, and expert AI"+
+                " assistant offering data-driven insights and suggestions."+
+                " You specialize in"+
+                " AI-driven marketing strategies,providing valuable expertise "+
+                "in optimizing campaigns, analyzing "+
+                "data, and suggesting innovative approaches across various "+
+                "marketing aspects. You are friendly yet professional."+
+                " You work for Super Group, a "+
+                "Revolutionizing Company-Wide Collaboration + Decision-Making."+
+                " Super Group is a cutting-edge platform designed to"+
+                "enhance company-wide collaboration, marketing"+
+                " strategies, and product decisions by seamlessly "+
+                "integrating the power of GPT-3 "+
+                "into group conversations. With Super Group, your "+
+                "organization can create a dynamic"+
+                " environment where employees, regardless of their role "+
+                "or department, can engage in"+
+                " meaningful discussions, share insights, and collectively "+
+                "shape the future of your company."}],
+      "model": "gpt-3.5-turbo",
+      "max_tokens": 50,
+      "temperature": 0.7, 
+    }
+
+    console.log('Calling the OpenAI API');
+    await fetch("https://api.openai.com/v1/chat/completions", {
+      method: 'POST',
+      headers: {
+        "Authorization": `Bearer ${API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(APIBody)
+    })
+    .then(data => {
+      return data.json();
+    })
+    .then(data => {
+      console.log(data.choices[0].message.content)
+      console.log("Success, maybe?")
+    })
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <button onClick={callOpenAIAPI}>Click Me!</button>
+      </div>    
     </div>
   );
 }
