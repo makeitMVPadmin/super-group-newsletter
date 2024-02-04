@@ -1,18 +1,34 @@
 import './App.css'
-import { ApiProvider } from './components/ApiContext';
-import AiInputBox from './components/AiInputBox';
+import { Routes, Route, useNavigate } from "react-router-dom";
+import LandingPage from './pages/LandingPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
 
   return (
-    // Api wrapper is here instead of root, but it could wrap root if you decide later.
-    <ApiProvider>
+
       <div className="App">
         <div>
-          <AiInputBox />
+          <Routes>
+            <Route
+              path="/*"
+              element={
+                <>
+                  <NotFoundPage />
+                </>
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <>
+                  <LandingPage />
+                </>
+              }
+            />
+          </Routes>
         </div>    
       </div>
-    </ApiProvider>
   );
 }
 

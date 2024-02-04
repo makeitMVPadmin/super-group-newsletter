@@ -21,7 +21,7 @@ export default function AiInputBox() {
         // We pass in the user's input, here will will be adding more variables.
         const data = await callOpenAiAPI(inputValue);
         // Now you can use the response however you would like.
-        console.log('Data:', data); // Currently, I am just logging it.
+        // console.log('Data:', data);
         setMyMessage(data.choices[0].message.content) // This will be the response of the Ai
         setMessageToAi(inputValue); // Update the message content using the context function
       } catch (error) { console.error('Error:', error); } // Log any errors
