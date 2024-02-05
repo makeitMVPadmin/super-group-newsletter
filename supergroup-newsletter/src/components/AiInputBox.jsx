@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import { useApiContext } from './ApiContext';
+import { db } from '../firebase-config';
+import{ collection, addDoc } from "firebase/firestore";
 
 export default function AiInputBox() {
     const [myMessage, setMyMessage] = useState('')
     // Grabs our setters for our 'global' variables
     const { callOpenAiAPI, setMessageToAi, setRollOfAi } = useApiContext();
     // Create a useState for our user Input and the handler to keep it up to date.
+
+    const ref = collection(db, "testAiResponse") // create a reference as a collection to db
+    
     const [inputValue, setInputValue] = useState('');
     const handleInputChange = (event) => {
-        setInputValue(event.target.value);
-      };
+      setInputValue(event.target.value);
+    };
     // Handle the button being clicked by user
     const handleClick = () => {
-        contactAiAPI()
-        setInputValue('') // Resets input for next inquiry
-      }
+      contactAiAPI()
+      setInputValue('') // Resets input for next inquiry
+    }
     // This is where the magic starts, and we call the OpenAi.  See ApiContext.js for more
     const contactAiAPI = async () => {
       try {
@@ -23,6 +28,14 @@ export default function AiInputBox() {
         // Now you can use the response however you would like.
         // console.log('Data:', data);
         setMyMessage(data.choices[0].message.content) // This will be the response of the Ai
+        
+        // create an object of AI response to send back to db
+        const dbObj = {
+          testAiResponse: data.choices[0].message.content 
+        }
+
+        addDoc(ref, dbObj) // sends the data to the db
+
         setMessageToAi(inputValue); // Update the message content using the context function
       } catch (error) { console.error('Error:', error); } // Log any errors
     };
