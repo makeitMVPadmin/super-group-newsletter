@@ -1,0 +1,44 @@
+import React, { useState } from 'react';
+import { useApiContext } from './ApiContext';
+
+export default function AiInputBox() {
+    const [myMessage, setMyMessage] = useState('')
+    // Grabs our setters for our 'global' variables
+    const { callOpenAiAPI, setMessageToAi, setRollOfAi } = useApiContext();
+    // Create a useState for our user Input and the handler to keep it up to date.
+    const [inputValue, setInputValue] = useState('');
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+      };
+    // Handle the button being clicked by user
+    const handleClick = () => {
+        contactAiAPI()
+        setInputValue('') // Resets input for next inquiry
+      }
+    // This is where the magic starts, and we call the OpenAi.  See ApiContext.js for more
+    const contactAiAPI = async () => {
+      try {
+        // We pass in the user's input, here will will be adding more variables.
+        const data = await callOpenAiAPI(inputValue);
+        // Now you can use the response however you would like.
+        // console.log('Data:', data);
+        setMyMessage(data.choices[0].message.content) // This will be the response of the Ai
+        setMessageToAi(inputValue); // Update the message content using the context function
+      } catch (error) { console.error('Error:', error); } // Log any errors
+    };
+
+    return (
+      <div>
+        <input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyDown={(e) => { if (e.key === 'Enter') {handleClick();} }}
+        />
+        <button onClick={handleClick}>Call API</button>
+        <div>
+            {myMessage}
+        </div>
+      </div>
+    );
+  }
