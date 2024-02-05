@@ -4,7 +4,7 @@ import { useApiContext } from './ApiContext';
 export default function AiInputBox() {
     const [myMessage, setMyMessage] = useState('')
     // Grabs our setters for our 'global' variables
-    const { callOpenAiAPI, setMessageToAi, setRollOfAi } = useApiContext();
+    const { callOpenAiAPI, setMessageToAi, setRoleOfAi } = useApiContext();
     // Create a useState for our user Input and the handler to keep it up to date.
     const [inputValue, setInputValue] = useState('');
     const handleInputChange = (event) => {
