@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useApiContext } from './ApiContext';
-import { db } from '../firebase-config';
+import { useApiContext } from '../ApiContext/ApiContext';
+import { db } from '../../firebase-config';
 import{ collection, addDoc } from "firebase/firestore";
 
 export default function AiInputBox() {
