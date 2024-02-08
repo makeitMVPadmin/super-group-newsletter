@@ -1,38 +1,50 @@
-.App {
-  text-align: center;
+/* primary colors */
+:root {
+  --primary-black: #000000;       /* borders and text */
+  --primary-light-blue: #0099ff;  /* text and interactive */
+  --primary-white: #ffffff;       /* universal white for text and inputs */
+  --primary-yellow: #ffd22f;      /* backgrounds and icons */
+  /* secondary colors */
+  --secondary-dark-blue: #0954b0; /* borders and text */
+  --secondary-red: #ff7070;       /* important text */
+  --secondary-cream: #fff9f4;     /* backgrounds and highlights */
+  /* figma colors */
+  --secondary-grey: #FBFBFB;
+  --secondary-input: #C8C8CB;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Font-Face Definitions */
+@font-face {
+  font-family: "Corben";
+  src: url("../src/assets/fonts/Corben-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: "PoppinsBold";
+  src: url("../src/assets/fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@font-face {
+  font-family: "Poppins";
+  src: url("../src/assets/fonts/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
 }
 
-.App-link {
-  color: #61dafb;
+@font-face {
+  font-family: "Gilroy";
+  src: url("../src/assets/fonts/Gilroy-ExtraBold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+  font-family: 'Sora';
+  src: url("../src/assets/fonts/Sora-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
