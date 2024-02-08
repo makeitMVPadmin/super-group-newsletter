@@ -1,7 +1,7 @@
 import './App.css'
 import { Routes, Route, useNavigate } from "react-router-dom";
-import LandingPage from './pages/LandingPage';
-import NotFoundPage from './pages/NotFoundPage';
+import LandingPage from './pages/LandingPage/LandingPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 function App() {
 
