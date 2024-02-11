@@ -1,0 +1,54 @@
+.navbar {
+    width: 100%; /* Set width to 100% */
+    max-width: 1440px; /* Set maximum width */
+    height: 80px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.navbar .communiti {
+    width: 25%; /* Set width to 25% of the navbar */
+    height: 45px;
+    flex-shrink: 0;
+    color: #000;
+    text-align: center;
+    font-family: Corben;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.navbar .highlight {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #0095F3;
+    display: inline-block;
+}
+
+.navbar .home {
+    font-family: Gilroy;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    color: #000;
+    cursor: pointer;
+}
+
+.navbar .home.clicked {
+    color: #0954B0;
+    text-decoration: underline;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .navbar .communiti {
+        width: auto; /* Reset width to auto for smaller screens */
+    }
+}
