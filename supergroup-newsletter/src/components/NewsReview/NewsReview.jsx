@@ -1,46 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './NewsReview.css'
+import { useApiContext } from '../ApiContext/ApiContext';
 import MyCalendar from '../Calendar/MyCalendar';
+import Events from '../Events/Events'
+import Announcements from '../Announcements/Announcements'
 
 export default function NewsReview(){
+  const { selectedDate } = useApiContext();
 
-const clickButton = () => {
-  console.log('clicked')
-}
-const [mainText, setMainText] = useState(`Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis s`) 
-const [newsLetterTitle, setNewsLetterTitle] = useState(`Create Newsletter`)
-const [selectedDate, setSelectedDate] = useState(null);
+  const clickButton = () => {
+    console.log(selectedDate)
+  }
 
-const handleTextChange = (event) => {
-  setMainText(event.target.value);
-};
-const handleTitleChange = (event) => {
-  setNewsLetterTitle(event.target.value);
-};
+  const [mainText, setMainText] = useState(`Main Text; as;dlkfj ;asdfkja ;sdfkj as;dflkj asdf;lkajsdf ;alskdjf ;aslkdfj ;alsdfkj a;sdfkj a;sdfkja;sdlfkj a;sdflkjas;df kasd;f ;asldkj f;asd kfja;lsdfkj a;sdf a;sdlfjk as;dfkj `) 
+  const [editMainText, setEditMainText] = useState(false)
+  const [newsLetterTitle, setNewsLetterTitle] = useState(``)
 
-return (
-  <div className='news-container'>
-    <div className='news-topContainer'>
-      <div className='news-topLeft'>
-        <input className='news-titleText' value={newsLetterTitle} onChange={handleTitleChange}></input>
-        <div className='news-mainTextContainer'>
-          <textarea className='news-mainText' value={mainText} onChange={handleTextChange}></textarea>
+  const handleTextChange = (event) => {
+    setMainText(event.target.value);
+  };
+  const handleTitleChange = (event) => {
+    setNewsLetterTitle(event.target.value);
+  };
+
+  return (
+    <div className='news-container'>
+      <div className='news-topContainer'>
+
+
+        <div className='news-topLeft'>
+          <img className='news-heroImage'/>
+          <p className='news-date'>{selectedDate.toDateString()}</p>
+          {/* <input className='news-titleText' value={newsLetterTitle} onChange={handleTitleChange}></input> */}
+          <div className='news-mainTextContainer'>
+          {editMainText ? (
+            <textarea className='news-mainText' value={mainText} onChange={handleTextChange}></textarea>
+            ) : (<div>{mainText}</div>)}
+          </div>
+          <p>Weekly Community Events</p>
+          <div className='news-EventsContainer'>
+            <Events />
+          </div>
+          <p>Announcements!</p>
+          <div className='news-Announcements-container'>
+            <Announcements />
+            <Announcements />
+          </div>
+        </div>
+
+        <div className='news-divider'></div>
+        <div className='news-topRight'>
+          <MyCalendar />
         </div>
       </div>
-      <div className='news-divider'></div>
-      <div className='news-topRight'>
-        <MyCalendar />
+      <div className='news-bottomContainer'>
+        <div className='news-bottomLeft'>
+          **** bottomLeft Here ****
+        </div>
+        <div className='news-dividerBottom'></div>
+        <div className='news-bottomRight'>
+          <button className='news-doneButton' onClick={clickButton}>Continue</button>
+        </div>
       </div>
     </div>
-    <div className='news-bottomContainer'>
-      <div className='news-bottomLeft'>
-        **** bottomLeft Here ****
-      </div>
-      <div className='news-dividerBottom'></div>
-      <div className='news-bottomRight'>
-        <button className='news-doneButton' onClick={clickButton}>Continue</button>
-      </div>
-    </div>
-  </div>
-)
+  )
 }

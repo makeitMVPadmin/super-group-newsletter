@@ -1,11 +1,13 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 const { REACT_APP_OPENAI_API_KEY } = process.env; // Grabs the AiAPI key from .env file
 
 // Creating the context
 const ApiContext = createContext({
   callOpenAiAPI: () => Promise.reject('callOpenAiAPI is not implemented'),
   setMessageToAi: () => {},
-  setRoleOfAi: () => {}
+  setRoleOfAi: () => {},
+  selectedDate: new Date(),
+  setSelectedDate: () => {}
 });
 
 // Export the hook to use the context
@@ -52,8 +54,21 @@ export const ApiProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    // Set today's date as the initial selected date
+    setSelectedDate(new Date());
+  }, []);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   return (
-    <ApiContext.Provider value={{ callOpenAiAPI, setMessageToAi, setRoleOfAi: setRoleOfAi }}>
+    <ApiContext.Provider 
+    value={{ 
+      callOpenAiAPI, 
+      setMessageToAi, 
+      setRoleOfAi, 
+      selectedDate,
+      setSelectedDate
+    }}>
       {children}
     </ApiContext.Provider>
   );

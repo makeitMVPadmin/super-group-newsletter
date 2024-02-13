@@ -3,6 +3,7 @@ import './MyCalendar.css'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
+import { useApiContext } from '../ApiContext/ApiContext';
 
 const CustomToolbar = (toolbar) => {
   const { label } = toolbar;
@@ -22,14 +23,8 @@ const MyCalendar = () => {
   
   const localizer = momentLocalizer(moment);
   const events = []; // For future teams.
+  const { selectedDate, setSelectedDate } = useApiContext();
   
-  const [selectedDate, setSelectedDate] = useState(null);
-  
-  useEffect(() => {
-    // Set today's date as the initial selected date
-    setSelectedDate(new Date());
-  }, []);
-
   const dateCellWrapper = ({ value, children }) => {
     const isSameDay = selectedDate ? moment(value).isSame(selectedDate, 'day') : false;
     return React.cloneElement(children, {
