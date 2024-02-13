@@ -5,14 +5,17 @@ import MyCalendar from '../Calendar/MyCalendar';
 import Events from '../Events/Events'
 import Announcements from '../Announcements/Announcements'
 
-export default function NewsReview(){
+export default function NewsReview({
+    myImage='https://i.pinimg.com/736x/f2/ea/1b/f2ea1bed3d98acea710c8e58da45e0d6.jpg',
+    myMainText='This is where the main text of the newsletter would go. Here we would explain lots of fun stuff about all the amazing things we would be doing this week. How great are we, that we came up with such a fun way to showing off what fun people we are!  I am just as exited as you are to see this start to come together, go superteam!'
+  }){
   const { selectedDate } = useApiContext();
 
   const clickButton = () => {
     console.log(selectedDate)
   }
 
-  const [mainText, setMainText] = useState(`Main Text; as;dlkfj ;asdfkja ;sdfkj as;dflkj asdf;lkajsdf ;alskdjf ;aslkdfj ;alsdfkj a;sdfkj a;sdfkja;sdlfkj a;sdflkjas;df kasd;f ;asldkj f;asd kfja;lsdfkj a;sdf a;sdlfjk as;dfkj `) 
+  const [mainText, setMainText] = useState(myMainText) 
   const [editMainText, setEditMainText] = useState(false)
   const [newsLetterTitle, setNewsLetterTitle] = useState(``)
 
@@ -23,26 +26,40 @@ export default function NewsReview(){
     setNewsLetterTitle(event.target.value);
   };
 
+  // Used for loading time  
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   return (
     <div className='news-container'>
       <div className='news-topContainer'>
 
 
         <div className='news-topLeft'>
-          <img className='news-heroImage'/>
+          {!imageLoaded && <img className='news-heroImage' src="loading-placeholder.jpg" alt="Loading..." />}
+            <img
+              className='news-heroImage'
+              src={myImage}
+              alt="Announcement"
+              style={{ display: imageLoaded ? 'block' : 'none' }}
+              onLoad={handleImageLoad}
+            />
           <p className='news-date'>{selectedDate.toDateString()}</p>
-          {/* <input className='news-titleText' value={newsLetterTitle} onChange={handleTitleChange}></input> */}
           <div className='news-mainTextContainer'>
-          {editMainText ? (
-            <textarea className='news-mainText' value={mainText} onChange={handleTextChange}></textarea>
-            ) : (<div>{mainText}</div>)}
-          </div>
-          <p>Weekly Community Events</p>
+            {editMainText ? (
+              <textarea className='news-mainText' value={mainText} onChange={handleTextChange}></textarea>
+              ) : (<div>{mainText}</div>)}
+            </div>
+            <h4>Weekly Community Events</h4>
           <div className='news-EventsContainer'>
             <Events />
+            <Events />
           </div>
-          <p>Announcements!</p>
+          <h4>Announcements!</h4>
           <div className='news-Announcements-container'>
+            <Announcements />
             <Announcements />
             <Announcements />
           </div>
