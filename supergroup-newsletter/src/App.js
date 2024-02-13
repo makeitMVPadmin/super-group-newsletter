@@ -1,34 +1,21 @@
-import './App.css'
-import { Routes, Route, useNavigate } from "react-router-dom";
+import './App.css';
+import { Routes, Route } from "react-router-dom";
 import LandingPage from './pages/LandingPage/LandingPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import Navbar from './components/NavBar/NavBar';
 
 function App() {
-
   return (
-
-      <div className="App">
-        <div>
-          <Routes>
-            <Route
-              path="/*"
-              element={
-                <>
-                  <NotFoundPage />
-                </>
-              }
-            />
-            <Route
-              path="/"
-              element={
-                <>
-                  <LandingPage />
-                </>
-              }
-            />
-          </Routes>
-        </div>    
+    <div className="App">
+      {/* Navbar is outside of the Routes */}
+      <Navbar />
+      <div>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
       </div>
+    </div>
   );
 }
 
