@@ -15,11 +15,11 @@ export default function ConfirmPopup(
   }
 
   return (
-    <div className='container'>
-      <div className='mainText'>{title}</div>
-      <div className='secondaryText'>{paragraph}</div>
-      <img className='checkMark' src={checkMark1} alt="checkMark1" />
-      <button className='doneButton' onClick={clickButton}>{buttonText}</button>
+    <div className='confirm-container'>
+      <div className='confirm-mainText'>{title}</div>
+      <div className='confirm-secondaryText'>{paragraph}</div>
+      <img className='confirm-checkMark' src={checkMark1} alt="checkMark1" />
+      <button className='confirm-doneButton' onClick={clickButton}>{buttonText}</button>
     </div>
   )
 }

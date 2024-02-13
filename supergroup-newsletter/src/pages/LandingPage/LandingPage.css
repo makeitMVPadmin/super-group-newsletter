@@ -1,1 +1,11 @@
-
+body {
+  background-color: #C8E7FB;
+}
+.placeholder {
+  height: 80px;
+  background-color: rgb(255, 255, 255);
+}
+.placeholder2 {
+  height: 83px;
+  background-color: #C8E7FB;
+}

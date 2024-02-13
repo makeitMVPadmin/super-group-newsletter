@@ -1,0 +1,106 @@
+.news-container {
+  width: 84%;
+  min-width: 200px;
+  height: 80%;
+  margin: 0% 5% 0% 5%;
+  padding: 2% 2% 2% 2%;
+  /* display: flex; */
+  align-items: center;
+  text-align: center;
+  border-radius: 20px;
+  border: 5px solid var(--primary-black, #000);
+  background: var(--primary-white, #fff);
+  /* background-color: rgb(255, 172, 144); */
+}
+.news-topContainer {
+  display: flex;
+  min-height: 500px;
+  height: 60vh;
+}
+.news-bottomContainer {
+  display: flex;
+  height: 10vh;
+}
+.news-divider {
+  background-color: grey;
+  width: 6px;
+}
+.news-dividerBottom {
+  /* background-color: grey; */
+  width: 6px;
+}
+.news-topLeft {
+  width: 55%;
+  /* background-color: aqua; */
+  text-align: left;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.news-topRight {
+  width: 40%;
+  /* background-color: rgb(246, 255, 0); */
+}
+.news-bottomLeft {
+  width: 60%;
+  /* background-color: rgb(170, 0, 255); */
+}
+.news-bottomRight {
+  width: 40%;
+  /* background-color: rgb(0, 255, 26); */
+}
+.news-titleText {
+  font-family: 'Corben', sans-serif;
+  color: var(--primary-light-blue, blue);
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  border: none;
+}
+.news-mainText {
+  font-family: Gilroy;
+  color: #000;
+  font-size: 25px;
+  font-weight: 800;
+  resize: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+.news-mainTextContainer {
+  font-family: Gilroy;
+  color: #000;
+  font-size: 25px;
+  font-weight: 800;
+  resize: none;
+  border: none;
+  width: 100%;
+  height: 80%;
+}
+.news-doneButton {
+  border-radius: 10px;
+  color: var(--primary-white, #FFF);
+  background: var(--secondary-dark-blue, #0954B0);
+  font-family: Gilroy;
+  /* font-weight: 800;
+  padding: 16px 80px;
+  font-size: 27px; */
+}
+
+/* ************************* Calendar CSS ************************* */
+
+/* ************************* Media Change CSS ************************* */
+@media (max-width: 500px) {
+  .news-titleText {
+    font-size: 20px; /* Adjust font size for smaller screens */
+    margin-bottom: 25px;
+  }
+  .news-secondaryText {
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 25px;
+  }
+  .news-doneButton {
+    padding: 8px 40px;
+    font-size: 20px;
+  }
+}
