@@ -1,4 +1,4 @@
-.container {
+.news-container {
   width: 84%;
   min-width: 200px;
   height: 80%;
@@ -12,42 +12,43 @@
   background: var(--primary-white, #fff);
   /* background-color: rgb(255, 172, 144); */
 }
-.topContainer {
+.news-topContainer {
   display: flex;
+  min-height: 500px;
   height: 60vh;
 }
-.bottomContainer {
+.news-bottomContainer {
   display: flex;
   height: 10vh;
 }
-.divider {
+.news-divider {
   background-color: grey;
   width: 6px;
 }
-.dividerBottom {
+.news-dividerBottom {
   /* background-color: grey; */
   width: 6px;
 }
-.topLeft {
+.news-topLeft {
   width: 55%;
   /* background-color: aqua; */
   text-align: left;
   padding-left: 5%;
   padding-right: 5%;
 }
-.topRight {
+.news-topRight {
   width: 40%;
   /* background-color: rgb(246, 255, 0); */
 }
-.bottomLeft {
+.news-bottomLeft {
   width: 60%;
   /* background-color: rgb(170, 0, 255); */
 }
-.bottomRight {
+.news-bottomRight {
   width: 40%;
   /* background-color: rgb(0, 255, 26); */
 }
-.titleText {
+.news-titleText {
   font-family: 'Corben', sans-serif;
   color: var(--primary-light-blue, blue);
   font-size: 30px;
@@ -55,7 +56,7 @@
   margin-bottom: 30px;
   border: none;
 }
-.mainText {
+.news-mainText {
   font-family: Gilroy;
   color: #000;
   font-size: 25px;
@@ -65,7 +66,7 @@
   width: 100%;
   height: 100%;
 }
-.mainTextContainer {
+.news-mainTextContainer {
   font-family: Gilroy;
   color: #000;
   font-size: 25px;
@@ -75,7 +76,7 @@
   width: 100%;
   height: 80%;
 }
-.doneButton {
+.news-doneButton {
   border-radius: 10px;
   color: var(--primary-white, #FFF);
   background: var(--secondary-dark-blue, #0954B0);
@@ -89,16 +90,16 @@
 
 /* ************************* Media Change CSS ************************* */
 @media (max-width: 500px) {
-  .titleText {
+  .news-titleText {
     font-size: 20px; /* Adjust font size for smaller screens */
     margin-bottom: 25px;
   }
-  .secondaryText {
+  .news-secondaryText {
     font-size: 17px;
     font-weight: 800;
     margin-bottom: 25px;
   }
-  .doneButton {
+  .news-doneButton {
     padding: 8px 40px;
     font-size: 20px;
   }

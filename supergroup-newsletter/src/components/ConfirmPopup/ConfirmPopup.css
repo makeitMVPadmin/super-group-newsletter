@@ -1,4 +1,4 @@
-.container {
+.confirm-container {
   width: 80%;
   min-width: 200px;
   height: 80%;
@@ -12,24 +12,24 @@
   border: 5px solid var(--primary-black, #000);
   background: var(--primary-white, #fff);
 }
-.mainText {
+.confirm-mainText {
   font-family: 'Corben', sans-serif;
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 50px;
 }
-.secondaryText {
+.confirm-secondaryText {
   font-family: Gilroy;
   font-size: 25px;
   font-weight: 800;
   margin-bottom: 50px;
 }
-.checkMark {
+.confirm-checkMark {
   width: 150px; 
   height: 150px;
   margin-bottom: 50px;
 }
-.doneButton {
+.confirm-doneButton {
   border-radius: 10px;
   color: var(--primary-white, #FFF);
   background: var(--secondary-dark-blue, #0954B0);
@@ -40,21 +40,21 @@
 }
 
 @media (max-width: 500px) {
-  .mainText {
+  .confirm-mainText {
     font-size: 20px; /* Adjust font size for smaller screens */
     margin-bottom: 25px;
   }
-  .secondaryText {
+  .confirm-secondaryText {
     font-size: 17px;
     font-weight: 800;
     margin-bottom: 25px;
   }
-  .checkMark {
+  .confirm-checkMark {
     width: 80px; 
     height: 80px;
     margin-bottom: 25px;
   }
-  .doneButton {
+  .confirm-doneButton {
     padding: 8px 40px;
     font-size: 20px;
   }

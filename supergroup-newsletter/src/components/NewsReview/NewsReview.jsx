@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './NewsReview.css'
+import MyCalendar from '../Calendar/MyCalendar';
 
 export default function NewsReview(){
 
@@ -18,25 +19,26 @@ const handleTitleChange = (event) => {
 };
 
 return (
-  <div className='container'>
-    <div className='topContainer'>
-      <div className='topLeft'>
-        <input className='titleText' value={newsLetterTitle} onChange={handleTitleChange}></input>
-        <div className='mainTextContainer'>
-        <textarea className='mainText' value={mainText} onChange={handleTextChange}></textarea>
+  <div className='news-container'>
+    <div className='news-topContainer'>
+      <div className='news-topLeft'>
+        <input className='news-titleText' value={newsLetterTitle} onChange={handleTitleChange}></input>
+        <div className='news-mainTextContainer'>
+          <textarea className='news-mainText' value={mainText} onChange={handleTextChange}></textarea>
         </div>
       </div>
-      <div className='divider'></div>
-      <div className='topRight'>
+      <div className='news-divider'></div>
+      <div className='news-topRight'>
+        <MyCalendar />
       </div>
     </div>
-    <div className='bottomContainer'>
-      <div className='bottomLeft'>
-        bottomLeft
+    <div className='news-bottomContainer'>
+      <div className='news-bottomLeft'>
+        **** bottomLeft Here ****
       </div>
-      <div className='dividerBottom'></div>
-      <div className='bottomRight'>
-        <button className='doneButton' onClick={clickButton}>Continue</button>
+      <div className='news-dividerBottom'></div>
+      <div className='news-bottomRight'>
+        <button className='news-doneButton' onClick={clickButton}>Continue</button>
       </div>
     </div>
   </div>
