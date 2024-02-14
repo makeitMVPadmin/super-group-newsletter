@@ -4,6 +4,7 @@ import { useApiContext } from '../ApiContext/ApiContext';
 import MyCalendar from '../Calendar/MyCalendar';
 import Events from '../Events/Events'
 import Announcements from '../Announcements/Announcements'
+import BackButton from '../BackButton/BackButton';
 
 export default function NewsReview({
     myImage='https://i.pinimg.com/736x/f2/ea/1b/f2ea1bed3d98acea710c8e58da45e0d6.jpg',
@@ -33,50 +34,52 @@ export default function NewsReview({
   };
 
   return (
-    <div className='news-container'>
-      <div className='news-topContainer'>
-
-
-        <div className='news-topLeft'>
-          {!imageLoaded && <img className='news-heroImage' src="loading-placeholder.jpg" alt="Loading..." />}
-            <img
-              className='news-heroImage'
-              src={myImage}
-              alt="Announcement"
-              style={{ display: imageLoaded ? 'block' : 'none' }}
-              onLoad={handleImageLoad}
-            />
-          <p className='news-date'>{selectedDate.toDateString()}</p>
-          <div className='news-mainTextContainer'>
-            {editMainText ? (
-              <textarea className='news-mainText' value={mainText} onChange={handleTextChange}></textarea>
-              ) : (<div>{mainText}</div>)}
+    <div>
+      <BackButton />
+      <div className='news-container'>
+        <div className='news-topContainer'>
+          <div className='news-topLeft'>
+            {!imageLoaded && <img className='news-heroImage' src="loading-placeholder.jpg" alt="Loading..." />}
+              <img
+                className='news-heroImage'
+                src={myImage}
+                alt="Hero Image"
+                style={{ display: imageLoaded ? 'block' : 'none' }}
+                onLoad={handleImageLoad}
+              />
+            <p className='news-date'>{selectedDate.toDateString()}</p>
+            <div className='news-mainTextContainer'>
+              {editMainText ? (
+                <textarea className='news-mainText' value={mainText} onChange={handleTextChange}></textarea>
+                ) : (<div>{mainText}</div>)}
+              </div>
+              <h4>Weekly Community Events</h4>
+            <div className='news-EventsContainer'>
+              <Events />
+              <Events />
             </div>
-            <h4>Weekly Community Events</h4>
-          <div className='news-EventsContainer'>
-            <Events />
-            <Events />
+            <h4>Announcements!</h4>
+            <div className='news-Announcements-container'>
+              <Announcements />
+              <Announcements />
+              <Announcements />
+            </div>
           </div>
-          <h4>Announcements!</h4>
-          <div className='news-Announcements-container'>
-            <Announcements />
-            <Announcements />
-            <Announcements />
-          </div>
-        </div>
 
-        <div className='news-divider'></div>
-        <div className='news-topRight'>
-          <MyCalendar />
+          <div className='news-divider'></div>
+          <div className='news-topRight'>
+            <MyCalendar />
+          </div>
         </div>
-      </div>
-      <div className='news-bottomContainer'>
-        <div className='news-bottomLeft'>
-          **** bottomLeft Here ****
-        </div>
-        <div className='news-dividerBottom'></div>
-        <div className='news-bottomRight'>
-          <button className='news-doneButton' onClick={clickButton}>Continue</button>
+        <div className='news-bottomContainer'>
+          <div className='news-bottomLeft'>
+            **** bottomLeft Here ****
+          </div>
+          <div className='news-dividerBottom'></div>
+          <div className='news-bottomRight'>
+            <div className='news-saveDraft'>Save Draft</div>
+            <button className='news-doneButton' onClick={clickButton}>Continue</button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react';
 import './Events.css'
 
-export default function Events() {
+export default function Events({myImage='https://media.istockphoto.com/id/474794406/vector/seamless-children-cartoon-space-pattern.jpg?s=612x612&w=0&k=20&c=qSQJm4TrRfSplGmDHccCTCT71Rsg-AsYn6soJu1cd24='}) {
+    // Used for loading time  
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const handleImageLoad = () => {
+      setImageLoaded(true);
+    };
+
   return (
     <div className='events-container'>
       <div className='events-mainImage-container'>
-        <div><img className='events-mainImage'/></div>
+        {!imageLoaded && <img className='events-mainImage' src="loading-placeholder.jpg" alt="Loading..." />}
+          <img
+            className='events-mainImage'
+            src={myImage}
+            alt="Event Image"
+            style={{ display: imageLoaded ? 'block' : 'none' }}
+            onLoad={handleImageLoad}
+          />
         <button className='events-button'>Reserve</button>
       </div>
       <div className='events-info'>

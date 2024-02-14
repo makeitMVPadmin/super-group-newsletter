@@ -8,6 +8,18 @@
   width: 100px;
   height: 100px;
   border-radius: 10px;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+.events-mainImage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.events-button {
+  width: 100%;
 }
 .events-info p {
   display: flex;
@@ -21,7 +33,6 @@
 .events-mainText{
   font-size: 15px;
   font-weight: 800;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   
