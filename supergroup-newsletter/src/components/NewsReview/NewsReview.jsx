@@ -6,6 +6,7 @@ import Events from '../Events/Events'
 import Announcements from '../Announcements/Announcements'
 import BackButton from '../BackButton/BackButton';
 import NewMembers from '../NewMembers/NewMembers'
+import NewsFooter from '../NewsFooter/NewsFooter';
 
 export default function NewsReview({
     myImage='https://i.pinimg.com/736x/f2/ea/1b/f2ea1bed3d98acea710c8e58da45e0d6.jpg',
@@ -70,6 +71,9 @@ export default function NewsReview({
               <NewMembers myName={'Rooney'} myRole={'House Panther'} myText={'Like a shadow at midnight, impossible to see unless the moon is high.'}/>
               <NewMembers myName={'Sheena'} myRole={'Dark Cystal'} myText={'Mysterious powers both consume light and radiates rays of magical power.'}/>
               <NewMembers myName={'Miki'} myRole={'Solar Ecplise'} myText={'Showing us how marvelous science can be! So powerful you can not look directly at him!'}/>
+            </div>
+            <div>
+              <NewsFooter />
             </div>
           </div>
 

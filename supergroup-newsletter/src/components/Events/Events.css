@@ -5,7 +5,7 @@
   position: relative;
 }
 .events-mainImage {
-  background-color: rgb(36, 255, 244);
+  /* background-color: rgb(36, 255, 244); */
   width: 100px;
   height: 100px;
   border-radius: 10px;
@@ -21,6 +21,16 @@
 }
 .events-button {
   width: 100%;
+  display: flex;
+  padding: 4px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  background-color: var(--secondary-dark-blue);
+  color: var(--Primary---MVP-White, #FFF);
+  font-family: Gilroy;
+  cursor: pointer;
 }
 .events-info p {
   display: flex;
@@ -48,12 +58,12 @@
 .events-circle {
   width: 20px;
   height: 20px;
-  background-color: blue;
+  background-color: var(--primary-yellow);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: rgb(0, 0, 0);
   position: absolute;
   bottom: 0px;
   right: 0px;

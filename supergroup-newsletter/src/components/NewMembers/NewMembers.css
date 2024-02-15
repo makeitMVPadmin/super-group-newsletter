@@ -23,12 +23,12 @@
 .newMember-circle {
   width: 20px;
   height: 20px;
-  background-color: blue;
+  background-color: var(--primary-yellow);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: rgb(0, 0, 0);
   position: absolute;
   bottom: 15px;
   right: 0px;
