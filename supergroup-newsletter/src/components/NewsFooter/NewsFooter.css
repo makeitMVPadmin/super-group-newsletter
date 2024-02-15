@@ -1,0 +1,56 @@
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.footer-image {
+  width: 100%;
+  margin-bottom: -10px;
+  object-fit: cover;
+}
+.footer-ending {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px;
+  height: 235px;
+  width: 100%;
+  background-color: #949494;
+}
+.footer-mvpLogo {
+  padding-top: 150px;
+  padding-bottom: 29px;
+  width: 195px;
+}
+.footer-helping {
+  color: #000;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-bottom: 33px;
+}
+.footer-hearFromUs{
+  margin-top: 0px;
+  display: flex;
+  color: #000;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/* ************************* Media Change CSS ************************* */
+@media (max-width: 768px) {
+  .footer-hearFromUs{
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-hearFromUs p {
+    margin: 0px;
+  }
+}

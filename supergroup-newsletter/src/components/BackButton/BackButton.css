@@ -1,0 +1,21 @@
+.backButton-button {
+  display: flex;
+  height: 83px;
+  align-items: center;
+  cursor: pointer;
+  width: 200px;
+}
+.backButton-button p {
+  color: #000;
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Gilroy;
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 115.645%;
+}
+.backButton-button svg {
+  padding-left: 33px;
+  padding-right: 24px;
+}
