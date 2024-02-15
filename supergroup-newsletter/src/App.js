@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import LandingPage from './pages/LandingPage/LandingPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import Navbar from './components/NavBar/NavBar';
+import EntryPoint from './pages/EntryPoint/EntryPoint';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Navbar />
       <div>
         <Routes>
+          <Route path="/dashboard" element={<EntryPoint />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

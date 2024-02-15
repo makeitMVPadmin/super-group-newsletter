@@ -128,5 +128,6 @@
     .small-navbar {
         display: flex;
         justify-content: space-between;
+        background-color: #fff;
     }    
 }

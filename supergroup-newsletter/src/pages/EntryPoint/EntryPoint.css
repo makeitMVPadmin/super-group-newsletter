@@ -1,0 +1,122 @@
+.back-rect {
+    display: flex;
+    align-items: center;
+    margin-left: 2%;
+    height: 83px;
+    width: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    cursor: pointer;
+}
+
+.back-text {
+    font-family: "Gilroy";
+    font-size: 27px;
+    font-style: normal;
+    font-weight: 800;
+}
+
+.create-container {
+    border-radius: 20px;
+    border: 5px solid var(--primary-black, #000);
+    background: var(--primary-white, #FFF);
+    height: 667px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    height: 520px; /*testing out sizes*/
+    /* height: 667px; */
+    margin: 0 50px 0 50px;
+    padding: 24px 68px 24px 68px;
+}
+
+.create-header {
+    color: var(--secondary-dark-blue, #0954b0);
+    font-size: 30px;
+    font-family: "Corben";
+    font-weight: 700;
+    font-style: normal;
+    line-height: normal;
+    margin-bottom: 16px;
+}
+
+.create-subheader {
+    font-family: "Gilroy";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-bottom: 26px;
+}
+
+.create-column {
+    align-items: flex-start;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+}
+
+.header-image-container {
+    align-items: flex-start;
+    background-color: transparent;
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.header-img {
+    color: #0954B0;
+    font-family: "Corben";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.upload-container {
+    align-items: center;
+    display: inline-flex;
+    gap: 16px;
+    position: relative;
+    font-family: "SF Pro Display-Regular", Helvetica;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.upload-photo {
+    height: 20px;
+    position: relative;
+    width: 22.86px;
+}
+
+
+
+@media screen and (max-width: 576px) {
+    /* Styles for even smaller screens (e.g., mobile) */
+    /* X-Small devices (portrait phones, less than 576px) */
+}
+
+@media screen and (max-width: 768px) {
+    /* Small devices (landscape phones, less than 768px) */
+    /* Styles for smaller screens (e.g., tablets) */
+}
+
+@media screen and (max-width: 992px) {
+    /* Medium devices (tablets, less than 992px) */
+
+}
+
+@media screen and (max-width: 1024px) {
+    /* Large devices (desktops, less than 1200px) */
+}
