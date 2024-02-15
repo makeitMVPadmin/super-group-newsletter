@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
 import './Events.css'
 
-export default function Events({myImage='https://media.istockphoto.com/id/474794406/vector/seamless-children-cartoon-space-pattern.jpg?s=612x612&w=0&k=20&c=qSQJm4TrRfSplGmDHccCTCT71Rsg-AsYn6soJu1cd24='}) {
-    // Used for loading time  
-    const [imageLoaded, setImageLoaded] = useState(false);
-    const handleImageLoad = () => {
-      setImageLoaded(true);
-    };
+export default function Events({
+    myImage='https://media.istockphoto.com/id/474794406/vector/seamless-children-cartoon-space-pattern.jpg?s=612x612&w=0&k=20&c=qSQJm4TrRfSplGmDHccCTCT71Rsg-AsYn6soJu1cd24=',
+    myId
+  }) {
+  // Used for loading time  
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
 
+  const removeButtonClicked = () => {
+    console.log(myId)
+  }
   return (
     <div className='events-container'>
+      {/* Added this X so we could remove it from the newsLetter */}
+      <button class="events-circle" onClick={removeButtonClicked}>X</button> 
       <div className='events-mainImage-container'>
         {!imageLoaded && <img className='events-mainImage' src="loading-placeholder.jpg" alt="Loading..." />}
           <img

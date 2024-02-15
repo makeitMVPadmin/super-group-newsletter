@@ -36,6 +36,12 @@
 .news-topRight {
   width: 40%;
 }
+.news-topRight p {
+  font-family: 'Corben', sans-serif;
+  font-size: 12px;
+  margin: 0px;
+  padding: 0px;
+}
 .news-bottomLeft {
   width: 60%;
 }
@@ -113,7 +119,11 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-/* ************************* Calendar CSS ************************* */
+.news-NewMembers-container {  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
 /* ************************* Media Change CSS ************************* */
 @media (max-width: 768px) {

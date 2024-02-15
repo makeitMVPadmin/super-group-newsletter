@@ -4,7 +4,8 @@ import './Announcements.css';
 export default function Announcements({
     myImage = 'https://us.123rf.com/450wm/brgfx/brgfx1902/brgfx190200433/125363630-space-element-in-space-background-illustration.jpg?ver=6',
     myTitle = 'Announcement',
-    myMainText = 'Really Big things happening soon!', 
+    myMainText = 'Really Big things happening soon!',
+    myId
   }) {
     
   // Used for loading time  
@@ -12,9 +13,14 @@ export default function Announcements({
   const handleImageLoad = () => {
     setImageLoaded(true);
   };
+  const removeButtonClicked = () => {
+    console.log(myId)
+  }
 
   return (
     <div className='announce-container'>
+      {/* Added this X so we could remove it from the newsLetter */}
+      <button class="announce-circle" onClick={removeButtonClicked}>X</button> 
       <div className='announce-image-container' style={{ backgroundColor: '#f2f2f2', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       {!imageLoaded && <img className='announce-image' src="loading-placeholder.jpg" alt="Loading..." />}
         <img

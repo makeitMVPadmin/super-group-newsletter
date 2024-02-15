@@ -1,6 +1,7 @@
 .announce-container {
   width: 45%;
-  margin-right: 10px; /* Add a margin to create space between the announcements */
+  margin-right: 10px;
+  position: relative;
 }
 .announce-image-container {
   margin-bottom: -5px;
@@ -16,7 +17,7 @@
   object-fit: cover;
 }
 .announce-text-container {
-  background-color: rgb(131, 35, 35);
+  background-color: rgb(196, 196, 196);
   margin-bottom: 40px;
 }
 .announce-title {
@@ -28,6 +29,20 @@
   margin: 0px 10px 10px 10px;
   font-size: 17px;
   padding-bottom: 20px;
+}
+.announce-circle {
+  width: 20px;
+  height: 20px;
+  background-color: blue;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: absolute;
+  bottom: 45px;
+  right: 5px;
+  cursor: pointer;
 }
 
 /* ************************* Media Change CSS ************************* */

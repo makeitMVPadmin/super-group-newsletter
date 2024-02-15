@@ -1,0 +1,44 @@
+.newMembers-container {
+  flex: 1 0 30%;
+  max-width: 230px;
+  margin: 0px 10px 20px 10px;
+  position: relative;
+}
+
+.newMember-mainImage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.newMember-mainImage {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.newMember-circle {
+  width: 20px;
+  height: 20px;
+  background-color: blue;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: absolute;
+  bottom: 15px;
+  right: 0px;
+  cursor: pointer;
+}
+
+/* ************************* Media Change CSS ************************* */
+@media (max-width: 1000px) {
+  .newMember-mainImage {
+    width: 150px;
+    height: 150px;
+  }
+}

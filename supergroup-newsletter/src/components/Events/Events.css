@@ -2,6 +2,7 @@
   margin: 10px;
   display: flex;
   align-items: flex-start;
+  position: relative;
 }
 .events-mainImage {
   background-color: rgb(36, 255, 244);
@@ -42,4 +43,19 @@
 }
 .events-time{
   font-size: 10px;
+}
+
+.events-circle {
+  width: 20px;
+  height: 20px;
+  background-color: blue;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  cursor: pointer;
 }
