@@ -12,6 +12,41 @@ export default function EntryPoint() {
         console.log("clicked!")
     }
 
+    const renderEvents = () => {
+        
+        return events.map((event, index) => (
+            <CheckboxHeaders
+                key={index}
+                index={event.uuid}
+                description={event.description}
+            />
+        )) 
+    }
+
+    const renderAnnouncements = () => {
+        //
+        return announcements.map((announcement, index) => (
+            <CheckboxHeaders 
+                key={index}
+                index={announcement.uuid}
+                description={announcement.description}
+            />
+        ))
+    }
+
+    const events = [
+        {uuid: 1, description: "Come enjoy fireworks at the shire!"},
+        {uuid: 2, description: "Learn how to avoid the Nazgul 101."},
+        {uuid: 3, description: "How to destroy the ring with friends!"}
+    ]
+    
+    const announcements = [
+        {uuid: 1, description: "Fellowship embarks on perilous quest."},
+        {uuid: 2, description: "Ring destroyed, peace restored."},
+        {uuid: 3, description: "Return of the King crowns victory."}
+    ]
+
+
     return(
         <>
         <div className="back-rect" onClick={handleBackClick}>
@@ -29,9 +64,12 @@ export default function EntryPoint() {
                         Upload a Photo
                     </div>
                 </div>
-                
-            <CheckboxHeaders title={"Event"} />
-            <CheckboxHeaders title={"Announcements"} />
+                <div className="selections-container">
+                    <div className="title-textwrapper">Events</div>
+                    {renderEvents()}
+                    <div className="title-textwrapper">Announcements</div>
+                    {renderAnnouncements()}
+                </div>
             </div>
         </div>
         </>
