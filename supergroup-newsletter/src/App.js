@@ -4,6 +4,7 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import NewsEditor from './pages/NewsEditor/NewsEditor';
 import Navbar from './components/NavBar/NavBar';
+import EntryPoint from './pages/EntryPoint/EntryPoint';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Navbar />
       <div>
         <Routes>
+          <Route path="/dashboard" element={<EntryPoint />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/newsEditor" element={<NewsEditor />} />
