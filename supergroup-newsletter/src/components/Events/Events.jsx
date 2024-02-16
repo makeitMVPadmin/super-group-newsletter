@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Events.css'
 
 export default function Events({
-    myImage='https://media.istockphoto.com/id/474794406/vector/seamless-children-cartoon-space-pattern.jpg?s=612x612&w=0&k=20&c=qSQJm4TrRfSplGmDHccCTCT71Rsg-AsYn6soJu1cd24=',
+    eventImage='https://media.istockphoto.com/id/474794406/vector/seamless-children-cartoon-space-pattern.jpg?s=612x612&w=0&k=20&c=qSQJm4TrRfSplGmDHccCTCT71Rsg-AsYn6soJu1cd24=',
     myId,
     eventTitle,
     eventType,
@@ -28,7 +28,7 @@ export default function Events({
         {!imageLoaded && <img className='events-mainImage' src="loading-placeholder.jpg" alt="Loading..." />}
           <img
             className='events-mainImage'
-            src={myImage}
+            src={eventImage}
             alt="Event Image"
             style={{ display: imageLoaded ? 'block' : 'none' }}
             onLoad={handleImageLoad}

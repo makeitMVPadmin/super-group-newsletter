@@ -13,10 +13,10 @@ export default function NewsReview({
     myImage=mvpLogo,
     myMainText='This is where the main text of the newsletter would go. Here we would explain lots of fun stuff about all the amazing things we would be doing this week. How great are we, that we came up with such a fun way to showing off what fun people we are!  I am just as exited as you are to see this start to come together, go superteam!'
   }){
-  const { selectedDate } = useApiContext();
+  const { selectedDate, eventsData } = useApiContext();
 
   const clickButton = () => {
-    console.log(selectedDate)
+    console.log(eventsData)
   }
 
   const [mainText, setMainText] = useState(myMainText) 
@@ -34,6 +34,22 @@ export default function NewsReview({
   const [imageLoaded, setImageLoaded] = useState(false);
   const handleImageLoad = () => {
     setImageLoaded(true);
+  };
+
+  const renderEvents = () => {
+    // Map through eventsData and return an <Event> component for each object
+    return eventsData.map((event, index) => (
+      <Events
+        key={index}
+        eventTitle={event.eventTitle}
+        eventType={event.eventType}
+        eventLocation={event.eventLocation}
+        eventInformation={event.eventInformation}
+        eventTime={event.eventTime}
+        eventDate={event.eventDate}
+        eventImage={event.eventImage}
+      />
+    ));
   };
 
   return (
@@ -64,22 +80,7 @@ export default function NewsReview({
                 </div>
                 <h4 className='news-sectionTitle'>Weekly Community Events</h4>
               <div className='news-EventsContainer'>
-                <Events     
-                  eventTitle={'How Ai can help in Marketing'}
-                  eventType={'On-Site'}
-                  eventLocation={'New York, NY'}
-                  eventInformation={'Come learn about different ways you can meet investors and learn how to pitch to them about how great Ai is!'}
-                  eventDate={'Feb 24th, 2023'}
-                  eventTime={'7:00 PM - 9:00 PM EST'}
-                />
-                <Events     
-                  eventTitle={'Expecting the unexpected'}
-                  eventType={'remote'}
-                  eventLocation={'Boone, NC'}
-                  eventInformation={'If you think you can plan for everything, you have never been involved in a land war in Asia.  Never go in against a sicilian when death is on the line.'}
-                  eventDate={'March 4th, 2023'}
-                  eventTime={'6:00 PM - 7:30 PM EST'}
-                />
+                {renderEvents()}
               </div>
               <h4 className='news-sectionTitle'>Announcements!</h4>
               <div className='news-Announcements-container'>
@@ -107,7 +108,7 @@ export default function NewsReview({
         </div>
         <div className='news-bottomContainer'>
           <div className='news-bottomLeft'>
-            **** bottomLeft Here ****
+            
           </div>
           <div className='news-dividerBottom'></div>
           <div className='news-bottomRight'>
