@@ -21,7 +21,7 @@ export default function Announcements({
     <div className='announce-container'>
       {/* Added this X so we could remove it from the newsLetter */}
       <button class="announce-circle" onClick={removeButtonClicked}>X</button> 
-      <div className='frank'>
+      <div className='announce-image-container'>
         {!imageLoaded && <img className='announce-image' src="loading-placeholder.jpg" alt="Loading..." />}
           <img
             className='announce-image'

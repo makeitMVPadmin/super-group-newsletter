@@ -8,7 +8,7 @@
   border-radius: 10px;
   box-shadow: 0 2px 2px 1px #999999;
 }
-.frank {
+.announce-image-container {
   display: flex;
   flex-direction: row;
 }
