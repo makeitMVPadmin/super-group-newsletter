@@ -1,7 +1,8 @@
 .newMembers-container {
   flex: 1 0 30%;
   max-width: 230px;
-  margin: 0px 10px 20px 10px;
+  /* margin: 0px 10px 20px 10px; */
+  padding: 10px;
   position: relative;
 }
 
@@ -15,7 +16,7 @@
 .newMember-mainImage {
   width: 200px;
   height: 200px;
-  border-radius: 10px;
+  border-radius: 50%;
   margin-bottom: 10px;
   object-fit: cover;
 }
@@ -23,12 +24,12 @@
 .newMember-circle {
   width: 20px;
   height: 20px;
-  background-color: var(--primary-yellow);
+  background-color: var(--primary-light-blue);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(0, 0, 0);
+  color: var(--primary-yellow);
   position: absolute;
   bottom: 15px;
   right: 0px;
