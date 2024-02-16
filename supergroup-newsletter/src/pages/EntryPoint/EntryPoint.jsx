@@ -55,21 +55,35 @@ export default function EntryPoint() {
         </div>
         <div className="create-container">
             <div className="create-header">Create a Newsletter</div>
-            <div className="create-subheader">Select topics to include</div>
-            <div className="create-column">
-                <div className="header-image-container">
-                    <div className="header-img">Header Image:</div>
-                    <div className="upload-container">
-                        <UploadPhoto className="upload-photo" />
-                        Upload a Photo
+            <div className="create-main-section">
+                <div className="create-subheader">Select topics to include</div>
+                <div className="columns-container">
+
+                    <div className="left-column">
+                        <div className="header-image-container">
+                            <div className="header-img">Header Image:</div>
+                            <div className="upload-container">
+                                <UploadPhoto className="upload-photo" />
+                                Upload a Photo
+                            </div>
+                        </div>
+                        <div className="selections-container">
+                            <div className="title-textwrapper">Events</div>
+                            {renderEvents()}
+                            <div className="title-textwrapper">Announcements</div>
+                            {renderAnnouncements()}
+                        </div>
+                    </div>
+                    <div className="middle-column">
+                        
+                    </div>
+                    <div className="right-column">
+                    
                     </div>
                 </div>
-                <div className="selections-container">
-                    <div className="title-textwrapper">Events</div>
-                    {renderEvents()}
-                    <div className="title-textwrapper">Announcements</div>
-                    {renderAnnouncements()}
-                </div>
+            </div>
+            <div className="create-footer">
+                Footer
             </div>
         </div>
         </>
