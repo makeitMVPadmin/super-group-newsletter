@@ -14,12 +14,12 @@
   flex-direction: column;
   align-items: center;
   margin: 0px;
-  height: 235px;
+  /* height: 235px; */
   width: 100%;
-  background-color: #949494;
+  background-color: var(--primary-light-blue);
 }
 .footer-mvpLogo {
-  padding-top: 150px;
+  padding-top: 100px;
   padding-bottom: 29px;
   width: 195px;
 }
