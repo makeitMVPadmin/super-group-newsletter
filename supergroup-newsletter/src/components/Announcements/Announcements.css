@@ -45,7 +45,7 @@
 .announce-circle {
   width: 20px;
   height: 20px;
-  background-color: var(--primary-yellow);
+  background-color: var(--secondary-cream);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -56,7 +56,10 @@
   right: 5px;
   cursor: pointer;
 }
- 
+.announce-circle:hover {
+  color: black;
+  background-color: var(--primary-light-blue);
+}
 /* ************************* Media Change CSS ************************* */
 @media (max-width: 768px) {
 

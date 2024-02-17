@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useApiContext } from '../ApiContext/ApiContext';
 import { db } from '../../firebase-config';
 import{ collection, addDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 export default function AiInputBox() {
-    const [myMessage, setMyMessage] = useState('')
+
+  const navigate = useNavigate();
+
     // Grabs our setters for our 'global' variables
-    const { callOpenAiAPI, setMessageToAi, setRoleOfAi } = useApiContext();
+    const { callOpenAiAPI, setMessageToAi, setRoleOfAi, handleAiMessageData, aiMessageData } = useApiContext();
     // Create a useState for our user Input and the handler to keep it up to date.
 
     const ref = collection(db, "testAiResponse") // create a reference as a collection to db
@@ -19,6 +22,7 @@ export default function AiInputBox() {
     const handleClick = () => {
       contactAiAPI()
       setInputValue('') // Resets input for next inquiry
+      navigate('/newsEditor');
     }
     // This is where the magic starts, and we call the OpenAi.  See ApiContext.js for more
     const contactAiAPI = async () => {
@@ -27,7 +31,7 @@ export default function AiInputBox() {
         const data = await callOpenAiAPI(inputValue);
         // Now you can use the response however you would like.
         // console.log('Data:', data);
-        setMyMessage(data.choices[0].message.content) // This will be the response of the Ai
+        handleAiMessageData(data.choices[0].message.content) // This will be the response of the Ai
         
         // create an object of AI response to send back to db
         const dbObj = {
@@ -36,7 +40,7 @@ export default function AiInputBox() {
 
         addDoc(ref, dbObj) // sends the data to the db
 
-        setMessageToAi(inputValue); // Update the message content using the context function
+        setMessageToAi(inputValue); // Update the message
       } catch (error) { console.error('Error:', error); } // Log any errors
     };
 
@@ -49,9 +53,6 @@ export default function AiInputBox() {
             onKeyDown={(e) => { if (e.key === 'Enter') {handleClick();} }}
         />
         <button onClick={handleClick}>Call API</button>
-        <div>
-            {myMessage}
-        </div>
       </div>
     );
   }

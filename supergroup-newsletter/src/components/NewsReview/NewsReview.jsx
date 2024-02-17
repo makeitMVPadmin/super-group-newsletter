@@ -11,17 +11,29 @@ import mvpLogo from '../../assets/images/makeitMVPHero.jpg';
 
 export default function NewsReview({
     myImage=mvpLogo,
-    myMainText='This is where the main text of the newsletter would go. Here we would explain lots of fun stuff about all the amazing things we would be doing this week. How great are we, that we came up with such a fun way to showing off what fun people we are!  I am just as exited as you are to see this start to come together, go superteam!'
+    myMainText='Main Text'
   }){
-  const { selectedDate } = useApiContext();
+  const { 
+    selectedDate, 
+    eventsData, 
+    announcementsData,
+    newMembersData,
+    aiMessageData
+  } = useApiContext();
 
   const clickButton = () => {
-    console.log(selectedDate)
+    console.log('I was clicked')
   }
 
-  const [mainText, setMainText] = useState(myMainText) 
+  const [mainText, setMainText] = useState('Main Text') 
   const [editMainText, setEditMainText] = useState(false)
   const [newsLetterTitle, setNewsLetterTitle] = useState(``)
+
+  useEffect(() => {
+    console.log('uran')
+    console.log(aiMessageData)
+    setMainText(aiMessageData)
+  }, [aiMessageData]);
 
   const handleTextChange = (event) => {
     setMainText(event.target.value);
@@ -29,12 +41,60 @@ export default function NewsReview({
   const handleTitleChange = (event) => {
     setNewsLetterTitle(event.target.value);
   };
+  const handleEditMainText = () => {
+    setEditMainText(prev => !prev)
+  };
 
   // Used for loading time  
   const [imageLoaded, setImageLoaded] = useState(false);
   const handleImageLoad = () => {
     setImageLoaded(true);
   };
+
+  const renderEvents = () => {
+    // Map through eventsData and return an <Event> component for each object
+    return eventsData.map((event, index) => (
+      <Events
+        key={index}
+        myUUID={event.eventUUID}
+        myTitle={event.eventTitle}
+        myType={event.eventType}
+        myLocation={event.eventLocation}
+        myInfo={event.eventInfo}
+        myTime={event.eventTime}
+        myDate={event.eventDate}
+        myImage={event.eventImage}
+      />
+    ));
+  };
+
+  const renderAnnouncements = () => {
+    // Map through announcementsData and return an <Announcements> component for each object
+    return announcementsData.map((announcement, index) => (
+      <Announcements
+        key={index}
+        myUUID={announcement.announcementUUID}
+        myTitle={announcement.announcementTitle}
+        myInformation={announcement.announcementInformation}
+        myDate={announcement.announcementDate}
+        myImage={announcement.announcementImage}
+      />
+    ));
+  }
+
+  const renderNewMembers = () => {
+    // Map through newMembersData and return an <NewMembers> component for each object
+    return newMembersData.map((newMember, index) => (
+      <NewMembers
+        key={index}
+        myUUID={newMember.newMemberUUID}
+        myName={newMember.newMemberName}
+        myRole={newMember.newMemberRole}
+        myImage={newMember.newMemberImage}
+        myText={newMember.newMemberText}
+      />
+    ));
+  }
 
   return (
     <div>
@@ -57,41 +117,29 @@ export default function NewsReview({
             <p className='news-date'>{selectedDate.toDateString()}</p>
             <div className='mainSection'>
 
-              <div className='news-mainTextContainer'>
-                {editMainText ? (
+              {editMainText ? (
+                <div className='news-mainTextContainer'>
                   <textarea className='news-mainText' value={mainText} onChange={handleTextChange}></textarea>
-                  ) : (<div>{mainText}</div>)}
+                  <button className='news-mainTextButton' onClick={handleEditMainText}>Save</button>
                 </div>
-                <h4 className='news-sectionTitle'>Weekly Community Events</h4>
-              <div className='news-EventsContainer'>
-                <Events     
-                  eventTitle={'How Ai can help in Marketing'}
-                  eventType={'On-Site'}
-                  eventLocation={'New York, NY'}
-                  eventInformation={'Come learn about different ways you can meet investors and learn how to pitch to them about how great Ai is!'}
-                  eventDate={'Feb 24th, 2023'}
-                  eventTime={'7:00 PM - 9:00 PM EST'}
-                />
-                <Events     
-                  eventTitle={'Expecting the unexpected'}
-                  eventType={'remote'}
-                  eventLocation={'Boone, NC'}
-                  eventInformation={'If you think you can plan for everything, you have never been involved in a land war in Asia.  Never go in against a sicilian when death is on the line.'}
-                  eventDate={'March 4th, 2023'}
-                  eventTime={'6:00 PM - 7:30 PM EST'}
-                />
+              ) : (
+                <div className='news-mainTextContainer'>
+                  <div>{mainText}</div>
+                  <button className='news-mainTextButton' onClick={handleEditMainText}>Edit</button>
+                </div>
+              )}
+
+              {eventsData.length > 0 && <h4 className='news-sectionTitle'>Weekly Community Events</h4>}
+              <div className={eventsData.length > 0 ? 'news-EventsContainer':''}>
+                {renderEvents()}
               </div>
-              <h4 className='news-sectionTitle'>Announcements!</h4>
-              <div className='news-Announcements-container'>
-                <Announcements />
-                <Announcements />
-                <Announcements />
+              {announcementsData.length > 0 && <h4 className='news-sectionTitle'>Announcements!</h4>}
+              <div className={announcementsData.length > 0 ? 'news-Announcements-container':''}>
+                {renderAnnouncements()}
               </div>
-              <h4 className='news-sectionTitle'>Welcome Our Community's New Members!</h4>
-              <div className='news-NewMembers-container'> 
-                <NewMembers myName={'Rooney'} myRole={'House Panther'} myText={'Like a shadow at midnight, impossible to see unless the moon is high.'}/>
-                <NewMembers myName={'Sheena'} myRole={'Dark Cystal'} myText={'Mysterious powers both consume light and radiates rays of magical power.'}/>
-                <NewMembers myName={'Miki'} myRole={'Solar Ecplise'} myText={'Showing us how marvelous science can be! So powerful you can not look directly at him!'}/>
+              {newMembersData.length > 0 && <h4 className='news-sectionTitle'>Welcome Our Community's New Members!</h4>}
+              <div className={newMembersData.length > 0 ? 'news-NewMembers-container':''}> 
+                  {renderNewMembers()}
               </div>
               <div>
                 <NewsFooter />
@@ -107,7 +155,7 @@ export default function NewsReview({
         </div>
         <div className='news-bottomContainer'>
           <div className='news-bottomLeft'>
-            **** bottomLeft Here ****
+            
           </div>
           <div className='news-dividerBottom'></div>
           <div className='news-bottomRight'>

@@ -24,16 +24,19 @@
 .newMember-circle {
   width: 20px;
   height: 20px;
-  background-color: var(--primary-light-blue);
+  background-color: var(--secondary-cream);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--primary-yellow);
+  color: black;
   position: absolute;
   bottom: 15px;
   right: 0px;
   cursor: pointer;
+}
+.newMember-circle:hover {
+  background-color: var(--primary-light-blue);
 }
 
 /* ************************* Media Change CSS ************************* */
