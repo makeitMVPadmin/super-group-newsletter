@@ -11,28 +11,38 @@ import mvpLogo from '../../assets/images/makeitMVPHero.jpg';
 
 export default function NewsReview({
     myImage=mvpLogo,
-    myMainText='This is where the main text of the newsletter would go. Here we would explain lots of fun stuff about all the amazing things we would be doing this week. How great are we, that we came up with such a fun way to showing off what fun people we are!  I am just as exited as you are to see this start to come together, go superteam!'
+    myMainText='Main Text'
   }){
   const { 
     selectedDate, 
     eventsData, 
     announcementsData,
-    newMembersData
+    newMembersData,
+    aiMessageData
   } = useApiContext();
 
   const clickButton = () => {
     console.log('I was clicked')
   }
 
-  const [mainText, setMainText] = useState(myMainText) 
+  const [mainText, setMainText] = useState('Main Text') 
   const [editMainText, setEditMainText] = useState(false)
   const [newsLetterTitle, setNewsLetterTitle] = useState(``)
+
+  useEffect(() => {
+    console.log('uran')
+    console.log(aiMessageData)
+    setMainText(aiMessageData)
+  }, [aiMessageData]);
 
   const handleTextChange = (event) => {
     setMainText(event.target.value);
   };
   const handleTitleChange = (event) => {
     setNewsLetterTitle(event.target.value);
+  };
+  const handleEditMainText = () => {
+    setEditMainText(prev => !prev)
   };
 
   // Used for loading time  
@@ -107,11 +117,18 @@ export default function NewsReview({
             <p className='news-date'>{selectedDate.toDateString()}</p>
             <div className='mainSection'>
 
-              <div className='news-mainTextContainer'>
-                {editMainText ? (
+              {editMainText ? (
+                <div className='news-mainTextContainer'>
                   <textarea className='news-mainText' value={mainText} onChange={handleTextChange}></textarea>
-                ) : (<div>{mainText}</div>)}
-              </div>
+                  <button className='news-mainTextButton' onClick={handleEditMainText}>Save</button>
+                </div>
+              ) : (
+                <div className='news-mainTextContainer'>
+                  <div>{mainText}</div>
+                  <button className='news-mainTextButton' onClick={handleEditMainText}>Edit</button>
+                </div>
+              )}
+
               {eventsData.length > 0 && <h4 className='news-sectionTitle'>Weekly Community Events</h4>}
               <div className={eventsData.length > 0 ? 'news-EventsContainer':''}>
                 {renderEvents()}

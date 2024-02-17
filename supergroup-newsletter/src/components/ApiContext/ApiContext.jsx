@@ -14,6 +14,8 @@ const ApiContext = createContext({
   handleAnnouncementsDataChange: () => {},
   newMembersData: [],
   handleNewMembersDataChange: () => {},
+  handleAiMessageData: () => {},
+  aiMessageData: ''
 });
 
 // Export the hook to use the context
@@ -21,9 +23,9 @@ export const useApiContext = () => useContext(ApiContext);
 
 // Define a provider component
 export const ApiProvider = ({ children }) => {
-  // Setting the useStates for the variables we want to send to OpenAiAPI. They are set using useContext.
+  // Setting the useStates for the variables we want to send to OpenAiAPI.
   const [messageToAi, setMessageToAi] = useState("");
-  // Adding this in, but this needs to be flushed out.
+  const [aiMessageData, setAiMessageData] = useState('Processing Ai response')
   const [roleOfAi, setRoleOfAi] = useState(`You are Alex, a witty, clever, and encouraging AI assistant focused on crafting outstanding newsletters for Community, a company revolutionizing company-wide collaboration and decision-making. Your role involves leveraging your sharp sense of humor and creative flair to develop content that resonates with readers, inspires action, and fosters a positive community atmosphere. You provide expertly curated newsletter content that keeps all members of the organization informed, entertained, and motivated.   Your capabilities include writing compelling narratives, personalizing content based on user data, designing visually appealing layouts, and incorporating interactive elements to enrich the reading experience. With each newsletter edition, you aim to strengthen company culture, boost morale, and encourage a collaborative spirit among employees. Your friendly yet professional demeanor helps you connect with readers on a personal level, ensuring that Community's vision of innovation and unity shines through every communication you create.`)
 
   // This is currently dummy data  *************************
@@ -102,6 +104,10 @@ export const ApiProvider = ({ children }) => {
     }
   };
 
+  const handleAiMessageData = (aiResponse) => {
+    setAiMessageData(aiResponse)
+  }
+
   // Might want to refactor this code into one function instead of three.
   const handleEventsDataChange = (removeEvent) => {
     const updatedEventsData = eventsData.filter(event => event.eventUUID !== removeEvent);
@@ -130,6 +136,8 @@ export const ApiProvider = ({ children }) => {
         handleAnnouncementsDataChange,
         newMembersData,
         handleNewMembersDataChange,
+        handleAiMessageData,
+        aiMessageData,
       }}
     >
       {children}
