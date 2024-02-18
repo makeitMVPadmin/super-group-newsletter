@@ -14,10 +14,10 @@ function App() {
       <Navbar />
       <div>
         <Routes>
-          <Route path="/dashboard" element={<EntryPoint />} />
-          <Route path="/" element={<LandingPage />} />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/landing" element={<LandingPage />} />
           <Route path="/newsEditor" element={<NewsEditor />} />
+          <Route path="/" element={<EntryPoint />} />
+          <Route path="*" element={<NotFoundPage />} />
           <Route path="/dummyData" element={<DummyData/>} />
         </Routes>
       </div>

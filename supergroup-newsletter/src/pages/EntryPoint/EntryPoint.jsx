@@ -1,23 +1,15 @@
 import React, { useState } from "react";
-import { ReactComponent as BackBtn } from "../../assets/svgs/back-btn.svg"
+import BackButton from '../../components/BackButton/BackButton';
 import { ReactComponent as UploadPhoto } from "../../assets/svgs/upload-photo.svg"
 import "./EntryPoint.css";
 import CheckboxHeaders from "../../components/CheckboxHeaders/CheckboxHeaders";
 
 export default function EntryPoint() {
-    const [isClicked, setIsClicked] = useState(false);
 
-    const handleBackClick = () => {
-        setIsClicked(true)
-        console.log("clicked!")
-    }
 
     return(
         <>
-        <div className="back-rect" onClick={handleBackClick}>
-            <BackBtn className="back-btn" />
-            <div className="back-text">Back</div>
-        </div>
+        <BackButton />
         <div className="create-container">
             <div className="create-header">Create a Newsletter</div>
             <div className="create-subheader">Select topics to include</div>
