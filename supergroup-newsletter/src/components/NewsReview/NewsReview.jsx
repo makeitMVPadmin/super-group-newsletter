@@ -74,7 +74,7 @@ export default function NewsReview({
         myId={announcement.id}
         myTitle={announcement.title}
         myInformation={announcement.description}
-        myDate={announcement.announcementDate}
+        myDate={announcement.date}
         myImage={announcement.photoURL}
       />
     ));
