@@ -22,7 +22,7 @@ export default function Events({
   };
 
   const removeButtonClicked = () => {
-    if (window.confirm("Are you sure you want to remove this Event?")) {
+    if (window.confirm(`Are you sure you want to remove ${myTitle} from Community Events?`)) {
       handleEventsDataChange(myId);
     }
   }

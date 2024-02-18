@@ -18,7 +18,7 @@ export default function NewMembers({
   };
 
   const removeButtonClicked = () => {
-    if (window.confirm("Are you sure you want to remove this New member?")) {
+    if (window.confirm(`Are you sure you want to remove ${myName} from New Members?`)) {
       handleNewMembersDataChange(myUUID)
     }
   }

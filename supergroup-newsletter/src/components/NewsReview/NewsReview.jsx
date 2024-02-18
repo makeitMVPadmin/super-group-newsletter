@@ -103,7 +103,7 @@ export default function NewsReview({
           <div className='news-topLeft'>
             {!imageLoaded && <img className='news-heroImage' src="loading-placeholder.jpg" alt="Loading..." />}
               <div className='news-hero-title'>
-              <div className='news-title'>Monthly Newsletter</div>
+              <div className='news-title'>Weekly Newsletter</div>
               <img
                 className='news-heroImage'
                 src={myImage}
@@ -127,13 +127,13 @@ export default function NewsReview({
                 </div>
               )}
 
-              {eventsData.length > 0 && <h4 className='news-sectionTitle'>Weekly Community Events</h4>}
+              {eventsData.length > 0 && <h2 className='news-sectionTitle'>Weekly Community Events</h2>}
               <div className={eventsData.length > 0 ? 'news-EventsContainer':''}>{renderEvents()}</div>
               
-              {announcementsData.length > 0 && <h4 className='news-sectionTitle'>Announcements!</h4>}
+              {announcementsData.length > 0 && <h2 className='news-sectionTitle'>Announcements!</h2>}
               <div className={announcementsData.length > 0 ? 'news-Announcements-container':''}>{renderAnnouncements()}</div>
 
-              {newMembersData.length > 0 && <h4 className='news-sectionTitle'>Welcome Our Community's New Members!</h4>}
+              {newMembersData.length > 0 && <h2 className='news-sectionTitle'>Welcome Our Community's New Members!</h2>}
               <div className={newMembersData.length > 0 ? 'news-NewMembers-container':''}>{renderNewMembers()}</div>
               <div><NewsFooter /></div>
             </div>
@@ -154,7 +154,7 @@ export default function NewsReview({
             <button className='news-doneButton' onClick={clickButton}>Publish</button>
           </div>
         </div>
-        
+
       </div>
     </div>
   )

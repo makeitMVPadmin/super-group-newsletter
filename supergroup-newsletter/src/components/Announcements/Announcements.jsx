@@ -17,7 +17,7 @@ export default function Announcements({
     setImageLoaded(true);
   };
   const removeButtonClicked = () => {
-    if (window.confirm("Are you sure you want to remove this Announcement?")) {
+    if (window.confirm(`Are you sure you want to remove the ${myTitle} Announcement?`)) {
       handleAnnouncementsDataChange(myId)
     }
   }
