@@ -22,7 +22,9 @@ export default function Events({
   };
 
   const removeButtonClicked = () => {
-    handleEventsDataChange(myId);
+    if (window.confirm("Are you sure you want to remove this Event?")) {
+      handleEventsDataChange(myId);
+    }
   }
     
   const formatDateTime = (_date) => {

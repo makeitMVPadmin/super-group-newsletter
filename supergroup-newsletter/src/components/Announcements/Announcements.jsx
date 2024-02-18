@@ -17,7 +17,9 @@ export default function Announcements({
     setImageLoaded(true);
   };
   const removeButtonClicked = () => {
-    handleAnnouncementsDataChange(myId)
+    if (window.confirm("Are you sure you want to remove this Announcement?")) {
+      handleAnnouncementsDataChange(myId)
+    }
   }
 
   const calculateDate = (_date) => {

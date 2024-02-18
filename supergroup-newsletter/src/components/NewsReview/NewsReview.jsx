@@ -128,39 +128,33 @@ export default function NewsReview({
               )}
 
               {eventsData.length > 0 && <h4 className='news-sectionTitle'>Weekly Community Events</h4>}
-              <div className={eventsData.length > 0 ? 'news-EventsContainer':''}>
-                {renderEvents()}
-              </div>
+              <div className={eventsData.length > 0 ? 'news-EventsContainer':''}>{renderEvents()}</div>
+              
               {announcementsData.length > 0 && <h4 className='news-sectionTitle'>Announcements!</h4>}
-              <div className={announcementsData.length > 0 ? 'news-Announcements-container':''}>
-                {renderAnnouncements()}
-              </div>
+              <div className={announcementsData.length > 0 ? 'news-Announcements-container':''}>{renderAnnouncements()}</div>
+
               {newMembersData.length > 0 && <h4 className='news-sectionTitle'>Welcome Our Community's New Members!</h4>}
-              <div className={newMembersData.length > 0 ? 'news-NewMembers-container':''}> 
-                  {renderNewMembers()}
-              </div>
-              <div>
-                <NewsFooter />
-              </div>
+              <div className={newMembersData.length > 0 ? 'news-NewMembers-container':''}>{renderNewMembers()}</div>
+              <div><NewsFooter /></div>
             </div>
           </div>
 
           <div className='news-divider'></div>
           <div className='news-topRight'>
-            <p>Select a date and time to publish your news letter</p>
+            <p>Select a date to publish your news letter</p>
             <MyCalendar />
           </div>
         </div>
+
         <div className='news-bottomContainer'>
-          <div className='news-bottomLeft'>
-            
-          </div>
+          <div className='news-bottomLeft'></div>
           <div className='news-dividerBottom'></div>
           <div className='news-bottomRight'>
             <div className='news-saveDraft'>Save Draft</div>
-            <button className='news-doneButton' onClick={clickButton}>Publish!</button>
+            <button className='news-doneButton' onClick={clickButton}>Publish</button>
           </div>
         </div>
+        
       </div>
     </div>
   )

@@ -60,7 +60,8 @@ const MyCalendar = () => {
         onSelectSlot={handleSelectSlot}
         selectable
       />
-      <div>*** Space for Time Selection ***</div>
+      {/* Putting the Time Selection on the back burner. */}
+      {/* <div>*** Space for Time Selection ***</div> */}
     </div>
   );
 };
