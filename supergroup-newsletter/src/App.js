@@ -4,6 +4,7 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import NewsEditor from './pages/NewsEditor/NewsEditor';
 import Navbar from './components/NavBar/NavBar';
+import DummyData from './pages/DummyData/DummyData';
 import EntryPoint from './pages/EntryPoint/EntryPoint';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/newsEditor" element={<NewsEditor />} />
+          <Route path="/dummyData" element={<DummyData/>} />
         </Routes>
       </div>
     </div>
