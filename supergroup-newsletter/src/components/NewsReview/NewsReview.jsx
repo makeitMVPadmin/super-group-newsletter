@@ -30,8 +30,6 @@ export default function NewsReview({
   const [newsLetterTitle, setNewsLetterTitle] = useState(``)
 
   useEffect(() => {
-    console.log('uran')
-    console.log(aiMessageData)
     setMainText(aiMessageData)
   }, [aiMessageData]);
 
@@ -56,14 +54,14 @@ export default function NewsReview({
     return eventsData.map((event, index) => (
       <Events
         key={index}
-        myUUID={event.eventUUID}
-        myTitle={event.eventTitle}
-        myType={event.eventType}
-        myLocation={event.eventLocation}
+        myId={event.id}
+        myTitle={event.title}
+        myType={event.type}
+        myLocation={event.location}
         myInfo={event.eventInfo}
-        myTime={event.eventTime}
-        myDate={event.eventDate}
-        myImage={event.eventImage}
+        myImage={event.photoURL}
+        myDate={event.date}
+        myEndTime={event.endTime}
       />
     ));
   };
@@ -73,11 +71,11 @@ export default function NewsReview({
     return announcementsData.map((announcement, index) => (
       <Announcements
         key={index}
-        myUUID={announcement.announcementUUID}
-        myTitle={announcement.announcementTitle}
-        myInformation={announcement.announcementInformation}
+        myId={announcement.id}
+        myTitle={announcement.title}
+        myInformation={announcement.description}
         myDate={announcement.announcementDate}
-        myImage={announcement.announcementImage}
+        myImage={announcement.photoURL}
       />
     ));
   }
@@ -87,11 +85,11 @@ export default function NewsReview({
     return newMembersData.map((newMember, index) => (
       <NewMembers
         key={index}
-        myUUID={newMember.newMemberUUID}
-        myName={newMember.newMemberName}
-        myRole={newMember.newMemberRole}
-        myImage={newMember.newMemberImage}
-        myText={newMember.newMemberText}
+        myUUID={newMember.id}
+        myName={newMember.name}
+        myRole={newMember.role}
+        myImage={newMember.photoURL}
+        myText={newMember.description}
       />
     ));
   }

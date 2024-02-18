@@ -3,10 +3,10 @@ import { useApiContext } from '../ApiContext/ApiContext';
 import './Announcements.css';
 
 export default function Announcements({
-    myImage = 'https://us.123rf.com/450wm/brgfx/brgfx1902/brgfx190200433/125363630-space-element-in-space-background-illustration.jpg?ver=6',
+    myImage = '',
     myTitle = 'Announcement',
     myInformation = 'Really Big things happening soon!',
-    myUUID,
+    myId,
     myDate
   }) {
   
@@ -17,7 +17,7 @@ export default function Announcements({
     setImageLoaded(true);
   };
   const removeButtonClicked = () => {
-    handleAnnouncementsDataChange(myUUID)
+    handleAnnouncementsDataChange(myId)
   }
 
   const calculateDate = (_date) => {
