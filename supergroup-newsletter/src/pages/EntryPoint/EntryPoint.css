@@ -17,6 +17,8 @@
     font-weight: 800;
 }
 
+/* ---- ENTIRE WHITE BOX CONTAINER ----*/
+
 .create-container {
     display: flex;
     flex-wrap: wrap;
@@ -30,6 +32,7 @@
     background: var(--primary-white, #FFF);
 }
 
+/* ---- TOP SECTION/HEADER ----*/
 .create-header {
     color: var(--secondary-dark-blue, #0954b0);
     font-size: 30px;
@@ -38,15 +41,17 @@
     font-style: normal;
     line-height: normal;
     width: 100%;
-    background-color: chocolate;
+    /* background-color: chocolate; */
 }
+
+/* ---- MAIN SECTION / MIDDLE SECTION ----*/
 
 .create-main-section {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-    background-color: rgb(0, 17, 255);
+    /* background-color: rgb(0, 17, 255); */
 }
 
 .create-subheader {
@@ -56,43 +61,24 @@
     font-weight: 800;
     line-height: normal;
     width: 100%;
-    background-color: aqua;
+    margin-top: 16px;
+    margin-bottom: 24px
+    /* background-color: aqua; */
 }
 
+/* ---- ALL COLUMNS ----*/
 .columns-container {
     display: flex;
     flex-direction: row;
 }
 
+/* ---- LEFT COLUMN ----*/
 .left-column {
-    /* align-items: flex-start; */
     flex-direction: column;
     flex: 1; 
-    /* flex-grow: 1; */
-    /* min-width: 0; */
-    /* gap: 16px; */
-    /* position: relative; */
     margin-left: 8px;
-    background-color: chartreuse;
-}
-
-.middle-column {
-    background-color: blueviolet;
-    flex: 1;
-}
-
-.right-column {
-    flex: 1;
-    background-color: crimson;
-}
-
-
-.create-footer {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    background-color: burlywood;
-}
+    /* background-color: chartreuse; */
+}   
 
 .header-image-container {
     align-items: flex-start;
@@ -107,7 +93,7 @@
 }
 
 .header-img {
-    color: #0954B0;
+    color: var(--secondary-dark-blue, #0954b0);
     font-family: "Corben";
     font-size: 20px;
     font-style: normal;
@@ -120,7 +106,7 @@
     display: inline-flex;
     gap: 16px;
     font-family: "SF Pro Display-Regular", Helvetica;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: normal;
@@ -135,6 +121,152 @@
     width: 22.86px;
 }
 
+
+/* ---- MIDDLE COLUMN ----*/
+.middle-column {
+    /* background-color: rgb(232, 216, 248); */
+    flex: 1;
+}
+
+.member-title {
+    color: var(--secondary-dark-blue, #0954b0);
+    font-family: "Corben";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+    /* background-color: antiquewhite; */
+}
+
+.member-subheader {
+    font-family: "SF Pro Display-Regular", Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
+    padding: 8px;
+    margin: 0;
+    /* background-color: blanchedalmond; */
+}
+
+.toggle-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0 8px;
+}
+
+.hidden-checkbox {
+    position: absolute;
+    opacity: 0;
+}
+
+.show-members {
+    padding: 0px 8px;
+}
+
+.members {
+    color: var(--primary-black, #000);
+    font-family: "Gilroy";
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    padding: 0 4px 4px 4px;
+    /* background-color: bisque; */
+}
+
+.ai-container {
+
+}
+
+.ai-title {
+    color: var(--secondary-dark-blue, #0954b0);
+    font-family: "Corben";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 16px 0 0 0;
+    /* background-color: rgb(220, 148, 53); */
+}
+
+.ai-subheader {
+    align-items: center;
+    display: inline-flex;
+    gap: 13px;
+    margin: 8px 0;
+    width: 100%;
+    color: var(--MVP-black, #000);
+    font-family: "SF Pro Display-Regular", Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    /* background-color: antiquewhite; */
+}
+
+.ai-input {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.ai-textarea{
+    padding: 8px;
+    border-radius: 8px;
+    border: 3px solid #000;
+    resize: none;
+    width: 375px;
+    height: 160px;
+    font-family: "SF Pro Display", Helvetica;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+textarea::-webkit-scrollbar {
+    width: 9px; 
+
+}
+
+.ai-textarea::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-dark-blue, #0954b0);
+    border-radius: 100vw;
+}
+
+.ai-textarea::-webkit-scrollbar-track {
+    background-color: var(--secondary-cream, #fff9f4);
+    border-radius: 100vw;
+}
+
+.ai-textarea::-webkit-scrollbar-thumb:hover {
+    background-color: #90bff9;
+}
+
+
+/* ---- RIGHT COLUMN ----*/
+.right-column {
+    flex: 1;
+    background-color: rgb(233, 171, 183);
+}
+
+
+/* ---- BOTTOM SECTION/FOOTER ----*/
+.create-footer {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    background-color: burlywood;
+}
+
+.drafts-title {
+    color: var(--secondary-dark-blue, #0954b0);
+    font-family: "Corben";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
 
 
 

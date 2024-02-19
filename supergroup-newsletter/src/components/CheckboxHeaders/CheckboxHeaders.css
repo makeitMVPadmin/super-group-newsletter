@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 4px;
+    gap: 10px;
 }
 
 .title-textwrapper {
@@ -12,7 +12,7 @@
     font-weight: 700;
     letter-spacing: 0;
     line-height: normal;
-    margin-top: -1px;
+    margin-top: 10px;
     position: relative;
     width: fit-content;
 }
@@ -22,12 +22,10 @@
     flex-direction: column;
     padding: 0px 8px;
     align-items: flex-start;
-    gap: 4px;
 }
 
 .checkbox-label {
     display: flex;
-    /* flex-direction: column; */
     align-items: center;
     gap: 16px;
     cursor: pointer;
@@ -36,7 +34,7 @@
 .checkbox-textwrapper {
     color: var(--primary-black, #000);
     font-family: "Gilroy";
-    font-size: 20px;
+    font-size: 17px;
     font-style: normal;
     font-weight: 800;
     line-height: normal;
