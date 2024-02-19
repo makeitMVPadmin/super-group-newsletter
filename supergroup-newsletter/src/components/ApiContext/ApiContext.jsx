@@ -8,16 +8,24 @@ const ApiContext = createContext({
   callOpenAiAPI: () => Promise.reject('callOpenAiAPI is not implemented'),
   setMessageToAi: () => {},
   setRoleOfAi: () => {},
+  setIncludeMembers: () => {},
+  includeMembers: false,
   selectedDate: new Date(),
   setSelectedDate: () => {},
+  
   eventsData: [],
-  handleEventsDataChange: () => {},
   announcementsData: [],
-  handleAnnouncementsDataChange: () => {},
   newMembersData: [],
-  handleNewMembersDataChange: () => {},
+
   handleAiMessageData: () => {},
-  aiMessageData: ''
+  aiMessageData: '',
+
+  newsEvents: [],
+  newsAnnouncements: [],
+  newsNewMembers: [],
+  handleNewsEventChange: () => {},
+  handleNewsAnnouncementsChange: () => {},
+  handleNewsNewMembersChange: () => {},
 });
 
 // Export the hook to use the context
@@ -29,12 +37,17 @@ export const ApiProvider = ({ children }) => {
   const [messageToAi, setMessageToAi] = useState("");
   const [aiMessageData, setAiMessageData] = useState('Processing Ai response')
   const [roleOfAi, setRoleOfAi] = useState(`You are Alex, a witty, clever, and encouraging AI assistant focused on crafting outstanding newsletters for Community, a company revolutionizing company-wide collaboration and decision-making. Your role involves leveraging your sharp sense of humor and creative flair to develop content that resonates with readers, inspires action, and fosters a positive community atmosphere. You provide expertly curated newsletter content that keeps all members of the organization informed, entertained, and motivated.   Your capabilities include writing compelling narratives, personalizing content based on user data, designing visually appealing layouts, and incorporating interactive elements to enrich the reading experience. With each newsletter edition, you aim to strengthen company culture, boost morale, and encourage a collaborative spirit among employees. Your friendly yet professional demeanor helps you connect with readers on a personal level, ensuring that Community's vision of innovation and unity shines through every communication you create.`)
+  const [includeMembers, setIncludeMembers] = useState(false) 
 
   // Set other useStates
   const [eventsData, setEventsData] = useState([]);
   const [announcementsData, setAnnouncementsData] = useState([])
   const [newMembersData, setNewMembersData] = useState([])
   const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const [newsEvents, setNewsEvents] = useState([])
+  const [newsAnnouncements, setNewsAnnouncements] = useState([])
+  const [newsNewMembers, setNewsNewMembers] = useState([])
 
   // Fetch the information from Firestore backend
   const fetchDataFromFirestore = (collectionName, setData) => {
@@ -55,9 +68,14 @@ export const ApiProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    // Sets Entry Point selections
     fetchDataFromFirestore("events", setEventsData)
     fetchDataFromFirestore("announcements", setAnnouncementsData);
     fetchDataFromFirestore("members", setNewMembersData);
+    // Sets what is passed to newsReview
+    fetchDataFromFirestore("events", setNewsEvents)
+    fetchDataFromFirestore("announcements", setNewsAnnouncements);
+    fetchDataFromFirestore("members", setNewsNewMembers);
   }, []);
 
   useEffect(() => {
@@ -102,17 +120,45 @@ export const ApiProvider = ({ children }) => {
   }
 
   // Might want to refactor this code into one function instead of three.
-  const handleEventsDataChange = (removeEvent) => {
-    const updatedEventsData = eventsData.filter(event => event.id !== removeEvent);
-    setEventsData(updatedEventsData);
+  const handleNewsEventChange = (myEvent) => {
+    const eventIndex = newsEvents.findIndex(event => event.id === myEvent.id);
+  
+    if (eventIndex !== -1) {
+      // If the event with the same ID already exists, remove it
+      const updatedEventsData = newsEvents.filter(event => event.id !== myEvent.id);
+      setNewsEvents(updatedEventsData);
+    } else {
+      // If the event doesn't exist, add it to the array
+      const updatedEventsData = [...newsEvents, myEvent];
+      setNewsEvents(updatedEventsData);
+    }
   }
-  const handleAnnouncementsDataChange = (removeAnnouncement) => {
-    const updatedAnnouncementsData = announcementsData.filter(announcement => announcement.id !== removeAnnouncement);
-    setAnnouncementsData(updatedAnnouncementsData);
+  const handleNewsAnnouncementsChange = (myAnnouncement) => {
+    const announcementIndex = newsAnnouncements.findIndex(announcement => announcement.id === myAnnouncement.id);
+  
+    if (announcementIndex !== -1) {
+      // If the announcement with the same ID already exists, remove it
+      const updatedAnnouncementsData = newsAnnouncements.filter(announcement => announcement.id !== myAnnouncement.id);
+      setNewsAnnouncements(updatedAnnouncementsData);
+    } else {
+      // If the announcement doesn't exist, add it to the array
+      const updatedAnnouncementsData = [...newsAnnouncements, myAnnouncement];
+      setNewsAnnouncements(updatedAnnouncementsData);
+    }
   }
-  const handleNewMembersDataChange = (removeNewMember) => {
-    const updatedNewMembersData = newMembersData.filter(newMember => newMember.id!== removeNewMember);
-    setNewMembersData(updatedNewMembersData);
+
+  const handleNewsNewMembersChange = (myNewMember) => {
+    const memberIndex = newsNewMembers.findIndex(newMember => newMember.id === myNewMember.id);
+
+    if (memberIndex !== -1) {
+      // If the member with the same ID already exists, remove it
+      const updatedNewMembersData = newsNewMembers.filter(newMember => newMember.id !== myNewMember.id);
+      setNewsNewMembers(updatedNewMembersData);
+    } else {
+      // If the member doesn't exist, add it to the array
+      const updatedNewMembersData = [...newsNewMembers, myNewMember];
+      setNewsNewMembers(updatedNewMembersData);
+    }
   }
 
   return (
@@ -120,17 +166,22 @@ export const ApiProvider = ({ children }) => {
       value={{ 
         callOpenAiAPI, 
         setMessageToAi, 
-        setRoleOfAi, 
+        setRoleOfAi,
+        setIncludeMembers,
+        includeMembers,
         selectedDate,
         setSelectedDate,
         eventsData,
-        handleEventsDataChange,
+        handleNewsEventChange,
         announcementsData,
-        handleAnnouncementsDataChange,
+        handleNewsAnnouncementsChange,
         newMembersData,
-        handleNewMembersDataChange,
+        handleNewsNewMembersChange,
         handleAiMessageData,
         aiMessageData,
+        newsEvents,
+        newsAnnouncements,
+        newsNewMembers
       }}
     >
       {children}

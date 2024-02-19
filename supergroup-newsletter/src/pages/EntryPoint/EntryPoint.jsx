@@ -17,23 +17,24 @@ export default function EntryPoint() {
 
     // access to the global variables
     const { 
-      selectedDate, 
+      selectedDate,
+      setIncludeMembers,
       eventsData, 
       announcementsData,
       newMembersData,
+      newsEvents,
+      newsAnnouncements,
+      newsNewMembers,
+      handleNewsEventChange,
+      handleNewsAnnouncementsChange,
+      handleNewsNewMembersChange,
       aiMessageData
     } = useApiContext();
-
-    //handling back button, goes nowhere for now, but show move user to Communiti's page (maybe a dashboard)
-    const handleBackClick = () => {
-        setIsClicked(!isClicked);
-        console.log("clicked!")
-    }
-
 
     // handling the toggle, just for show for now, will add implementation later
     const toggleHandler = () => {
         setIsToggled(!isToggled)
+        setIncludeMembers(prev => !prev)
     }
 
     // rendering Checkbox component for Events and sending dummy data 
@@ -41,19 +42,21 @@ export default function EntryPoint() {
         return eventsData.map((event, index) => (
             <CheckboxHeaders
                 key={index}
-                index={event.id}
-                description={event.title}
+                myEvent={event}
+                myArray={newsEvents}
+                myFunction={handleNewsEventChange}
             />
         )) 
     }
     // rendering the Checkbox component for Announcements and sending dummy data
     const renderAnnouncements = () => {
-        //
         return announcementsData.map((announcement, index) => (
             <CheckboxHeaders 
                 key={index}
                 index={announcement.id}
-                description={announcement.title}
+                myEvent={announcement}                
+                myArray={newsAnnouncements}
+                myFunction={handleNewsAnnouncementsChange}
             />
         ))
     }
