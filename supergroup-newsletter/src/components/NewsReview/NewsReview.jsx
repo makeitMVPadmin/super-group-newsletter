@@ -7,6 +7,7 @@ import Announcements from '../Announcements/Announcements'
 import BackButton from '../BackButton/BackButton';
 import NewMembers from '../NewMembers/NewMembers'
 import NewsFooter from '../NewsFooter/NewsFooter';
+import TypewriterLoading from '../Typewriter/Typewriter';
 
 export default function NewsReview({
     myImage='https://raw.githubusercontent.com/makeitMVPadmin/super-group-newsletter/develop/supergroup-newsletter/src/assets/images/makeitMVPHero.jpg',
@@ -104,11 +105,14 @@ export default function NewsReview({
                   <button className='news-mainTextButton' onClick={handleEditMainText}>Save</button>
                 </div>
               ) : (
-                <div className='news-mainTextContainer'>
-                  {/* <div>{mainText}</div> */}
-                  {mainTextBrokenUp(mainText)}
-                  <button className='news-mainTextButton' onClick={handleEditMainText}>Edit</button>
-                </div>
+              <div className='news-mainTextContainer'>
+                {mainText !== '' ? (
+                  mainTextBrokenUp(mainText)
+                ) : (
+                  <TypewriterLoading />
+                )}
+                <button className='news-mainTextButton' onClick={handleEditMainText}>Edit</button>
+              </div>
               )}
 
               {newsEvents.length > 0 && <h2 className='news-sectionTitle'>Weekly Community Events</h2>}
