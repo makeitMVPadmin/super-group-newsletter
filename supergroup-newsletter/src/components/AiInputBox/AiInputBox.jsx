@@ -14,7 +14,7 @@ export default function AiInputBox() {
       callOpenAiAPI, 
       setMessageToAi, 
       setRoleOfAi, 
-      handleAiMessageData, 
+      handleAiMessageData,
       aiMessageData, 
       newsEvents,
       newsAnnouncements,
@@ -30,7 +30,7 @@ export default function AiInputBox() {
     };
     // Handle the button being clicked by user
     const handleClick = () => {
-
+      handleAiMessageData('')
       contactAiAPI()
       setInputValue('') // Resets input for next inquiry
       navigate('/newsEditor');
