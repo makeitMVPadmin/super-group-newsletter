@@ -1,0 +1,27 @@
+.draft-item-container {
+    margin: 21px 7px;
+    padding: 16px;
+    border-radius: 8px;
+    border: 2px solid #9090901A;
+    background: #FFF;
+}
+
+.item-title {
+    margin: 0;
+    color: #404040;
+    font-family: "Gilroy";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.item-subheader {
+    margin: 2px 0 0 0;
+    color: #828282;
+    font-family: Gilroy;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
