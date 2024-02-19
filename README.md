@@ -3,7 +3,7 @@ Welcome to the MakeItMVP Launch Academy SuperGroup Repository! This repository i
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-- [Project Structure (MAIN)](#project-structure-main)
+- [Project Structure](#project-structure)
 - [Technologies](#technologies)
 - [Contributing](#contributing)
 - [License](#license)
@@ -16,24 +16,22 @@ To begin working on your project, follow these steps:
    ```
    
 2. Change your working directory to the cloned repository:
-
    ```bash
    cd super-group-newsletter
    ```
-3. Open the repository in your code editor 
-
+3. Then change again into your working directory:
+   ```bash
+   cd super-group-newsletter
+   ``` 
+4. Open the repository in your code editor 
    ```bash
    code .
    ```
-   
-4. Make sure that you're in the develop branch. Switch from the main branch to develop branch to see the current work in progress. (as of Phase 2)
-
+5. Make sure that you're in the develop branch. Switch from the main branch to develop branch to see the current work in progress. (as of Phase 2)
    ```bash
    git checkout develop
    ``` 
-
-5. Before installing dependencies, make sure to create a .env file within the project directory. This is where your FireBase keys will be stored in order to access the database. Please ask for the keys from your lead developer and add them in your .env file using this format:
-
+6. Before installing dependencies, make sure to create a .env file within the project directory. This is where your FireBase keys will be stored in order to access the database. Please ask for the keys from your lead developer and add them in your .env file using this format:
  ```.env
    REACT_APP_FIREBASE_API_KEY=""
    REACT_APP_FIREBASE_AUTH_DOMAIN=""
@@ -42,21 +40,23 @@ To begin working on your project, follow these steps:
    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=""
    REACT_APP_FIREBASE_APP_ID=""
    REACT_APP_FIREBASE_MEASUREMENT_ID=""
-   REACT_APP_CLERK_PUBLISHABLE_KEY=""
+   REACT_APP_CLERK_PUBLISHABLE_KEY="" (This will be your OpenAI API key)
    ```
-6. Install the project dependencies:
-
+7. Install the project dependencies:
   ```bash
    npm install
    ```
-7. Start the development server:
-   
+8. Start the development server: 
   ```bash
    npm start
    ```
-8. Open your web browser and navigate to `http://localhost:3000` to see your project running.
+9. Open your web browser and navigate to `http://localhost:3000` to see your project running.
 
-9. Before making any changes to the code, please make sure to create your own branch by following Git Version Control protocols.
+10. Some of the possible routes:
+-  `http://localhost:3000/landing` The landing page for the Webpage
+-  `http://localhost:3000/newsEditor` The editor for the newsletter
+
+11. Before making any changes to the code, please make sure to create your own branch by following Git Version Control protocols.
 
 ## Project Structure
 Now you're ready to start building upon the project using the provided structure!
@@ -80,9 +80,9 @@ The project structure is organized as follows:
 ├── package.json
 ├── README.md
 ```
-- `src/`: Contains the main source code for your project, including React components and styles.
-- `public/`: Contains static assets and your project's HTML template.
-- `package.json`: Defines project dependencies and scripts.
+- `src/` Contains the main source code for your project, including React components and styles.
+- `public/` Contains static assets and your project's HTML template.
+- `package.json` Defines project dependencies and scripts.
 
 Feel free to customize the project structure to fit your specific project requirements.
 
@@ -91,7 +91,7 @@ Feel free to customize the project structure to fit your specific project requir
 This starter repository uses the following technologies:
 
 - React: A JavaScript library for building user interfaces.
-- Sass: A CSS extension language that adds features like variables, nesting, and more.
+- CSS for styling and design of the webpage.
 - Firebase: Cloud storage database 
 
 You can expand upon these technologies as needed for your project.
