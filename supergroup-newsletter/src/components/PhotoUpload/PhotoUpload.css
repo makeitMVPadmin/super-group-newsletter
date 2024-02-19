@@ -1,0 +1,25 @@
+.upload-container {
+    align-items: center;
+    display: inline-flex;
+    font-family: "SF Pro Display", Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
+    width: 100%;
+}
+
+.file-upload {
+    display: none;
+}
+
+.upload-photo-label {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.upload-svg {
+    margin-right: 12px;
+}
+
+

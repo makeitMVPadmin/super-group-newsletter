@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import BackButton from '../../components/BackButton/BackButton';
 import { useApiContext } from '../../components/ApiContext/ApiContext';
-import { ReactComponent as UploadPhoto } from "../../assets/svgs/upload-photo.svg"
 import { ReactComponent as ToggleOff} from "../../assets/svgs/toggle-off.svg"
 import { ReactComponent as ToggleOn} from "../../assets/svgs/toggle-on.svg"
 import {ReactComponent as AIicon} from "../../assets/svgs/ai-icon.svg";
+import PhotoUpload from "../../components/PhotoUpload/PhotoUpload";
 import CheckboxHeaders from "../../components/CheckboxHeaders/CheckboxHeaders";
 import AiInputBox from "../../components/AiInputBox/AiInputBox";
 import Drafts from "../../components/Drafts/Drafts";
@@ -91,25 +91,6 @@ export default function EntryPoint() {
         ))
     }
 
-    // Dummy data 
-    // const events = [
-    //     {uuid: 1, description: "Come enjoy fireworks at the shire!"},
-    //     {uuid: 2, description: "Learn how to avoid the Nazgul 101."},
-    //     {uuid: 3, description: "How to destroy the ring with friends!"}
-    // ]
-    
-    // const announcements = [
-    //     {uuid: 1, description: "Fellowship embarks on perilous quest."},
-    //     {uuid: 2, description: "Ring destroyed, peace restored."},
-    //     {uuid: 3, description: "Return of the King crowns victory."}
-    // ]
-
-    // const members = [
-    //     {uuid: 1, member: "Frodo"},
-    //     {uuid: 2, member: "Gandalf"},
-    //     {uuid: 3, member: "Aragorn"},
-    // ]
-
     const drafts = [
         {uuid: 1, title: "Newsletter 3", createdBy: "Made by @samwise-gamgee"},
         {uuid: 2, title: "Newsletter 2", createdBy: "Made by @merry"},
@@ -129,10 +110,7 @@ export default function EntryPoint() {
                     <div className="left-column">
                         <div className="header-image-container">
                             <h5 className="header-img">Header Image:</h5>
-                            <div className="upload-container">
-                                <UploadPhoto className="upload-photo" />
-                                Upload a Photo
-                            </div>
+                            <PhotoUpload />
                         </div>
                         <div className="selections-container">
                             <h5 className="title-textwrapper">Events</h5>
