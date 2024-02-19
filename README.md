@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+Welcome to the MakeItMVP Launch Academy SuperGroup Repository! This repository is designed to provide new junior/entry developers with a structured starting point for their assigned projects. It's built using React, Javascript, and Sass to help you get up and running quickly and familiarize yourself with what has been implemented based on Phases.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Technologies](#technologies)
+- [Contributing](#contributing)
+- [License](#license)
 
-In the project directory, you can run:
+## Getting Started
+To begin working on your project, follow these steps:
+1. Clone this repository to your local machine:
+   ```bash
+   git@github.com:makeitMVPadmin/super-group-newsletter.git
+   ```
+   
+2. Change your working directory to the cloned repository:
+   ```bash
+   cd super-group-newsletter
+   ```
+3. Then change again into your working directory:
+   ```bash
+   cd super-group-newsletter
+   ``` 
+4. Open the repository in your code editor 
+   ```bash
+   code .
+   ```
+5. Make sure that you're in the develop branch. Switch from the main branch to develop branch to see the current work in progress. (as of Phase 2)
+   ```bash
+   git checkout develop
+   ``` 
+6. Before installing dependencies, make sure to create a .env file within the project directory. This is where your FireBase keys will be stored in order to access the database. Please ask for the keys from your lead developer and add them in your .env file using this format:
+ ```.env
+   REACT_APP_OPENAI_API_KEY=""
+   REACT_APP_FIREBASE_API_KEY=""
+   REACT_APP_FIREBASE_AUTH_DOMAIN=""
+   REACT_APP_FIREBASE_PROJECT_ID=""
+   REACT_APP_FIREBASE_STORAGE_BUCKET=""
+   REACT_APP_FIREBASE_MESSAGING_SENDER_ID=""
+   REACT_APP_FIREBASE_APP_ID=""
+   REACT_APP_FIREBASE_MEASUREMENT_ID=""
+   ```
+7. Install the project dependencies:
+  ```bash
+   npm install
+   ```
+8. Start the development server: 
+  ```bash
+   npm start
+   ```
+9. Open your web browser and navigate to `http://localhost:3000` to see your project running.
 
-### `npm start`
+10. Some of the possible routes:
+-  `http://localhost:3000/landing` The landing page for the Webpage
+-  `http://localhost:3000/newsEditor` The editor for the newsletter
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+11. Before making any changes to the code, please make sure to create your own branch by following Git Version Control protocols.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Project Structure
+Now you're ready to start building upon the project using the provided structure!
 
-### `npm test`
+## Project Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The project structure is organized as follows:
 
-### `npm run build`
+```
+├── src/
+│   ├── components/
+│   │   ├── App.js
+│   │   ├── ...
+│   ├── styles/
+│   │   ├── main.css
+│   │   ├── ...
+│   ├── index.js
+├── public/
+│   ├── index.html
+│   ├── ...
+├── package.json
+├── README.md
+```
+- `src/` Contains the main source code for your project, including React components and styles.
+- `public/` Contains static assets and your project's HTML template.
+- `package.json` Defines project dependencies and scripts.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Feel free to customize the project structure to fit your specific project requirements.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This starter repository uses the following technologies:
 
-### `npm run eject`
+- React: A JavaScript library for building user interfaces.
+- CSS for styling and design of the webpage.
+- Firebase: Cloud storage database 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+You can expand upon these technologies as needed for your project.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+We welcome contributions from the community. If you have suggestions or improvements for this starter repository, please open an issue or create a pull request. For more information on how to contribute, check our [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## License
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the [MIT License](LICENSE).
