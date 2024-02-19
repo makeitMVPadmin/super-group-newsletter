@@ -2,15 +2,9 @@ import React, { useState } from 'react';
 import { useApiContext } from '../ApiContext/ApiContext';
 import './NewMembers.css'
 
-export default function NewMembers({
-    myImage='https://www.seekpng.com/png/detail/11-119845_astronaut-icon-png-clip-art-astronaut-helmet.png',
-    myName='Name',
-    myRole='Role',
-    myText='My info will go here.',
-    myUUID
-  }) {
+export default function NewMembers({ myMember }) {
     
-  const { handleNewMembersDataChange } = useApiContext();  
+  const { handleNewsNewMembersChange } = useApiContext();  
   // Used for loading time  
   const [imageLoaded, setImageLoaded] = useState(false);
   const handleImageLoad = () => {
@@ -18,8 +12,8 @@ export default function NewMembers({
   };
 
   const removeButtonClicked = () => {
-    if (window.confirm(`Are you sure you want to remove ${myName} from New Members?`)) {
-      handleNewMembersDataChange(myUUID)
+    if (window.confirm(`Are you sure you want to remove ${myMember.name} from New Members?`)) {
+      handleNewsNewMembersChange(myMember)
     }
   }
 
@@ -30,17 +24,17 @@ export default function NewMembers({
       {!imageLoaded && <img className='newMember-mainImage' src="loading-placeholder.jpg" alt="Loading..." />}
           <img
             className='newMember-mainImage'
-            src={myImage}
+            src={myMember.photoURL}
             alt="NewMember Image"
             style={{ display: imageLoaded ? 'block' : 'none' }}
             onLoad={handleImageLoad}
           />
           <h4>  
-            <span>{myName}</span>
+            <span>{myMember.name}</span>
             <span> • </span>
-            <span>{myRole}</span>
+            <span>{myMember.role}</span>
           </h4>
-          <p>{myText}</p>
+          <p>{myMember.description}</p>
     </div>
   )
 }

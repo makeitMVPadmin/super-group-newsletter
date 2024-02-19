@@ -2,23 +2,17 @@ import React, { useState } from 'react';
 import { useApiContext } from '../ApiContext/ApiContext';
 import './Announcements.css';
 
-export default function Announcements({
-    myImage = '',
-    myTitle = 'Announcement',
-    myInformation = 'Really Big things happening soon!',
-    myId,
-    myDate
-  }) {
+export default function Announcements({ myAnnouncement={} }) {
   
-  const { handleAnnouncementsDataChange } = useApiContext();  
+  const { handleNewsAnnouncementsChange } = useApiContext();  
   // Used for loading time  
   const [imageLoaded, setImageLoaded] = useState(false);
   const handleImageLoad = () => {
     setImageLoaded(true);
   };
   const removeButtonClicked = () => {
-    if (window.confirm(`Are you sure you want to remove the ${myTitle} Announcement?`)) {
-      handleAnnouncementsDataChange(myId)
+    if (window.confirm(`Are you sure you want to remove the ${myAnnouncement.title} Announcement?`)) {
+      handleNewsAnnouncementsChange(myAnnouncement)
     }
   }
 
@@ -54,18 +48,18 @@ export default function Announcements({
         {!imageLoaded && <img className='announce-image' src="loading-placeholder.jpg" alt="Loading..." />}
           <img
             className='announce-image'
-            src={myImage}
+            src={myAnnouncement.photoURL}
             alt="Announcement"
             style={{ display: imageLoaded ? 'block' : 'none' }}
             onLoad={handleImageLoad}
           />
         <div className='announce-title'>
-          {myTitle}
-          <div className='announce-time'>{myDate && calculateDate(myDate)}</div>
+          {myAnnouncement.title}
+          <div className='announce-time'>{myAnnouncement.date && calculateDate(myAnnouncement.date)}</div>
         </div>
       </div>
       <div className='announce-text-container'>
-        <p className='announce-mainText'>{myInformation}</p>
+        <p className='announce-mainText'>{myAnnouncement.description}</p>
       </div>
     </div>
   );

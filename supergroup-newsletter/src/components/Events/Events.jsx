@@ -2,18 +2,9 @@ import React, { useState } from 'react';
 import { useApiContext } from '../ApiContext/ApiContext';
 import './Events.css'
 
-export default function Events({
-    myImage='',
-    myId,
-    myTitle='Event',
-    myType,
-    myLocation,
-    myInfo,
-    myDate,
-    myEndTime
-  }) {
+export default function Events({ myEvent={} }) {
 
-  const { handleEventsDataChange } = useApiContext();
+  const { handleNewsEventChange } = useApiContext();
   
   // Used for loading time  
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -22,8 +13,8 @@ export default function Events({
   };
 
   const removeButtonClicked = () => {
-    if (window.confirm(`Are you sure you want to remove ${myTitle} from Community Events?`)) {
-      handleEventsDataChange(myId);
+    if (window.confirm(`Are you sure you want to remove ${myEvent.title} from Community Events?`)) {
+      handleNewsEventChange(myEvent);
     }
   }
     
@@ -68,7 +59,7 @@ export default function Events({
         {!imageLoaded && <img className='events-mainImage' src="loading-placeholder.jpg" alt="Loading..." />}
           <img
             className='events-mainImage'
-            src={myImage}
+            src={myEvent.photoURL}
             alt="Event Image"
             style={{ display: imageLoaded ? 'block' : 'none' }}
             onLoad={handleImageLoad}
@@ -76,11 +67,11 @@ export default function Events({
         <button className='events-button'>RSVP</button>
       </div>
       <div className='events-info'>
-        <p className='events-site'>{myType} / {myLocation}</p>
-        <p className='events-title'>{myTitle}</p>
-        <p className='events-mainText'>{myInfo}</p>
-        <p className='events-date'>{formatDateTime(myDate).dateString}</p>
-        <p className='events-time'>{formatDateTime(myDate).timeString} - {formatDateTime(myEndTime).timeString}</p>
+        <p className='events-site'>{myEvent.type} / {myEvent.location}</p>
+        <p className='events-title'>{myEvent.title}</p>
+        <p className='events-mainText'>{myEvent.eventInfo}</p>
+        <p className='events-date'>{formatDateTime(myEvent.date).dateString}</p>
+        <p className='events-time'>{formatDateTime(myEvent.date).timeString} - {formatDateTime(myEvent.endTime).timeString}</p>
       </div>
     </div>
   )

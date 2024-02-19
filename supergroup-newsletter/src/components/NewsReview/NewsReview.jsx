@@ -7,18 +7,18 @@ import Announcements from '../Announcements/Announcements'
 import BackButton from '../BackButton/BackButton';
 import NewMembers from '../NewMembers/NewMembers'
 import NewsFooter from '../NewsFooter/NewsFooter';
-import mvpLogo from '../../assets/images/makeitMVPHero.jpg';
 
 export default function NewsReview({
-    myImage=mvpLogo,
+    myImage='https://raw.githubusercontent.com/makeitMVPadmin/super-group-newsletter/develop/supergroup-newsletter/src/assets/images/makeitMVPHero.jpg',
     myMainText='Main Text'
   }){
   const { 
     selectedDate, 
-    eventsData, 
-    announcementsData,
-    newMembersData,
-    aiMessageData
+    aiMessageData,
+    newsEvents,
+    newsAnnouncements,
+    newsNewMembers,
+    includeMembers
   } = useApiContext();
 
   const clickButton = () => {
@@ -50,47 +50,23 @@ export default function NewsReview({
   };
 
   const renderEvents = () => {
-    // Map through eventsData and return an <Event> component for each object
-    return eventsData.map((event, index) => (
-      <Events
-        key={index}
-        myId={event.id}
-        myTitle={event.title}
-        myType={event.type}
-        myLocation={event.location}
-        myInfo={event.eventInfo}
-        myImage={event.photoURL}
-        myDate={event.date}
-        myEndTime={event.endTime}
-      />
+    // Map through newsEvents and return an <Event> component for each object
+    return newsEvents.map((event, index) => (
+      <Events key={index} myEvent={event} />
     ));
   };
 
   const renderAnnouncements = () => {
-    // Map through announcementsData and return an <Announcements> component for each object
-    return announcementsData.map((announcement, index) => (
-      <Announcements
-        key={index}
-        myId={announcement.id}
-        myTitle={announcement.title}
-        myInformation={announcement.description}
-        myDate={announcement.date}
-        myImage={announcement.photoURL}
-      />
+    // Map through newsAnnouncements and return an <Announcements> component for each object
+    return newsAnnouncements.map((announcement, index) => (
+      <Announcements key={index} myAnnouncement={announcement} />
     ));
   }
 
   const renderNewMembers = () => {
-    // Map through newMembersData and return an <NewMembers> component for each object
-    return newMembersData.map((newMember, index) => (
-      <NewMembers
-        key={index}
-        myUUID={newMember.id}
-        myName={newMember.name}
-        myRole={newMember.role}
-        myImage={newMember.photoURL}
-        myText={newMember.description}
-      />
+    // Map through newsNewMembers and return an <NewMembers> component for each object
+    return newsNewMembers.map((newMember, index) => (
+      <NewMembers key={index} myMember={newMember} />
     ));
   }
 
@@ -135,14 +111,14 @@ export default function NewsReview({
                 </div>
               )}
 
-              {eventsData.length > 0 && <h2 className='news-sectionTitle'>Weekly Community Events</h2>}
-              <div className={eventsData.length > 0 ? 'news-EventsContainer':''}>{renderEvents()}</div>
+              {newsEvents.length > 0 && <h2 className='news-sectionTitle'>Weekly Community Events</h2>}
+              <div className={newsEvents.length > 0 ? 'news-EventsContainer':''}>{renderEvents()}</div>
               
-              {announcementsData.length > 0 && <h2 className='news-sectionTitle'>Announcements!</h2>}
-              <div className={announcementsData.length > 0 ? 'news-Announcements-container':''}>{renderAnnouncements()}</div>
+              {newsAnnouncements.length > 0 && <h2 className='news-sectionTitle'>Announcements!</h2>}
+              <div className={newsAnnouncements.length > 0 ? 'news-Announcements-container':''}>{renderAnnouncements()}</div>
 
-              {newMembersData.length > 0 && <h2 className='news-sectionTitle'>Welcome Our Community's New Members!</h2>}
-              <div className={newMembersData.length > 0 ? 'news-NewMembers-container':''}>{renderNewMembers()}</div>
+              {newsNewMembers.length > 0 && includeMembers && <h2 className='news-sectionTitle'>Welcome Our Community's New Members!</h2>}
+              {includeMembers &&  <div className={newsNewMembers.length > 0 ? 'news-NewMembers-container':''}>{renderNewMembers()}</div>}
               <div><NewsFooter /></div>
             </div>
           </div>
