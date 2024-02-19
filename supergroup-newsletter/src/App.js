@@ -1,6 +1,7 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import LandingPage from './pages/LandingPage/LandingPage';
+import Confirm from './pages/Confirm/Confirm';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import NewsEditor from './pages/NewsEditor/NewsEditor';
 import Navbar from './components/NavBar/NavBar';
@@ -15,10 +16,11 @@ function App() {
       <div>
         <Routes>
           <Route path="/landing" element={<LandingPage />} />
+          <Route path="/confirm" element={<Confirm />} />
           <Route path="/newsEditor" element={<NewsEditor />} />
-          <Route path="/" element={<EntryPoint />} />
-          <Route path="*" element={<NotFoundPage />} />
           <Route path="/dummyData" element={<DummyData/>} />
+          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/" element={<EntryPoint />} />
         </Routes>
       </div>
     </div>

@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useApiContext } from '../ApiContext/ApiContext';
 import { db } from '../../firebase-config';
 import{ collection, addDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
 import { connectStorageEmulator } from 'firebase/storage';
 
 export default function AiInputBox() {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
     // Grabs our setters for our 'global' variables
     const { 

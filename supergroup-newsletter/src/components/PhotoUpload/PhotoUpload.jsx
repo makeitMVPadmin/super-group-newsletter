@@ -28,7 +28,7 @@ export default function PhotoUpload () {
                 type="file"
                 id="file-upload"
                 className="file-upload"
-                value={selectedPhoto}
+                // value={selectedPhoto}
                 onChange={handlePhotoChange}
             />
             <label htmlFor="file-upload" className="upload-photo-label">
