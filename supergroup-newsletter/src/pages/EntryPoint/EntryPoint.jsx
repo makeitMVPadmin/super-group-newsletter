@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import BackButton from '../../components/BackButton/BackButton';
+import { useApiContext } from '../../components/ApiContext/ApiContext';
 import { ReactComponent as UploadPhoto } from "../../assets/svgs/upload-photo.svg"
 import { ReactComponent as ToggleOff} from "../../assets/svgs/toggle-off.svg"
 import { ReactComponent as ToggleOn} from "../../assets/svgs/toggle-on.svg"
 import {ReactComponent as AIicon} from "../../assets/svgs/ai-icon.svg";
 import CheckboxHeaders from "../../components/CheckboxHeaders/CheckboxHeaders";
+import AiInputBox from "../../components/AiInputBox/AiInputBox";
 import Drafts from "../../components/Drafts/Drafts";
 import "./EntryPoint.css";
 
@@ -12,6 +14,15 @@ export default function EntryPoint() {
     const [isClicked, setIsClicked] = useState(false);
     const [isToggled, setIsToggled] = useState(false);
     const [userInput, setUserInput] = useState("");
+
+    // access to the global variables
+    const { 
+      selectedDate, 
+      eventsData, 
+      announcementsData,
+      newMembersData,
+      aiMessageData
+    } = useApiContext();
 
     //handling back button, goes nowhere for now, but show move user to Communiti's page (maybe a dashboard)
     const handleBackClick = () => {
@@ -27,40 +38,40 @@ export default function EntryPoint() {
 
     // rendering Checkbox component for Events and sending dummy data 
     const renderEvents = () => {
-        return events.map((event, index) => (
+        return eventsData.map((event, index) => (
             <CheckboxHeaders
                 key={index}
-                index={event.uuid}
-                description={event.description}
+                index={event.id}
+                description={event.title}
             />
         )) 
     }
     // rendering the Checkbox component for Announcements and sending dummy data
     const renderAnnouncements = () => {
         //
-        return announcements.map((announcement, index) => (
+        return announcementsData.map((announcement, index) => (
             <CheckboxHeaders 
                 key={index}
-                index={announcement.uuid}
-                description={announcement.description}
+                index={announcement.id}
+                description={announcement.title}
             />
         ))
     }
 
     // mapping over dummy data and creating a div to display members when toggled
     const renderMembers = () => {
-        return members.map((member, index) => (
-        <div className="members" key={index} index={member.uuid}>
-            {member.member}
+      // I think this should really be CheckboxHeaers as well...  something to think about future us.
+        return newMembersData.map((member, index) => (
+        <div className="members" key={index} index={member.id}>
+            {member.name}
         </div>
-
         )) 
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log('Textarea content: ', userInput)
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     console.log('Textarea content: ', userInput)
+    // }
 
     const handleUserInput = (e) => {
         setUserInput(e.target.value)
@@ -78,23 +89,23 @@ export default function EntryPoint() {
     }
 
     // Dummy data 
-    const events = [
-        {uuid: 1, description: "Come enjoy fireworks at the shire!"},
-        {uuid: 2, description: "Learn how to avoid the Nazgul 101."},
-        {uuid: 3, description: "How to destroy the ring with friends!"}
-    ]
+    // const events = [
+    //     {uuid: 1, description: "Come enjoy fireworks at the shire!"},
+    //     {uuid: 2, description: "Learn how to avoid the Nazgul 101."},
+    //     {uuid: 3, description: "How to destroy the ring with friends!"}
+    // ]
     
-    const announcements = [
-        {uuid: 1, description: "Fellowship embarks on perilous quest."},
-        {uuid: 2, description: "Ring destroyed, peace restored."},
-        {uuid: 3, description: "Return of the King crowns victory."}
-    ]
+    // const announcements = [
+    //     {uuid: 1, description: "Fellowship embarks on perilous quest."},
+    //     {uuid: 2, description: "Ring destroyed, peace restored."},
+    //     {uuid: 3, description: "Return of the King crowns victory."}
+    // ]
 
-    const members = [
-        {uuid: 1, member: "Frodo"},
-        {uuid: 2, member: "Gandalf"},
-        {uuid: 3, member: "Aragorn"},
-    ]
+    // const members = [
+    //     {uuid: 1, member: "Frodo"},
+    //     {uuid: 2, member: "Gandalf"},
+    //     {uuid: 3, member: "Aragorn"},
+    // ]
 
     const drafts = [
         {uuid: 1, title: "Newsletter 3", createdBy: "Made by @samwise-gamgee"},
@@ -152,12 +163,7 @@ export default function EntryPoint() {
                                 <AIicon className="ai-icon" />
                                 Give AI specific instructions for your newsletter.
                             </h5>
-                            <form onSubmit={handleSubmit} className="ai-input">
-                                <textarea className="ai-textarea" value={userInput} onChange={handleUserInput} placeholder="Example: Hi! Can you mention that Valentine's Day is coming up? You don't need to include the events that I've selected. Can you also share that there will be a fun giveaway coming up in two weeks and to stay tuned?"></textarea>
-                                <div className="generate-btn-container">
-                                    <button className="generate-btn" type="submit">Generate Newsletter</button>
-                                </div>
-                            </form>
+                            <AiInputBox />
                         </div>
                     </div>
 

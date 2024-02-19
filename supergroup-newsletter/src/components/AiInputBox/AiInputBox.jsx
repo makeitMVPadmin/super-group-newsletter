@@ -52,13 +52,12 @@ export default function AiInputBox() {
 
     return (
       <div>
-        <input
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            onKeyDown={(e) => { if (e.key === 'Enter') {handleClick();} }}
-        />
-        <button onClick={handleClick}>Call API</button>
+        <form onSubmit={handleClick} className="ai-input">
+          <textarea className="ai-textarea" value={inputValue} onChange={handleInputChange} placeholder="Example: Hi! Can you mention that Valentine's Day is coming up? You don't need to include the events that I've selected. Can you also share that there will be a fun giveaway coming up in two weeks and to stay tuned?"></textarea>
+          <div className="generate-btn-container">
+              <button className="generate-btn" type="submit">Generate Newsletter</button>
+          </div>
+        </form>
       </div>
     );
   }
