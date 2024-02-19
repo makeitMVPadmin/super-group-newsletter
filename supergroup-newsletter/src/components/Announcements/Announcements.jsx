@@ -3,10 +3,10 @@ import { useApiContext } from '../ApiContext/ApiContext';
 import './Announcements.css';
 
 export default function Announcements({
-    myImage = 'https://us.123rf.com/450wm/brgfx/brgfx1902/brgfx190200433/125363630-space-element-in-space-background-illustration.jpg?ver=6',
+    myImage = '',
     myTitle = 'Announcement',
     myInformation = 'Really Big things happening soon!',
-    myUUID,
+    myId,
     myDate
   }) {
   
@@ -17,18 +17,23 @@ export default function Announcements({
     setImageLoaded(true);
   };
   const removeButtonClicked = () => {
-    handleAnnouncementsDataChange(myUUID)
+    if (window.confirm(`Are you sure you want to remove the ${myTitle} Announcement?`)) {
+      handleAnnouncementsDataChange(myId)
+    }
   }
 
   const calculateDate = (_date) => {
     // Getting the current date
     const currentDate = new Date();
+    
     // Creating a Date object for the input date
-    const futureDate = new Date(_date);
-  
+    const futureDate = new Date(0); // Initialize as Unix epoch
+    futureDate.setUTCSeconds(_date.seconds); // Set seconds from the _date object
+    futureDate.setUTCMilliseconds(_date.nanoseconds / 1000000); // Set milliseconds from the _date object
+    
     // Calculating the time difference
     const timeDifferenceInMilliseconds = futureDate.getTime() - currentDate.getTime();
-  
+    
     // Checking if the absolute time difference is less than a day
     if (Math.abs(timeDifferenceInMilliseconds) < (1000 * 60 * 60 * 24)) {
       // If the time difference is less than a day, calculate and return the difference in hours
@@ -56,7 +61,7 @@ export default function Announcements({
           />
         <div className='announce-title'>
           {myTitle}
-          <div className='announce-time'>{calculateDate(myDate)}</div>
+          <div className='announce-time'>{myDate && calculateDate(myDate)}</div>
         </div>
       </div>
       <div className='announce-text-container'>

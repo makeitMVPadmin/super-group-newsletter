@@ -9,7 +9,7 @@ export default function AiInputBox() {
   const navigate = useNavigate();
 
     // Grabs our setters for our 'global' variables
-    const { callOpenAiAPI, setMessageToAi, setRoleOfAi, handleAiMessageData, aiMessageData } = useApiContext();
+    const { callOpenAiAPI, setMessageToAi, setRoleOfAi, handleAiMessageData, aiMessageData, eventsData } = useApiContext();
     // Create a useState for our user Input and the handler to keep it up to date.
 
     const ref = collection(db, "testAiResponse") // create a reference as a collection to db
@@ -20,6 +20,7 @@ export default function AiInputBox() {
     };
     // Handle the button being clicked by user
     const handleClick = () => {
+
       contactAiAPI()
       setInputValue('') // Resets input for next inquiry
       navigate('/newsEditor');
@@ -27,8 +28,13 @@ export default function AiInputBox() {
     // This is where the magic starts, and we call the OpenAi.  See ApiContext.js for more
     const contactAiAPI = async () => {
       try {
+        let extraInformation = 'Do not sign your name.'
+        eventsData.map(event => {
+          extraInformation += `In a happy tone, write a newsletter for the following events in under 200 words. Event Name: ${event.title}, Location: ${event.location}, Description: ${event.eventInfo} \n`;
+        });
+        const fullMessage = extraInformation + inputValue
         // We pass in the user's input, here will will be adding more variables.
-        const data = await callOpenAiAPI(inputValue);
+        const data = await callOpenAiAPI(fullMessage);
         // Now you can use the response however you would like.
         // console.log('Data:', data);
         handleAiMessageData(data.choices[0].message.content) // This will be the response of the Ai
