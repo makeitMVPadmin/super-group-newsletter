@@ -6,6 +6,7 @@ import NewsEditor from './pages/NewsEditor/NewsEditor';
 import Navbar from './components/NavBar/NavBar';
 import DummyData from './pages/DummyData/DummyData';
 import EntryPoint from './pages/EntryPoint/EntryPoint';
+import ConfirmationPage from './pages/ConfirmationPage/ConfirmationPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<EntryPoint />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/dummyData" element={<DummyData/>} />
+          <Route path="/confirmation" element={<ConfirmationPage />} />
         </Routes>
       </div>
     </div>

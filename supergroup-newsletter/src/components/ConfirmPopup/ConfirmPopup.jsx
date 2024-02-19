@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './ConfirmPopup.css'
 import checkMark1 from '../../assets/images/checkMark1.jpg'
 
@@ -19,7 +20,7 @@ export default function ConfirmPopup(
       <div className='confirm-mainText'>{title}</div>
       <div className='confirm-secondaryText'>{paragraph}</div>
       <img className='confirm-checkMark' src={checkMark1} alt="checkMark1" />
-      <button className='confirm-doneButton' onClick={clickButton}>{buttonText}</button>
+      <Link to="/" className='confirm-doneButton'>{buttonText}</Link>
     </div>
   )
 }

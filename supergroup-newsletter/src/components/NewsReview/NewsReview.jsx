@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './NewsReview.css'
-import { useApiContext } from '../ApiContext/ApiContext'; 
+import { Link } from 'react-router-dom';
+import './NewsReview.css';
+import { useApiContext } from '../ApiContext/ApiContext';
 import MyCalendar from '../Calendar/MyCalendar';
 import Events from '../Events/Events'
 import Announcements from '../Announcements/Announcements'
@@ -21,9 +22,9 @@ export default function NewsReview({
     aiMessageData
   } = useApiContext();
 
-  const clickButton = () => {
-    console.log('I was clicked')
-  }
+  // const clickButton = () => {
+  //   console.log('I was clicked')
+  // }
 
   const [mainText, setMainText] = useState('Main Text') 
   const [editMainText, setEditMainText] = useState(false)
@@ -158,8 +159,8 @@ export default function NewsReview({
           <div className='news-bottomLeft'></div>
           <div className='news-dividerBottom'></div>
           <div className='news-bottomRight'>
-            <div className='news-saveDraft'>Save Draft</div>
-            <button className='news-doneButton' onClick={clickButton}>Publish</button>
+          <div className='news-saveDraft'>Save Draft</div>
+          <Link to="/confirmation" className='news-doneButton'>Publish</Link>
           </div>
         </div>
 
