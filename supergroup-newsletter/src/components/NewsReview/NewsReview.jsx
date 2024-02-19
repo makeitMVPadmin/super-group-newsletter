@@ -8,6 +8,7 @@ import BackButton from '../BackButton/BackButton';
 import NewMembers from '../NewMembers/NewMembers'
 import NewsFooter from '../NewsFooter/NewsFooter';
 import TypewriterLoading from '../Typewriter/Typewriter';
+import { useNavigate } from "react-router-dom";
 
 export default function NewsReview({
     myImage='https://raw.githubusercontent.com/makeitMVPadmin/super-group-newsletter/develop/supergroup-newsletter/src/assets/images/makeitMVPHero.jpg',
@@ -23,8 +24,11 @@ export default function NewsReview({
   } = useApiContext();
 
   const clickButton = () => {
+    navigate('/confirm');
     console.log('I was clicked')
   }
+  
+  const navigate = useNavigate();
 
   const [mainText, setMainText] = useState('Main Text') 
   const [editMainText, setEditMainText] = useState(false)
