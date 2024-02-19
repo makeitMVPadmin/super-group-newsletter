@@ -71,7 +71,7 @@ export const ApiProvider = ({ children }) => {
         {"role": "system", "content": roleOfAi}
       ],
       "model": "gpt-3.5-turbo",
-      "max_tokens": 200,
+      "max_tokens": 800,
       "temperature": 0.7, 
     }
 

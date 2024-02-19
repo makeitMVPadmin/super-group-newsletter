@@ -94,6 +94,13 @@ export default function NewsReview({
     ));
   }
 
+  const mainTextBrokenUp = (text) => {
+    const lines = text.split('\n');
+    return lines.map((line, index) => (
+      <div key={index} className='news-mainText-paragraph'>{line}</div>
+    ));
+  };
+
   return (
     <div>
       <BackButton />
@@ -122,7 +129,8 @@ export default function NewsReview({
                 </div>
               ) : (
                 <div className='news-mainTextContainer'>
-                  <div>{mainText}</div>
+                  {/* <div>{mainText}</div> */}
+                  {mainTextBrokenUp(mainText)}
                   <button className='news-mainTextButton' onClick={handleEditMainText}>Edit</button>
                 </div>
               )}
