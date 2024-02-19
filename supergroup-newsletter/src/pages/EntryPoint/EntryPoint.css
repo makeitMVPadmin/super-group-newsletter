@@ -96,25 +96,6 @@
     margin: 0;
 }
 
-.upload-container {
-    align-items: center;
-    display: inline-flex;
-    gap: 16px;
-    font-family: "SF Pro Display", Helvetica;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0;
-    line-height: normal;
-    margin-top: -1px;
-    width: 100%;
-}
-
-.upload-photo {
-    height: 20px;
-    position: relative;
-    width: 22.86px;
-}
-
 
 /* ---- MIDDLE COLUMN ----*/
 .middle-column {
