@@ -33,6 +33,7 @@ To begin working on your project, follow these steps:
    ``` 
 6. Before installing dependencies, make sure to create a .env file within the project directory. This is where your FireBase keys will be stored in order to access the database. Please ask for the keys from your lead developer and add them in your .env file using this format:
  ```.env
+   REACT_APP_OPENAI_API_KEY=""
    REACT_APP_FIREBASE_API_KEY=""
    REACT_APP_FIREBASE_AUTH_DOMAIN=""
    REACT_APP_FIREBASE_PROJECT_ID=""
@@ -40,7 +41,6 @@ To begin working on your project, follow these steps:
    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=""
    REACT_APP_FIREBASE_APP_ID=""
    REACT_APP_FIREBASE_MEASUREMENT_ID=""
-   REACT_APP_CLERK_PUBLISHABLE_KEY="" (This will be your OpenAI API key)
    ```
 7. Install the project dependencies:
   ```bash
