@@ -50,7 +50,7 @@ const MyCalendar = () => {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 450 }}
+        style={{ height: '60vh', maxHeight: '50vh' }}
         views={['month']}
         components={{
           toolbar: CustomToolbar,
