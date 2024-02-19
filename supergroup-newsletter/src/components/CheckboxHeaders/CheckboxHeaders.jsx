@@ -4,7 +4,7 @@ import { ReactComponent as UncheckBox} from "../../assets/svgs/uncheck-box.svg";
 import {ReactComponent as CheckedBox} from "../../assets/svgs/checked-box.svg";
 
 export default function CheckboxHeaders({ description, index }) {
-    const [isChecked, setIsChecked] = useState(false)
+    const [isChecked, setIsChecked] = useState(true)
 
     const handleCheckedBox = () => {
         setIsChecked(!isChecked)
