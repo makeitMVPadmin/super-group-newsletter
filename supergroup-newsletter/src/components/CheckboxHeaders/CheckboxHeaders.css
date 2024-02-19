@@ -12,7 +12,7 @@
     font-weight: 700;
     letter-spacing: 0;
     line-height: normal;
-    margin-top: 10px;
+    margin: 10px 0 0 0;
     position: relative;
     width: fit-content;
 }
@@ -43,4 +43,5 @@
 .hidden-checkbox {
     position: absolute;
     opacity: 0;
+    cursor: pointer;
 }

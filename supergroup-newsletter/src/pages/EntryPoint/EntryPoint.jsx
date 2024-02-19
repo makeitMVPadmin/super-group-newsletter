@@ -5,6 +5,7 @@ import { ReactComponent as ToggleOff} from "../../assets/svgs/toggle-off.svg"
 import { ReactComponent as ToggleOn} from "../../assets/svgs/toggle-on.svg"
 import {ReactComponent as AIicon} from "../../assets/svgs/ai-icon.svg";
 import CheckboxHeaders from "../../components/CheckboxHeaders/CheckboxHeaders";
+import Drafts from "../../components/Drafts/Drafts";
 import "./EntryPoint.css";
 
 export default function EntryPoint() {
@@ -64,6 +65,17 @@ export default function EntryPoint() {
         setUserInput(e.target.value)
     }
 
+    const renderDrafts =() => {
+        return drafts.map((draft, index) => (
+            <Drafts 
+                key={index}
+                index={draft.uuid}
+                title={draft.title}
+                createdBy={draft.createdBy}
+            />
+        ))
+    }
+
     // Dummy data 
     const events = [
         {uuid: 1, description: "Come enjoy fireworks at the shire!"},
@@ -83,6 +95,12 @@ export default function EntryPoint() {
         {uuid: 3, member: "Aragorn"},
     ]
 
+    const drafts = [
+        {uuid: 1, title: "Newsletter 3", createdBy: "Made by @samwise-gamgee"},
+        {uuid: 2, title: "Newsletter 2", createdBy: "Made by @merry"},
+        {uuid: 3, title: "Newsletter 1", createdBy: "Made by @pippin"},
+    ]
+
 
     return(
         <>
@@ -91,29 +109,29 @@ export default function EntryPoint() {
             <div className="back-text">Back</div>
         </div>
         <div className="create-container">
-            <div className="create-header">Create a Newsletter</div>
+            <h1 className="create-header">Create a Newsletter</h1>
             <div className="create-main-section">
-                <div className="create-subheader">Select topics to include</div>
+                <h4 className="create-subheader">Select topics to include</h4>
                 <div className="columns-container">
 
                     <div className="left-column">
                         <div className="header-image-container">
-                            <div className="header-img">Header Image:</div>
+                            <h5 className="header-img">Header Image:</h5>
                             <div className="upload-container">
                                 <UploadPhoto className="upload-photo" />
                                 Upload a Photo
                             </div>
                         </div>
                         <div className="selections-container">
-                            <div className="title-textwrapper">Events</div>
+                            <h5 className="title-textwrapper">Events</h5>
                             {renderEvents()}
-                            <div className="title-textwrapper">Announcements</div>
+                            <h5 className="title-textwrapper">Announcements</h5>
                             {renderAnnouncements()}
                         </div>
                     </div>
 
                     <div className="middle-column">
-                        <h4 className="member-title">Show Members</h4>
+                        <h4 className="member-title">Show New Members</h4>
                         <h5 className="member-subheader">Toggle to include the three most recently joined members.</h5>
                         <div className="toggle-container">
                             <input
@@ -138,19 +156,24 @@ export default function EntryPoint() {
                             </h5>
                             <form onSubmit={handleSubmit} className="ai-input">
                                 <textarea className="ai-textarea" value={userInput} onChange={handleUserInput} placeholder="Example: Hi! Can you mention that Valentine's Day is coming up? You don't need to include the events that I've selected. Can you also share that there will be a fun giveaway coming up in two weeks and to stay tuned?"></textarea>
-                                {/* <button type="submit">Generate Newsletter</button> */}
+                                <div className="generate-btn-container">
+                                    <button className="generate-btn" type="submit">Generate Newsletter</button>
+                                </div>
                             </form>
                         </div>
                     </div>
 
                     <div className="right-column">
-                        
+                        <h4 className="drafts-title">Previously Generated Drafts</h4>
+                        <div className="drafts-container">
+                            {renderDrafts()}
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="create-footer">
+            {/* <div className="create-footer">
                 Footer
-            </div>
+            </div> */}
         </div>
         </>
     )

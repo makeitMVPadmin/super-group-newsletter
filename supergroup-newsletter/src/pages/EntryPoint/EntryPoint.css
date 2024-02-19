@@ -41,7 +41,7 @@
     font-style: normal;
     line-height: normal;
     width: 100%;
-    /* background-color: chocolate; */
+    margin: 0;
 }
 
 /* ---- MAIN SECTION / MIDDLE SECTION ----*/
@@ -51,7 +51,6 @@
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-    /* background-color: rgb(0, 17, 255); */
 }
 
 .create-subheader {
@@ -61,9 +60,7 @@
     font-weight: 800;
     line-height: normal;
     width: 100%;
-    margin-top: 16px;
-    margin-bottom: 24px
-    /* background-color: aqua; */
+    margin: 16px 0 24px 0;
 }
 
 /* ---- ALL COLUMNS ----*/
@@ -74,10 +71,8 @@
 
 /* ---- LEFT COLUMN ----*/
 .left-column {
-    flex-direction: column;
     flex: 1; 
     margin-left: 8px;
-    /* background-color: chartreuse; */
 }   
 
 .header-image-container {
@@ -89,7 +84,6 @@
     gap: 8px;
     position: relative;
     width: 100%;
-    /* background-color: rgb(255, 0, 230); */
 }
 
 .header-img {
@@ -99,20 +93,20 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin: 0;
 }
 
 .upload-container {
     align-items: center;
     display: inline-flex;
     gap: 16px;
-    font-family: "SF Pro Display-Regular", Helvetica;
+    font-family: "SF Pro Display", Helvetica;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: normal;
     margin-top: -1px;
     width: 100%;
-    /* background-color: rgb(255, 157, 0); */
 }
 
 .upload-photo {
@@ -124,7 +118,6 @@
 
 /* ---- MIDDLE COLUMN ----*/
 .middle-column {
-    /* background-color: rgb(232, 216, 248); */
     flex: 1;
 }
 
@@ -136,18 +129,16 @@
     font-weight: 700;
     line-height: normal;
     margin: 0;
-    /* background-color: antiquewhite; */
 }
 
 .member-subheader {
-    font-family: "SF Pro Display-Regular", Helvetica;
+    font-family: "SF Pro Display", Helvetica;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: normal;
     padding: 8px;
     margin: 0;
-    /* background-color: blanchedalmond; */
 }
 
 .toggle-container {
@@ -159,6 +150,10 @@
 .hidden-checkbox {
     position: absolute;
     opacity: 0;
+}
+
+.toggle-label {
+    cursor: pointer;
 }
 
 .show-members {
@@ -173,11 +168,6 @@
     font-weight: 800;
     line-height: normal;
     padding: 0 4px 4px 4px;
-    /* background-color: bisque; */
-}
-
-.ai-container {
-
 }
 
 .ai-title {
@@ -188,7 +178,6 @@
     font-weight: 700;
     line-height: normal;
     margin: 16px 0 0 0;
-    /* background-color: rgb(220, 148, 53); */
 }
 
 .ai-subheader {
@@ -198,17 +187,18 @@
     margin: 8px 0;
     width: 100%;
     color: var(--MVP-black, #000);
-    font-family: "SF Pro Display-Regular", Helvetica;
+    font-family: "SF Pro Display", Helvetica;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    /* background-color: antiquewhite; */
 }
 
 .ai-input {
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
+    width: 90%;
+    justify-content: center;
 }
 
 .ai-textarea{
@@ -216,7 +206,7 @@
     border-radius: 8px;
     border: 3px solid #000;
     resize: none;
-    width: 375px;
+    width: 90%;
     height: 160px;
     font-family: "SF Pro Display", Helvetica;
     font-size: 16px;
@@ -224,9 +214,9 @@
     font-weight: 400;
 }
 
+
 textarea::-webkit-scrollbar {
     width: 9px; 
-
 }
 
 .ai-textarea::-webkit-scrollbar-thumb {
@@ -243,20 +233,39 @@ textarea::-webkit-scrollbar {
     background-color: #90bff9;
 }
 
+.generate-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 96%;
+    margin-top: 12px;
+}
+
+.generate-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: var(--Secondary---MVP-Dark-Blue, #0954B0);
+    color: var(--Primary---MVP-White, #FFF);
+    text-align: center;
+    font-family: "Gilroy";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.generate-btn:hover {
+    background-color: var(--primary-light-blue, #0099ff);
+}
+
+.generate-btn:active {
+    background-color: #90bff9;
+    color: var(--primary-black);
+}
+
 
 /* ---- RIGHT COLUMN ----*/
 .right-column {
     flex: 1;
-    background-color: rgb(233, 171, 183);
-}
-
-
-/* ---- BOTTOM SECTION/FOOTER ----*/
-.create-footer {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    background-color: burlywood;
 }
 
 .drafts-title {
@@ -266,8 +275,16 @@ textarea::-webkit-scrollbar {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin: 0;
 }
 
+/* ---- BOTTOM SECTION/FOOTER ----*/
+/* .create-footer {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    background-color: burlywood;
+} */
 
 
 
