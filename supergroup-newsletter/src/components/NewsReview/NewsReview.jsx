@@ -7,26 +7,42 @@ import Announcements from '../Announcements/Announcements'
 import BackButton from '../BackButton/BackButton';
 import NewMembers from '../NewMembers/NewMembers'
 import NewsFooter from '../NewsFooter/NewsFooter';
+import mvpLogo from '../../assets/images/makeitMVPHero.jpg';
 
 export default function NewsReview({
-    myImage='https://i.pinimg.com/736x/f2/ea/1b/f2ea1bed3d98acea710c8e58da45e0d6.jpg',
-    myMainText='This is where the main text of the newsletter would go. Here we would explain lots of fun stuff about all the amazing things we would be doing this week. How great are we, that we came up with such a fun way to showing off what fun people we are!  I am just as exited as you are to see this start to come together, go superteam!'
+    myImage=mvpLogo,
+    myMainText='Main Text'
   }){
-  const { selectedDate } = useApiContext();
+  const { 
+    selectedDate, 
+    eventsData, 
+    announcementsData,
+    newMembersData,
+    aiMessageData
+  } = useApiContext();
 
   const clickButton = () => {
-    console.log(selectedDate)
+    console.log('I was clicked')
   }
 
-  const [mainText, setMainText] = useState(myMainText) 
+  const [mainText, setMainText] = useState('Main Text') 
   const [editMainText, setEditMainText] = useState(false)
   const [newsLetterTitle, setNewsLetterTitle] = useState(``)
+
+  useEffect(() => {
+    console.log('uran')
+    console.log(aiMessageData)
+    setMainText(aiMessageData)
+  }, [aiMessageData]);
 
   const handleTextChange = (event) => {
     setMainText(event.target.value);
   };
   const handleTitleChange = (event) => {
     setNewsLetterTitle(event.target.value);
+  };
+  const handleEditMainText = () => {
+    setEditMainText(prev => !prev)
   };
 
   // Used for loading time  
@@ -35,13 +51,61 @@ export default function NewsReview({
     setImageLoaded(true);
   };
 
+  const renderEvents = () => {
+    // Map through eventsData and return an <Event> component for each object
+    return eventsData.map((event, index) => (
+      <Events
+        key={index}
+        myUUID={event.eventUUID}
+        myTitle={event.eventTitle}
+        myType={event.eventType}
+        myLocation={event.eventLocation}
+        myInfo={event.eventInfo}
+        myTime={event.eventTime}
+        myDate={event.eventDate}
+        myImage={event.eventImage}
+      />
+    ));
+  };
+
+  const renderAnnouncements = () => {
+    // Map through announcementsData and return an <Announcements> component for each object
+    return announcementsData.map((announcement, index) => (
+      <Announcements
+        key={index}
+        myUUID={announcement.announcementUUID}
+        myTitle={announcement.announcementTitle}
+        myInformation={announcement.announcementInformation}
+        myDate={announcement.announcementDate}
+        myImage={announcement.announcementImage}
+      />
+    ));
+  }
+
+  const renderNewMembers = () => {
+    // Map through newMembersData and return an <NewMembers> component for each object
+    return newMembersData.map((newMember, index) => (
+      <NewMembers
+        key={index}
+        myUUID={newMember.newMemberUUID}
+        myName={newMember.newMemberName}
+        myRole={newMember.newMemberRole}
+        myImage={newMember.newMemberImage}
+        myText={newMember.newMemberText}
+      />
+    ));
+  }
+
   return (
     <div>
       <BackButton />
       <div className='news-container'>
         <div className='news-topContainer'>
+
           <div className='news-topLeft'>
             {!imageLoaded && <img className='news-heroImage' src="loading-placeholder.jpg" alt="Loading..." />}
+              <div className='news-hero-title'>
+              <div className='news-title'>Monthly Newsletter</div>
               <img
                 className='news-heroImage'
                 src={myImage}
@@ -49,31 +113,37 @@ export default function NewsReview({
                 style={{ display: imageLoaded ? 'block' : 'none' }}
                 onLoad={handleImageLoad}
               />
-            <p className='news-date'>{selectedDate.toDateString()}</p>
-            <div className='news-mainTextContainer'>
-              {editMainText ? (
-                <textarea className='news-mainText' value={mainText} onChange={handleTextChange}></textarea>
-                ) : (<div>{mainText}</div>)}
               </div>
-              <h4>Weekly Community Events</h4>
-            <div className='news-EventsContainer'>
-              <Events />
-              <Events />
-            </div>
-            <h4>Announcements!</h4>
-            <div className='news-Announcements-container'>
-              <Announcements />
-              <Announcements />
-              <Announcements />
-            </div>
-            <h4>Welcome Our Community's New Members!</h4>
-            <div className='news-NewMembers-container'> 
-              <NewMembers myName={'Rooney'} myRole={'House Panther'} myText={'Like a shadow at midnight, impossible to see unless the moon is high.'}/>
-              <NewMembers myName={'Sheena'} myRole={'Dark Cystal'} myText={'Mysterious powers both consume light and radiates rays of magical power.'}/>
-              <NewMembers myName={'Miki'} myRole={'Solar Ecplise'} myText={'Showing us how marvelous science can be! So powerful you can not look directly at him!'}/>
-            </div>
-            <div>
-              <NewsFooter />
+            <p className='news-date'>{selectedDate.toDateString()}</p>
+            <div className='mainSection'>
+
+              {editMainText ? (
+                <div className='news-mainTextContainer'>
+                  <textarea className='news-mainText' value={mainText} onChange={handleTextChange}></textarea>
+                  <button className='news-mainTextButton' onClick={handleEditMainText}>Save</button>
+                </div>
+              ) : (
+                <div className='news-mainTextContainer'>
+                  <div>{mainText}</div>
+                  <button className='news-mainTextButton' onClick={handleEditMainText}>Edit</button>
+                </div>
+              )}
+
+              {eventsData.length > 0 && <h4 className='news-sectionTitle'>Weekly Community Events</h4>}
+              <div className={eventsData.length > 0 ? 'news-EventsContainer':''}>
+                {renderEvents()}
+              </div>
+              {announcementsData.length > 0 && <h4 className='news-sectionTitle'>Announcements!</h4>}
+              <div className={announcementsData.length > 0 ? 'news-Announcements-container':''}>
+                {renderAnnouncements()}
+              </div>
+              {newMembersData.length > 0 && <h4 className='news-sectionTitle'>Welcome Our Community's New Members!</h4>}
+              <div className={newMembersData.length > 0 ? 'news-NewMembers-container':''}> 
+                  {renderNewMembers()}
+              </div>
+              <div>
+                <NewsFooter />
+              </div>
             </div>
           </div>
 
@@ -85,7 +155,7 @@ export default function NewsReview({
         </div>
         <div className='news-bottomContainer'>
           <div className='news-bottomLeft'>
-            **** bottomLeft Here ****
+            
           </div>
           <div className='news-dividerBottom'></div>
           <div className='news-bottomRight'>

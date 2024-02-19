@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ReactComponent as BackBtn } from "../../assets/svgs/back-btn.svg"
+import BackButton from '../../components/BackButton/BackButton';
 import { ReactComponent as UploadPhoto } from "../../assets/svgs/upload-photo.svg"
 import { ReactComponent as ToggleOff} from "../../assets/svgs/toggle-off.svg"
 import { ReactComponent as ToggleOn} from "../../assets/svgs/toggle-on.svg"
@@ -18,6 +18,7 @@ export default function EntryPoint() {
         setIsClicked(!isClicked);
         console.log("clicked!")
     }
+
 
     // handling the toggle, just for show for now, will add implementation later
     const toggleHandler = () => {
@@ -104,10 +105,7 @@ export default function EntryPoint() {
 
     return(
         <>
-        <div className="back-rect" onClick={handleBackClick}>
-            <BackBtn className="back-btn" />
-            <div className="back-text">Back</div>
-        </div>
+        <BackButton />
         <div className="create-container">
             <h1 className="create-header">Create a Newsletter</h1>
             <div className="create-main-section">

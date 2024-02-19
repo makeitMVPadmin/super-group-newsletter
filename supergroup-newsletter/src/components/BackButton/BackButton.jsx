@@ -1,17 +1,15 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import './BackButton.css';
-import {ReactComponent as BackBtn} from '../../assets/svgs/back-btn.svg';
+import { ReactComponent as BackBtn } from "../../assets/svgs/back-btn.svg";
 
 const BackButton = () => {
-  const navigate = useNavigate();
-  const backButtonClicked = () => {
-    navigate('/');  // Navigate to / for now.
+  const handleBackButtonClicked = () => {
+    window.history.back();
   }
   
   return (
     <div className='backButton-container'>
-      <div className='backButton-button' onClick={backButtonClicked}>
+      <div className='backButton-button' onClick={handleBackButtonClicked}>
         <BackBtn />
         <p>Back</p>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useApiContext } from '../ApiContext/ApiContext';
 import './NewMembers.css'
 
 export default function NewMembers({
@@ -6,8 +7,10 @@ export default function NewMembers({
     myName='Name',
     myRole='Role',
     myText='My info will go here.',
-    myId
+    myUUID
   }) {
+    
+  const { handleNewMembersDataChange } = useApiContext();  
   // Used for loading time  
   const [imageLoaded, setImageLoaded] = useState(false);
   const handleImageLoad = () => {
@@ -15,7 +18,7 @@ export default function NewMembers({
   };
 
   const removeButtonClicked = () => {
-    console.log(myId)
+    handleNewMembersDataChange(myUUID)
   }
 
   return (

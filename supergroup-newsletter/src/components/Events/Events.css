@@ -40,13 +40,17 @@
 .events-site {
   font-size: 15px;
 }
-
-.events-mainText{
-  font-size: 15px;
+.events-title {
+  font-size: 17px;
   font-weight: 800;
   overflow: hidden;
   text-overflow: ellipsis;
-  
+}
+.events-mainText{
+  font-size: 15px;
+  font-weight: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .events-date{
   font-size: 12px;
@@ -58,14 +62,19 @@
 .events-circle {
   width: 20px;
   height: 20px;
-  background-color: var(--primary-yellow);
+  background-color: var(--secondary-cream);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: rgb(0, 0, 0);
   position: absolute;
-  bottom: 0px;
+  bottom: 20px;
   right: 0px;
   cursor: pointer;
+}
+
+.events-circle:hover {
+  color: black;
+  background-color: var(--primary-light-blue);
 }
