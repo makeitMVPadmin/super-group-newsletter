@@ -1,0 +1,86 @@
+.ai-input {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    justify-content: center;
+}
+
+.ai-textarea{
+    padding: 8px;
+    border-radius: 8px;
+    border: 3px solid #000;
+    resize: none;
+    width: 90%;
+    height: 160px;
+    font-family: "SF Pro Display", Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.ai-textarea::-webkit-input-placeholder {
+    /* WebKit browsers (Safari, Chrome) */
+    color: #999; /* Placeholder text color */
+    font-style: italic; /* Placeholder text style */
+}
+.ai-textarea:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #999;
+    font-style: italic;
+}
+.ai-textarea::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #999;
+    font-style: italic;
+}
+.ai-textarea:-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #999;
+    font-style: italic;
+}
+
+textarea::-webkit-scrollbar {
+    width: 9px; 
+}
+
+.ai-textarea::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-dark-blue, #0954b0);
+    border-radius: 100vw;
+}
+
+.ai-textarea::-webkit-scrollbar-track {
+    background-color: var(--secondary-cream, #fff9f4);
+    border-radius: 100vw;
+}
+
+.ai-textarea::-webkit-scrollbar-thumb:hover {
+    background-color: #90bff9;
+}
+
+.generate-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 96%;
+    margin-top: 12px;
+}
+
+.generate-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: var(--Secondary---MVP-Dark-Blue, #0954B0);
+    color: var(--Primary---MVP-White, #FFF);
+    text-align: center;
+    font-family: "Gilroy";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.generate-btn:hover {
+    background-color: var(--primary-light-blue, #0099ff);
+}
+
+.generate-btn:active {
+    background-color: #90bff9;
+    color: var(--primary-black);
+}

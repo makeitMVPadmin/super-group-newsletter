@@ -36,6 +36,7 @@ export default function NewsReview({
 
   useEffect(() => {
     setMainText(aiMessageData)
+     //maybe add call to firebase here or make new useEffect
   }, [aiMessageData]);
 
   const handleTextChange = (event) => {

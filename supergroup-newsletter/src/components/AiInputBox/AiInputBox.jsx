@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './AIinputBox.css'
 import { useApiContext } from '../ApiContext/ApiContext';
 import { db } from '../../firebase-config';
 import{ collection, addDoc } from "firebase/firestore";

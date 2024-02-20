@@ -3,7 +3,7 @@ import BackButton from '../../components/BackButton/BackButton';
 import { useApiContext } from '../../components/ApiContext/ApiContext';
 import { ReactComponent as ToggleOff} from "../../assets/svgs/toggle-off.svg"
 import { ReactComponent as ToggleOn} from "../../assets/svgs/toggle-on.svg"
-import {ReactComponent as AIicon} from "../../assets/svgs/ai-icon.svg";
+import AiPngIcon from "../../assets/icons/chat-gpt-icon.png"
 import PhotoUpload from "../../components/PhotoUpload/PhotoUpload";
 import CheckboxHeaders from "../../components/CheckboxHeaders/CheckboxHeaders";
 import AiInputBox from "../../components/AiInputBox/AiInputBox";
@@ -31,7 +31,7 @@ export default function EntryPoint() {
       aiMessageData
     } = useApiContext();
 
-    // handling the toggle, just for show for now, will add implementation later
+    // handling the toggle to show members
     const toggleHandler = () => {
         setIsToggled(!isToggled)
         setIncludeMembers(prev => !prev)
@@ -61,7 +61,7 @@ export default function EntryPoint() {
         ))
     }
 
-    // mapping over dummy data and creating a div to display members when toggled
+    // Creating a div to display members when toggled
     const renderMembers = () => {
       // I think this should really be CheckboxHeaers as well...  something to think about future us.
         return newMembersData.map((member, index) => (
@@ -71,15 +71,12 @@ export default function EntryPoint() {
         )) 
     }
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     console.log('Textarea content: ', userInput)
-    // }
 
     const handleUserInput = (e) => {
         setUserInput(e.target.value)
     }
 
+    // Rendering drafts component 
     const renderDrafts =() => {
         return drafts.map((draft, index) => (
             <Drafts 
@@ -141,7 +138,7 @@ export default function EntryPoint() {
                         <div className="ai-container">
                             <h4 className="ai-title">Additional Instructions:</h4>
                             <h5 className="ai-subheader">
-                                <AIicon className="ai-icon" />
+                                <img src={AiPngIcon} className="ai-icon" />
                                 Give AI specific instructions for your newsletter.
                             </h5>
                             <AiInputBox />
@@ -156,9 +153,6 @@ export default function EntryPoint() {
                     </div>
                 </div>
             </div>
-            {/* <div className="create-footer">
-                Footer
-            </div> */}
         </div>
         </>
     )
