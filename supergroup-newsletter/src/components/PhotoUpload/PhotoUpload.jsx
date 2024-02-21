@@ -4,11 +4,15 @@ import { ReactComponent as UploadPhoto } from "../../assets/svgs/upload-photo.sv
 import {ReactComponent as UploadActive } from "../../assets/svgs/active-upload-icon.svg"
 import { storage } from '../../firebase-config'
 import { ref, getDownloadURL, uploadBytes} from "firebase/storage";
+import { useApiContext } from '../ApiContext/ApiContext'; 
 
 export default function PhotoUpload () {
     const [selectedPhoto, setSelectedPhoto] = useState(null);
     const [isActive, setIsActive] = useState(false);
-    const [photoURL, setPhotoURL] = useState('');
+
+    const { 
+      setHeroImage
+    } = useApiContext();
 
     useEffect(() => {
         if (selectedPhoto) {
@@ -19,8 +23,11 @@ export default function PhotoUpload () {
                 console.log("Image uploaded successfully", snapshot);
                 getDownloadURL(snapshot.ref).then(url => {
                     console.log("Download URL:", url);
-                    setPhotoURL(url);
+                    setHeroImage(url);
                 });
+                // update the DB with url, for reference.
+                
+
             }).catch((error) => {
                 console.error("Error uploading image:", error);
             });

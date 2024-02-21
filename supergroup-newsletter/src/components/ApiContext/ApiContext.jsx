@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { onSnapshot, collection, query } from "firebase/firestore";
+import { onSnapshot, collection, query, addDoc } from "firebase/firestore";
 import { db } from "../../firebase-config";
 // import {getStorage, ref} from "../../firebase-config";
 const { REACT_APP_OPENAI_API_KEY } = process.env;
@@ -17,6 +17,7 @@ const ApiContext = createContext({
   eventsData: [],
   announcementsData: [],
   newMembersData: [],
+  newsDrafts: [],
 
   handleAiMessageData: () => {},
   aiMessageData: '',
@@ -27,6 +28,11 @@ const ApiContext = createContext({
   handleNewsEventChange: () => {},
   handleNewsAnnouncementsChange: () => {},
   handleNewsNewMembersChange: () => {},
+
+  writeDataToFirestore: () => {},
+
+  heroImage: [],
+  setHeroImage: () =>{}
 });
 
 // Export the hook to use the context
@@ -44,13 +50,14 @@ export const ApiProvider = ({ children }) => {
   const [eventsData, setEventsData] = useState([]);
   const [announcementsData, setAnnouncementsData] = useState([])
   const [newMembersData, setNewMembersData] = useState([])
+  const [newsDrafts, setNewsDrafts] = useState([])
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const [newsEvents, setNewsEvents] = useState([])
   const [newsAnnouncements, setNewsAnnouncements] = useState([])
   const [newsNewMembers, setNewsNewMembers] = useState([])
 
-  // const [heroImage, setHeroImage] = useState([])
+  const [heroImage, setHeroImage] = useState('https://firebasestorage.googleapis.com/v0/b/supergroup-2cd54.appspot.com/o/images%2FCapture.PNG?alt=media&token=0dca6cbe-c020-4f7e-83c5-27dc7e778bd6')
   // const [newsletterDrafts, setNewsletterDrafts] = useState([])
 
   // Fetch the information from Firestore backend
@@ -71,11 +78,32 @@ export const ApiProvider = ({ children }) => {
     return unsubscribe;
   };
 
+  // Write to Firebase backend
+  const writeDataToFirestore = ({myCollection = 'newsletterDrafts', title = 'My Newsletter', userName = 'Anonymous', date = new Date(), photoURL = ''}) => {
+    const docRef = collection(db, myCollection);
+    
+    // Add a new document to the collection provided
+    addDoc(docRef, {
+      title: title,
+      createdBy: userName,
+      photoURL: photoURL,
+      date: date
+    })
+    .then((docRef) => {
+      console.log("Document written with ID: ", docRef.id);
+    })
+    .catch((error) => {
+      console.error("Error adding document: ", error);
+    });
+  }
+
   useEffect(() => {
     // Sets Entry Point selections
     fetchDataFromFirestore("events", setEventsData)
     fetchDataFromFirestore("announcements", setAnnouncementsData);
     fetchDataFromFirestore("members", setNewMembersData);
+    fetchDataFromFirestore("newsletterDrafts", setNewsDrafts);
+    //setNewsDrafts
 
 
     // Sets what is passed to newsReview
@@ -187,7 +215,11 @@ export const ApiProvider = ({ children }) => {
         aiMessageData,
         newsEvents,
         newsAnnouncements,
-        newsNewMembers
+        newsNewMembers,
+        heroImage,
+        newsDrafts,
+        setHeroImage,
+        writeDataToFirestore
       }}
     >
       {children}

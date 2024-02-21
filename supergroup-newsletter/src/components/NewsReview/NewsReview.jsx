@@ -10,17 +10,16 @@ import NewsFooter from '../NewsFooter/NewsFooter';
 import TypewriterLoading from '../Typewriter/Typewriter';
 import { useNavigate } from "react-router-dom";
 
-export default function NewsReview({
-    myImage='https://raw.githubusercontent.com/makeitMVPadmin/super-group-newsletter/develop/supergroup-newsletter/src/assets/images/makeitMVPHero.jpg',
-    myMainText='Main Text'
-  }){
+export default function NewsReview(){
   const { 
     selectedDate, 
     aiMessageData,
     newsEvents,
     newsAnnouncements,
     newsNewMembers,
-    includeMembers
+    includeMembers,
+    heroImage,
+    writeDataToFirestore
   } = useApiContext();
 
   const clickButton = () => {
@@ -83,6 +82,23 @@ export default function NewsReview({
     ));
   };
 
+  // This is an undesigned version of a user input for naming the draft.
+  const handleSaveDraft = () => {
+
+    // This will call up a prompt to enter saved name.
+    const userInput = window.prompt('Please name your draft:');
+  
+    if (userInput) {
+      writeDataToFirestore({
+        title:userInput, 
+        userName:'Current User'
+        // Here you can add all the info you want.
+      });
+    } else {
+      // I guess you should handle errors here future me.
+    }
+  }
+
   return (
     <div>
       <BackButton />
@@ -92,10 +108,9 @@ export default function NewsReview({
           <div className='news-topLeft'>
             {!imageLoaded && <img className='news-heroImage' src="loading-placeholder.jpg" alt="Loading..." />}
               <div className='news-hero-title'>
-              <div className='news-title'>Weekly Newsletter</div>
               <img
                 className='news-heroImage'
-                src={myImage}
+                src={heroImage}
                 alt="Hero Image"
                 style={{ display: imageLoaded ? 'block' : 'none' }}
                 onLoad={handleImageLoad}
@@ -143,7 +158,7 @@ export default function NewsReview({
           <div className='news-bottomLeft'></div>
           <div className='news-dividerBottom'></div>
           <div className='news-bottomRight'>
-            <div className='news-saveDraft'>Save Draft</div>
+            <div className='news-saveDraft' onClick={handleSaveDraft}>Save Draft</div>
             <button className='news-doneButton' onClick={clickButton}>Publish</button>
           </div>
         </div>

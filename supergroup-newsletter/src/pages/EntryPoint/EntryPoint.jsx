@@ -28,7 +28,8 @@ export default function EntryPoint() {
       handleNewsEventChange,
       handleNewsAnnouncementsChange,
       handleNewsNewMembersChange,
-      aiMessageData
+      aiMessageData,
+      newsDrafts
     } = useApiContext();
 
     // handling the toggle to show members
@@ -76,23 +77,25 @@ export default function EntryPoint() {
         setUserInput(e.target.value)
     }
 
-    // Rendering drafts component 
-    const renderDrafts =() => {
-        return drafts.map((draft, index) => (
-            <Drafts 
-                key={index}
-                index={draft.uuid}
-                title={draft.title}
-                createdBy={draft.createdBy}
-            />
-        ))
-    }
+  // Rendering drafts component 
+  const renderDrafts = () => {
+    const sortedDrafts = newsDrafts.sort((a, b) => b.date - a.date).slice(0, 3);
 
-    const drafts = [
-        {uuid: 1, title: "Newsletter 3", createdBy: "Made by @samwise-gamgee"},
-        {uuid: 2, title: "Newsletter 2", createdBy: "Made by @merry"},
-        {uuid: 3, title: "Newsletter 1", createdBy: "Made by @pippin"},
-    ]
+    return sortedDrafts.map((draft, index) => (
+      <Drafts 
+        key={index}
+        index={draft.id}
+        title={draft.title}
+        createdBy={draft.createdBy}
+      />
+    ));
+  }
+
+    // const drafts = [
+    //     {uuid: 1, title: "Newsletter 3", createdBy: "Made by @samwise-gamgee"},
+    //     {uuid: 2, title: "Newsletter 2", createdBy: "Made by @merry"},
+    //     {uuid: 3, title: "Newsletter 1", createdBy: "Made by @pippin"},
+    // ]
 
 
     return(
