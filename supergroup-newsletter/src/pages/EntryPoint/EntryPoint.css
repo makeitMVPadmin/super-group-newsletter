@@ -71,7 +71,8 @@
 
 /* ---- LEFT COLUMN ----*/
 .left-column {
-    flex: 1; 
+    /* flex: 1;  */
+    width: 30%;
     margin-left: 8px;
 }   
 
@@ -99,7 +100,8 @@
 
 /* ---- MIDDLE COLUMN ----*/
 .middle-column {
-    flex: 1;
+    /* flex: 1; */
+    width: 40%;
 }
 
 .member-title {
@@ -113,9 +115,9 @@
 }
 
 .member-subheader {
-    font-family: "SF Pro Display", Helvetica;
+    color: var(--MVP-black, #000);
+    font-family: "Gilroy";
     font-size: 16px;
-    font-weight: 400;
     letter-spacing: 0;
     line-height: normal;
     padding: 8px;
@@ -164,89 +166,21 @@
 .ai-subheader {
     align-items: center;
     display: inline-flex;
-    gap: 13px;
     margin: 8px 0;
     width: 100%;
     color: var(--MVP-black, #000);
-    font-family: "SF Pro Display", Helvetica;
+    font-family: "Gilroy";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
 
-.ai-input {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    justify-content: center;
-}
-
-.ai-textarea{
-    padding: 8px;
-    border-radius: 8px;
-    border: 3px solid #000;
-    resize: none;
-    width: 90%;
-    height: 160px;
-    font-family: "SF Pro Display", Helvetica;
-    font-size: 16px;
-    font-style: italic;
-    font-weight: 400;
-}
-
-
-textarea::-webkit-scrollbar {
-    width: 9px; 
-}
-
-.ai-textarea::-webkit-scrollbar-thumb {
-    background-color: var(--secondary-dark-blue, #0954b0);
-    border-radius: 100vw;
-}
-
-.ai-textarea::-webkit-scrollbar-track {
-    background-color: var(--secondary-cream, #fff9f4);
-    border-radius: 100vw;
-}
-
-.ai-textarea::-webkit-scrollbar-thumb:hover {
-    background-color: #90bff9;
-}
-
-.generate-btn-container {
-    display: flex;
-    justify-content: flex-end;
-    width: 96%;
-    margin-top: 12px;
-}
-
-.generate-btn {
-    padding: 8px 16px;
-    border-radius: 8px;
-    background: var(--Secondary---MVP-Dark-Blue, #0954B0);
-    color: var(--Primary---MVP-White, #FFF);
-    text-align: center;
-    font-family: "Gilroy";
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.generate-btn:hover {
-    background-color: var(--primary-light-blue, #0099ff);
-}
-
-.generate-btn:active {
-    background-color: #90bff9;
-    color: var(--primary-black);
-}
-
 
 /* ---- RIGHT COLUMN ----*/
 .right-column {
-    flex: 1;
+    /* flex: 1; */
+    width: 30%;
 }
 
 .drafts-title {
@@ -259,15 +193,7 @@ textarea::-webkit-scrollbar {
     margin: 0;
 }
 
-/* ---- BOTTOM SECTION/FOOTER ----*/
-/* .create-footer {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    background-color: burlywood;
-} */
-
-
+/* media queries setup but not fully implemented */
 
 @media screen and (max-width: 576px) {
     /* Styles for even smaller screens (e.g., mobile) */
