@@ -1,24 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./PhotoUpload.css";
 import { ReactComponent as UploadPhoto } from "../../assets/svgs/upload-photo.svg"
 import {ReactComponent as UploadActive } from "../../assets/svgs/active-upload-icon.svg"
+import { storage } from '../../firebase-config'
+import { ref, getDownloadURL, uploadBytes} from "firebase/storage";
 
 export default function PhotoUpload () {
     const [selectedPhoto, setSelectedPhoto] = useState(null);
     const [isActive, setIsActive] = useState(false);
+    const [photoURL, setPhotoURL] = useState('');
 
-    // Function to handle photo submission
-    const handleSubmitPhoto = (event) => {
-        event.preventDefault();
-        // Logic to submit the selected photo
-        console.log('Selected photo:', selectedPhoto);
-    };
+    useEffect(() => {
+        if (selectedPhoto) {
+            const imgName = selectedPhoto.name;
+            const imgsRef = ref(storage, `images/${imgName}`); // Define the path for the image in storage
+
+            uploadBytes(imgsRef, selectedPhoto).then((snapshot) => {
+                console.log("Image uploaded successfully", snapshot);
+                getDownloadURL(snapshot.ref).then(url => {
+                    console.log("Download URL:", url);
+                    setPhotoURL(url);
+                });
+            }).catch((error) => {
+                console.error("Error uploading image:", error);
+            });
+        }
+    }, [selectedPhoto]);
 
     // Function to handle photo selection
     const handlePhotoChange = (e) => {
-        console.log("FileLists: ", e.target.files)
-        setSelectedPhoto(e.target.files[0]);
-        e.target.files.length == 0 ? setIsActive(false) : setIsActive(true) 
+        const uploadedPhoto = e.target.files[0]
+        setSelectedPhoto(uploadedPhoto)
+        e.target.files.length === 0 ? setIsActive(false) : setIsActive(true) 
     };
     
 
@@ -28,12 +41,11 @@ export default function PhotoUpload () {
                 type="file"
                 id="file-upload"
                 className="file-upload"
-                // value={selectedPhoto}
                 onChange={handlePhotoChange}
             />
             <label htmlFor="file-upload" className="upload-photo-label">
-                {isActive == false ? <UploadPhoto className="upload-svg"  /> : <UploadActive className="upload-svg" /> }
-                {isActive == false ? "Upload a Photo" : selectedPhoto.name}
+                {isActive === false ? <UploadPhoto className="upload-svg"  /> : <UploadActive className="upload-svg" /> }
+                {isActive === false ? "Upload a Photo" : selectedPhoto.name}
             </label>
         </div>
     )

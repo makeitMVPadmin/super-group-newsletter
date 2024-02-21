@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { onSnapshot, collection, query } from "firebase/firestore";
 import { db } from "../../firebase-config";
+// import {getStorage, ref} from "../../firebase-config";
 const { REACT_APP_OPENAI_API_KEY } = process.env;
 
 // Creating the context
@@ -49,6 +50,9 @@ export const ApiProvider = ({ children }) => {
   const [newsAnnouncements, setNewsAnnouncements] = useState([])
   const [newsNewMembers, setNewsNewMembers] = useState([])
 
+  // const [heroImage, setHeroImage] = useState([])
+  // const [newsletterDrafts, setNewsletterDrafts] = useState([])
+
   // Fetch the information from Firestore backend
   const fetchDataFromFirestore = (collectionName, setData) => {
     const collectionRef = collection(db, collectionName);
@@ -72,6 +76,8 @@ export const ApiProvider = ({ children }) => {
     fetchDataFromFirestore("events", setEventsData)
     fetchDataFromFirestore("announcements", setAnnouncementsData);
     fetchDataFromFirestore("members", setNewMembersData);
+
+
     // Sets what is passed to newsReview
     fetchDataFromFirestore("events", setNewsEvents)
     fetchDataFromFirestore("announcements", setNewsAnnouncements);
