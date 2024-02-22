@@ -33,7 +33,7 @@ export default function AiInputBox() {
     const handleClick = () => {
       handleAiMessageData('')
       contactAiAPI()
-      setInputValue('') // Resets input for next inquiry
+      setInputValue('') // Resets input for next inquiry 
       navigate('/newsEditor');
     }
     // This is where the magic starts, and we call the OpenAi.  See ApiContext.js for more

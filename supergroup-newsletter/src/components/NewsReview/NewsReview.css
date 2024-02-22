@@ -65,8 +65,8 @@
   cursor: pointer;
 }
 .news-saveDraft {
-  font-size: 20px;
-  font-family: "SF Pro Display";
+  font-size: 16px;
+  font-family: Gilroy;
   font-weight: 100;
   margin-right: 40px;
   color: gray;
@@ -155,7 +155,8 @@
   flex-wrap: wrap;
   justify-content: space-between;
   background-color: #FFD22F;
-  padding: 100px 9% 100px 9%
+  padding: 100px 9% 100px 9%;
+  margin-bottom: 50px;
 }
 
 /* ************************* Media Change CSS ************************* */

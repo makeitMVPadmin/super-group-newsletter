@@ -17,7 +17,7 @@ export default function NewsReview(){
   } = useApiContext();
 
   const clickButton = () => {
-    // navigate('/confirm');
+    navigate('/confirm');
     console.log('I was clicked')
     console.log(currentNewsletter)
   }
@@ -76,10 +76,12 @@ export default function NewsReview(){
   // This is an undesigned version of a user input for naming the draft.
 const handleSaveDraft = () => {
   const userInput = window.prompt('Please name your draft:');
+  const newDate = new Date()
 
   if (userInput) {
     writeDataToFirestore({
       title: userInput,
+      createdOn: newDate,
       userName: 'Current User',
       photoURL: currentNewsletter.heroImage,
       messageToAi: currentNewsletter.messageToAi,
@@ -146,7 +148,7 @@ const handleSaveDraft = () => {
 
           <div className='news-divider'></div>
           <div className='news-topRight'>
-            <p>Select a date to publish your news letter</p>
+            <p>Select a date for your Newsletter</p>
             <MyCalendar />
           </div>
         </div>
@@ -156,7 +158,7 @@ const handleSaveDraft = () => {
           <div className='news-dividerBottom'></div>
           <div className='news-bottomRight'>
             <div className='news-saveDraft' onClick={handleSaveDraft}>Save Draft</div>
-            <button className='news-doneButton' onClick={clickButton}>Publish</button>
+            <button className='news-doneButton' onClick={clickButton}>Schedule Newsletter</button>
           </div>
         </div>
 
