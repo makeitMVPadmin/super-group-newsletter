@@ -79,7 +79,7 @@ export default function EntryPoint() {
 
   // Rendering drafts component 
   const renderDrafts = () => {
-    const sortedDrafts = newsDrafts.sort((a, b) => b.date - a.date).slice(0, 3);
+    const sortedDrafts = newsDrafts.sort((a, b) => b.createdOn - a.createdOn).slice(0, 3);
 
     return sortedDrafts.map((draft, index) => (
       <Drafts 

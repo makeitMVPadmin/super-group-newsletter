@@ -76,10 +76,12 @@ export default function NewsReview(){
   // This is an undesigned version of a user input for naming the draft.
 const handleSaveDraft = () => {
   const userInput = window.prompt('Please name your draft:');
+  const newDate = new Date()
 
   if (userInput) {
     writeDataToFirestore({
       title: userInput,
+      createdOn: newDate,
       userName: 'Current User',
       photoURL: currentNewsletter.heroImage,
       messageToAi: currentNewsletter.messageToAi,

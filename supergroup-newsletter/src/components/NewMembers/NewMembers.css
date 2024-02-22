@@ -24,15 +24,15 @@
 .newMember-circle {
   width: 20px;
   height: 20px;
-  background-color: var(--secondary-cream);
+  background-color: var(--primary-yellow);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: black;
   position: absolute;
-  bottom: 15px;
-  right: 0px;
+  top: 0px;
+  right: 15px;
   cursor: pointer;
 }
 .newMember-circle:hover {

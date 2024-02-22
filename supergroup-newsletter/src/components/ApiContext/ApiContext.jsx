@@ -32,6 +32,8 @@ const ApiContext = createContext({
 
   writeDataToFirestore: () => {},
 
+  handleNewsDraftPopulateNewsEditor: () => {},
+
   heroImage: [],
   setHeroImage: () =>{}
 });
@@ -45,7 +47,7 @@ export const ApiProvider = ({ children }) => {
   const [messageToAi, setMessageToAi] = useState("");
   const [aiMessageData, setAiMessageData] = useState('')
   const [roleOfAi, setRoleOfAi] = useState(`You are a witty, clever, and encouraging AI assistant focused on crafting outstanding newsletters for Communiti, a company revolutionizing company-wide collaboration and decision-making. Your role involves leveraging your sharp sense of humor and creative flair to develop content that resonates with readers, inspires action, and fosters a positive community atmosphere. You provide expertly curated newsletter content that keeps all members of the organization informed, entertained, and motivated.   Your capabilities include writing compelling narratives, personalizing content based on user data, designing visually appealing layouts, and incorporating interactive elements to enrich the reading experience. With each newsletter edition, you aim to strengthen company culture, boost morale, and encourage a collaborative spirit among employees. Your friendly yet professional demeanor helps you connect with readers on a personal level, ensuring that Community's vision of innovation and unity shines through every communication you create.`)
-  const [includeMembers, setIncludeMembers] = useState(false) 
+  const [includeMembers, setIncludeMembers] = useState(true) 
 
   // Set other useStates
   const [eventsData, setEventsData] = useState([]);
@@ -113,6 +115,7 @@ export const ApiProvider = ({ children }) => {
     title = 'My Newsletter', 
     userName = 'Anonymous',
     photoURL = '',
+    createdOn = '',
     messageToAi = 'test',
     aiMessageData = 'test123',
     includeMembers = false,
@@ -130,6 +133,7 @@ export const ApiProvider = ({ children }) => {
       photoURL: photoURL,
       selectedDate: selectedDate,
       messageToAi: messageToAi,
+      createdOn: createdOn,
       aiMessageData: aiMessageData,
       includeMembers: includeMembers,
       newsEvents: newsEvents,
@@ -194,6 +198,27 @@ export const ApiProvider = ({ children }) => {
 
   const handleAiMessageData = (aiResponse) => {
     setAiMessageData(aiResponse)
+  }
+
+  const handleNewsDraftPopulateNewsEditor = (myId) => {
+    
+    const foundDraft = newsDrafts.find(draft => draft.id === myId);
+    if (foundDraft) {
+      setCurrentNewsletter(prevState => ({
+        ...prevState,
+        heroImage: foundDraft.photoURL,
+        messageToAi: foundDraft.messageToAi,
+        aiMessageData: foundDraft.aiMessageData,
+        includeMembers: foundDraft.includeMembers,
+        newsEvents: foundDraft.newsEvents,
+        newsAnnouncements: foundDraft.newsAnnouncements,
+        newsNewMembers: foundDraft.newsNewMembers,
+      }));
+  
+      return Promise.resolve();
+    } else {
+      return Promise.reject(new Error('No draft found with the provided ID'));
+    }
   }
 
   // Might want to refactor this code into one function instead of three.
@@ -263,7 +288,8 @@ export const ApiProvider = ({ children }) => {
         newsDrafts,
         setHeroImage,
         writeDataToFirestore,
-        currentNewsletter
+        currentNewsletter,
+        handleNewsDraftPopulateNewsEditor
       }}
     >
       {children}

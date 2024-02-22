@@ -1,10 +1,23 @@
 import "./Drafts.css";
+import { useApiContext } from '../../components/ApiContext/ApiContext';
+import { useNavigate } from "react-router-dom"; 
 
 export default function Drafts({draft}) {
-  const handleEditClicked = () => {
-    console.log(`Edit was clicked. for ${draft.title}`)
-    // This is where we will pass the draft information to the object to fill in newsReview, so we can call up old drafts.
-    // This will also need to navigate to /newsReviews
+  const navigate = useNavigate(); 
+  // access to the global variables
+  const { 
+    handleNewsDraftPopulateNewsEditor
+  } = useApiContext();
+
+
+  const handleEditClicked = async () => {
+    
+    try {
+      await handleNewsDraftPopulateNewsEditor(draft.id); // Wait until handleNewsDraftPopulateNewsEditor is finished
+      navigate('/newsEditor'); // Once handleNewsDraftPopulateNewsEditor is finished, perform navigation
+    } catch (error) {
+      console.error(error); // Handle any errors
+    }
   }
     return(
         <div index={draft.id} className="draft-item-container">    
