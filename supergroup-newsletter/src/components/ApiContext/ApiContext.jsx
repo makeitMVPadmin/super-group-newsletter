@@ -18,6 +18,7 @@ const ApiContext = createContext({
   announcementsData: [],
   newMembersData: [],
   newsDrafts: [],
+  currentNewsletter: {},
 
   handleAiMessageData: () => {},
   aiMessageData: '',
@@ -50,15 +51,43 @@ export const ApiProvider = ({ children }) => {
   const [eventsData, setEventsData] = useState([]);
   const [announcementsData, setAnnouncementsData] = useState([])
   const [newMembersData, setNewMembersData] = useState([])
-  const [newsDrafts, setNewsDrafts] = useState([])
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [newsDrafts, setNewsDrafts] = useState([])
 
   const [newsEvents, setNewsEvents] = useState([])
   const [newsAnnouncements, setNewsAnnouncements] = useState([])
   const [newsNewMembers, setNewsNewMembers] = useState([])
-
+  
   const [heroImage, setHeroImage] = useState('https://firebasestorage.googleapis.com/v0/b/supergroup-2cd54.appspot.com/o/images%2FCapture.PNG?alt=media&token=0dca6cbe-c020-4f7e-83c5-27dc7e778bd6')
   // const [newsletterDrafts, setNewsletterDrafts] = useState([])
+  
+  // Ok, this is sloppy right now, because I didn't use an object at the start of this code.  Sorry future me.
+  const [currentNewsletter, setCurrentNewsletter] = useState({
+    heroImage: heroImage,
+    messageToAi: messageToAi,
+    aiMessageData: aiMessageData,
+    includeMembers: includeMembers,
+    selectedDate: selectedDate,
+    newsEvents: newsEvents,
+    newsAnnouncements: newsAnnouncements,
+    newsNewMembers: newsNewMembers,
+  })
+
+  useEffect(() => {
+    setCurrentNewsletter(prevNewsletter => ({
+      ...prevNewsletter,
+      heroImage: heroImage,
+      messageToAi: messageToAi,
+      aiMessageData: aiMessageData,
+      includeMembers: includeMembers,
+      selectedDate: selectedDate,
+      newsEvents: newsEvents,
+      newsAnnouncements: newsAnnouncements,
+      newsNewMembers: newsNewMembers,
+    }));
+  }, [heroImage, messageToAi, aiMessageData, includeMembers, selectedDate, newsEvents, newsAnnouncements, newsNewMembers]);  
+  // END Ok, this is sloppy right now, because I didn't use an object at the start of this code.  Sorry future me.
+
 
   // Fetch the information from Firestore backend
   const fetchDataFromFirestore = (collectionName, setData) => {
@@ -79,7 +108,19 @@ export const ApiProvider = ({ children }) => {
   };
 
   // Write to Firebase backend
-  const writeDataToFirestore = ({myCollection = 'newsletterDrafts', title = 'My Newsletter', userName = 'Anonymous', date = new Date(), photoURL = ''}) => {
+  const writeDataToFirestore = ({
+    myCollection = 'newsletterDrafts', 
+    title = 'My Newsletter', 
+    userName = 'Anonymous',
+    photoURL = '',
+    messageToAi = 'test',
+    aiMessageData = 'test123',
+    includeMembers = false,
+    selectedDate = new Date(),
+    newsEvents = [{}],
+    newsNewMembers = [{}],
+    newsAnnouncements = [{}]
+  } = {}) => {
     const docRef = collection(db, myCollection);
     
     // Add a new document to the collection provided
@@ -87,14 +128,16 @@ export const ApiProvider = ({ children }) => {
       title: title,
       createdBy: userName,
       photoURL: photoURL,
-      date: date
+      selectedDate: selectedDate,
+      messageToAi: messageToAi,
+      aiMessageData: aiMessageData,
+      includeMembers: includeMembers,
+      newsEvents: newsEvents,
+      newsNewMembers: newsNewMembers,
+      newsAnnouncements: newsAnnouncements,
     })
-    .then((docRef) => {
-      console.log("Document written with ID: ", docRef.id);
-    })
-    .catch((error) => {
-      console.error("Error adding document: ", error);
-    });
+    .then((docRef) => { console.log("Document written with ID: ", docRef.id); })
+    .catch((error) => { console.error("Error adding document: ", error); });
   }
 
   useEffect(() => {
@@ -219,7 +262,8 @@ export const ApiProvider = ({ children }) => {
         heroImage,
         newsDrafts,
         setHeroImage,
-        writeDataToFirestore
+        writeDataToFirestore,
+        currentNewsletter
       }}
     >
       {children}

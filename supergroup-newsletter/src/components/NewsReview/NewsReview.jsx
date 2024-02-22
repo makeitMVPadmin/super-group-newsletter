@@ -12,38 +12,29 @@ import { useNavigate } from "react-router-dom";
 
 export default function NewsReview(){
   const { 
-    selectedDate, 
-    aiMessageData,
-    newsEvents,
-    newsAnnouncements,
-    newsNewMembers,
-    includeMembers,
-    heroImage,
-    writeDataToFirestore
+    writeDataToFirestore,
+    currentNewsletter
   } = useApiContext();
 
   const clickButton = () => {
-    navigate('/confirm');
+    // navigate('/confirm');
     console.log('I was clicked')
+    console.log(currentNewsletter)
   }
   
   const navigate = useNavigate();
 
   const [mainText, setMainText] = useState('Main Text') 
   const [editMainText, setEditMainText] = useState(false)
-  const [newsLetterTitle, setNewsLetterTitle] = useState(``)
 
   useEffect(() => {
-    setMainText(aiMessageData)
-     //maybe add call to firebase here or make new useEffect
-  }, [aiMessageData]);
+    setMainText(currentNewsletter.aiMessageData)
+  }, [currentNewsletter.aiMessageData]);
 
   const handleTextChange = (event) => {
     setMainText(event.target.value);
   };
-  const handleTitleChange = (event) => {
-    setNewsLetterTitle(event.target.value);
-  };
+
   const handleEditMainText = () => {
     setEditMainText(prev => !prev)
   };
@@ -56,21 +47,21 @@ export default function NewsReview(){
 
   const renderEvents = () => {
     // Map through newsEvents and return an <Event> component for each object
-    return newsEvents.map((event, index) => (
+    return currentNewsletter.newsEvents.map((event, index) => (
       <Events key={index} myEvent={event} />
     ));
   };
 
   const renderAnnouncements = () => {
     // Map through newsAnnouncements and return an <Announcements> component for each object
-    return newsAnnouncements.map((announcement, index) => (
+    return currentNewsletter.newsAnnouncements.map((announcement, index) => (
       <Announcements key={index} myAnnouncement={announcement} />
     ));
   }
 
   const renderNewMembers = () => {
     // Map through newsNewMembers and return an <NewMembers> component for each object
-    return newsNewMembers.map((newMember, index) => (
+    return currentNewsletter.newsNewMembers.map((newMember, index) => (
       <NewMembers key={index} myMember={newMember} />
     ));
   }
@@ -83,18 +74,24 @@ export default function NewsReview(){
   };
 
   // This is an undesigned version of a user input for naming the draft.
-  const handleSaveDraft = () => {
+const handleSaveDraft = () => {
+  const userInput = window.prompt('Please name your draft:');
 
-    // This will call up a prompt to enter saved name.
-    const userInput = window.prompt('Please name your draft:');
-  
-    if (userInput) {
-      writeDataToFirestore({
-        title:userInput, 
-        userName:'Current User'
-        // Here you can add all the info you want.
-      });
-    } else {
+  if (userInput) {
+    writeDataToFirestore({
+      title: userInput,
+      userName: 'Current User',
+      photoURL: currentNewsletter.heroImage,
+      messageToAi: currentNewsletter.messageToAi,
+      aiMessageData: currentNewsletter.aiMessageData,
+      selectedDate: currentNewsletter.selectedDate,
+      includeMembers: currentNewsletter.includeMembers,
+      newsEvents: currentNewsletter.newsEvents,
+      newsNewMembers: currentNewsletter.newsNewMembers,
+      newsAnnouncements: currentNewsletter.newsAnnouncements
+    });
+    window.alert(`${userInput} draft saved successfully.`);
+  } else {
       // I guess you should handle errors here future me.
     }
   }
@@ -110,13 +107,13 @@ export default function NewsReview(){
               <div className='news-hero-title'>
               <img
                 className='news-heroImage'
-                src={heroImage}
+                src={currentNewsletter.heroImage}
                 alt="Hero Image"
                 style={{ display: imageLoaded ? 'block' : 'none' }}
                 onLoad={handleImageLoad}
               />
               </div>
-            <p className='news-date'>{selectedDate.toDateString()}</p>
+            <p className='news-date'>{currentNewsletter.selectedDate.toDateString()}</p>
             <div className='mainSection'>
 
               {editMainText ? (
@@ -135,14 +132,14 @@ export default function NewsReview(){
               </div>
               )}
 
-              {newsEvents.length > 0 && <h2 className='news-sectionTitle'>Weekly Community Events</h2>}
-              <div className={newsEvents.length > 0 ? 'news-EventsContainer':''}>{renderEvents()}</div>
+              {currentNewsletter.newsEvents.length > 0 && <h2 className='news-sectionTitle'>Weekly Community Events</h2>}
+              <div className={currentNewsletter.newsEvents.length > 0 ? 'news-EventsContainer':''}>{renderEvents()}</div>
               
-              {newsAnnouncements.length > 0 && <h2 className='news-sectionTitle'>Announcements!</h2>}
-              <div className={newsAnnouncements.length > 0 ? 'news-Announcements-container':''}>{renderAnnouncements()}</div>
+              {currentNewsletter.newsAnnouncements.length > 0 && <h2 className='news-sectionTitle'>Announcements!</h2>}
+              <div className={currentNewsletter.newsAnnouncements.length > 0 ? 'news-Announcements-container':''}>{renderAnnouncements()}</div>
 
-              {newsNewMembers.length > 0 && includeMembers && <h2 className='news-sectionTitle'>Welcome Our Community's New Members!</h2>}
-              {includeMembers &&  <div className={newsNewMembers.length > 0 ? 'news-NewMembers-container':''}>{renderNewMembers()}</div>}
+              {currentNewsletter.newsNewMembers.length > 0 && currentNewsletter.includeMembers && <h2 className='news-sectionTitle'>Welcome Our Community's New Members!</h2>}
+              {currentNewsletter.includeMembers &&  <div className={currentNewsletter.newsNewMembers.length > 0 ? 'news-NewMembers-container':''}>{renderNewMembers()}</div>}
               <div><NewsFooter /></div>
             </div>
           </div>

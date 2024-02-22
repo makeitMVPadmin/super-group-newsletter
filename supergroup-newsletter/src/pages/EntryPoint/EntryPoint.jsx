@@ -83,10 +83,8 @@ export default function EntryPoint() {
 
     return sortedDrafts.map((draft, index) => (
       <Drafts 
-        key={index}
-        index={draft.id}
-        title={draft.title}
-        createdBy={draft.createdBy}
+        key={draft.id}
+        draft={draft}
       />
     ));
   }

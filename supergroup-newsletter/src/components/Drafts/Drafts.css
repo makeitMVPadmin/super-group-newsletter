@@ -4,6 +4,9 @@
     border-radius: 8px;
     border: 2px solid #9090901A;
     background: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .item-title {
@@ -24,4 +27,17 @@
     font-style: normal;
     font-weight: 800;
     line-height: normal;
+}
+.item-button {
+  width: 50px;
+  border-radius: 5px;
+  color: var(--primary-white, #FFF);
+  background: var(--secondary-dark-blue, #0954B0);
+  font-family: Gilroy;
+  height: 20px;
+  padding: 2px 10px;
+  margin-top: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: auto;
 }
