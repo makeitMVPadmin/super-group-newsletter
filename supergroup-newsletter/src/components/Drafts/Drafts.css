@@ -41,3 +41,11 @@
   cursor: pointer;
   margin-left: auto;
 }
+.item-button:hover {
+  background-color: var(--primary-light-blue, #0099ff);
+}
+
+.item-button:active {
+  background-color: #90bff9;
+  color: var(--primary-black);
+}

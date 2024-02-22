@@ -31,6 +31,7 @@ const ApiContext = createContext({
   handleNewsNewMembersChange: () => {},
 
   writeDataToFirestore: () => {},
+  resetDataFromFirestore: () => {},
 
   handleNewsDraftPopulateNewsEditor: () => {},
 
@@ -145,24 +146,27 @@ export const ApiProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    // Sets Entry Point selections
-    fetchDataFromFirestore("events", setEventsData)
-    fetchDataFromFirestore("announcements", setAnnouncementsData);
-    fetchDataFromFirestore("members", setNewMembersData);
-    fetchDataFromFirestore("newsletterDrafts", setNewsDrafts);
-    //setNewsDrafts
-
-
-    // Sets what is passed to newsReview
-    fetchDataFromFirestore("events", setNewsEvents)
-    fetchDataFromFirestore("announcements", setNewsAnnouncements);
-    fetchDataFromFirestore("members", setNewsNewMembers);
+    resetDataFromFirestore()
   }, []);
 
   useEffect(() => {
     setSelectedDate(new Date()); // Set today's date as the initial selected date
   }, []);
 
+  const resetDataFromFirestore = () => {
+        // Sets Entry Point selections
+        fetchDataFromFirestore("events", setEventsData)
+        fetchDataFromFirestore("announcements", setAnnouncementsData);
+        fetchDataFromFirestore("members", setNewMembersData);
+        fetchDataFromFirestore("newsletterDrafts", setNewsDrafts);
+        //setNewsDrafts
+    
+    
+        // Sets what is passed to newsReview
+        fetchDataFromFirestore("events", setNewsEvents)
+        fetchDataFromFirestore("announcements", setNewsAnnouncements);
+        fetchDataFromFirestore("members", setNewsNewMembers);
+  }
   const callOpenAiAPI = async (contentText) => {
     const APIBody = {
       "messages": [
@@ -289,7 +293,8 @@ export const ApiProvider = ({ children }) => {
         setHeroImage,
         writeDataToFirestore,
         currentNewsletter,
-        handleNewsDraftPopulateNewsEditor
+        handleNewsDraftPopulateNewsEditor,
+        resetDataFromFirestore
       }}
     >
       {children}

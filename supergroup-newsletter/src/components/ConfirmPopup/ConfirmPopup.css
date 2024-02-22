@@ -40,6 +40,14 @@
   font-size: 27px;
   cursor: pointer;
 }
+.confirm-doneButton:hover {
+  background-color: var(--primary-light-blue, #0099ff);
+}
+
+.confirm-doneButton:active {
+  background-color: #90bff9;
+  color: var(--primary-black);
+}
 
 @media (max-width: 768px) {
   .mainText {

@@ -15,11 +15,12 @@ export default function ConfirmPopup(
   ){
     
   const navigate = useNavigate(); 
-  const { selectedDate } = useApiContext();
+  const { selectedDate, resetDataFromFirestore } = useApiContext();
   const [myTime, setMyTime] = useState(selectedDate.toDateString())
   const [myParaGraph, setMyParaGraph] = useState(`The Communiti will be receiving their copy of the newsletter on ${myTime}.`)
   
   const clickButton = () => {
+    resetDataFromFirestore()
     navigate('/');
   }
 
