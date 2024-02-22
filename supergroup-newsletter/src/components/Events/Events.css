@@ -1,16 +1,16 @@
 .events-container {
-  margin: 10px;
+  margin: 20px 0px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   position: relative;
 }
 .events-mainImage {
-  /* background-color: rgb(36, 255, 244); */
   width: 100px;
   height: 100px;
   border-radius: 10px;
   margin-bottom: 10px;
   object-fit: cover;
+  /* background-color: rgb(36, 255, 244); */
 }
 .events-mainImage-container {
   display: flex;
