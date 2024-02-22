@@ -62,15 +62,15 @@
 .events-circle {
   width: 20px;
   height: 20px;
-  background-color: var(--secondary-cream);
+  background-color: var(--primary-yellow);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: rgb(0, 0, 0);
   position: absolute;
-  bottom: 20px;
-  right: 0px;
+  top: 5px;
+  right: 5px;
   cursor: pointer;
 }
 

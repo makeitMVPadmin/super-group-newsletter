@@ -12,7 +12,7 @@ import "./EntryPoint.css";
 
 export default function EntryPoint() {
     const [isClicked, setIsClicked] = useState(false);
-    const [isToggled, setIsToggled] = useState(false);
+    const [isToggled, setIsToggled] = useState(true);
     const [userInput, setUserInput] = useState("");
 
     // access to the global variables
@@ -102,12 +102,12 @@ export default function EntryPoint() {
         <div className="create-container">
             <h1 className="create-header">Create a Newsletter</h1>
             <div className="create-main-section">
-                <h4 className="create-subheader">Select topics to include</h4>
+                <h4 className="create-subheader">Select items to include</h4>
                 <div className="columns-container">
 
                     <div className="left-column">
                         <div className="header-image-container">
-                            <h5 className="header-img">Header Image:</h5>
+                            <h5 className="header-img">Header Image</h5>
                             <PhotoUpload />
                         </div>
                         <div className="selections-container">
@@ -137,7 +137,7 @@ export default function EntryPoint() {
                             {isToggled ? renderMembers() : null}
                         </div>
                         <div className="ai-container">
-                            <h4 className="ai-title">Additional Instructions:</h4>
+                            <h4 className="ai-title">Additional Instructions</h4>
                             <h5 className="ai-subheader">
                                 <img src={AiPngIcon} className="ai-icon" />
                                 Give AI specific instructions for your newsletter.

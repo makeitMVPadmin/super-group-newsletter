@@ -5,7 +5,7 @@ import BackButton from '../../components/BackButton/BackButton';
 export default function Confirm() {
   return (
     <div>
-      <BackButton />
+      {/* <BackButton /> */}
       <ConfirmPopup />
     </div>
   )

@@ -9,8 +9,8 @@ import { ReactComponent as LinkedIn } from "../../assets/svgs/linkedin.svg"
 export default function NewsFooter() {
   return (
     <div className='footer-container'>
-      <img src={mvpLogo} className='footer-mvpLogo'/>
-      <p className='footer-helping'>Helping You Turn Your New Skills into a Succesful Career.</p>
+      {/* <img src={mvpLogo} className='footer-mvpLogo'/> */}
+      {/* <p className='footer-helping'>Helping You Turn Your New Skills into a Succesful Career.</p> */}
       <img src={mvpMountain} className='footer-image'/>
       <div className='footer-ending'>
         <div>          
