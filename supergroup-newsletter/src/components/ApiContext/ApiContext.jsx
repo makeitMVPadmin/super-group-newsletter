@@ -66,14 +66,15 @@ export const ApiProvider = ({ children }) => {
   
   // Ok, this is sloppy right now, because I didn't use an object at the start of this code.  Sorry future me.
   const [currentNewsletter, setCurrentNewsletter] = useState({
-    heroImage: heroImage,
-    messageToAi: messageToAi,
-    aiMessageData: aiMessageData,
-    includeMembers: includeMembers,
-    selectedDate: selectedDate,
-    newsEvents: newsEvents,
-    newsAnnouncements: newsAnnouncements,
-    newsNewMembers: newsNewMembers,
+    // Pretty sure we don't need to declare this stuff here, but I didn't want to delete it just yet... gl future me.
+    // heroImage: heroImage,
+    // messageToAi: messageToAi,
+    // aiMessageData: aiMessageData,
+    // includeMembers: includeMembers,
+    // selectedDate: selectedDate,
+    // newsEvents: newsEvents,
+    // newsAnnouncements: newsAnnouncements,
+    // newsNewMembers: newsNewMembers,
   })
 
   useEffect(() => {
@@ -208,16 +209,13 @@ export const ApiProvider = ({ children }) => {
     
     const foundDraft = newsDrafts.find(draft => draft.id === myId);
     if (foundDraft) {
-      setCurrentNewsletter(prevState => ({
-        ...prevState,
-        heroImage: foundDraft.photoURL,
-        messageToAi: foundDraft.messageToAi,
-        aiMessageData: foundDraft.aiMessageData,
-        includeMembers: foundDraft.includeMembers,
-        newsEvents: foundDraft.newsEvents,
-        newsAnnouncements: foundDraft.newsAnnouncements,
-        newsNewMembers: foundDraft.newsNewMembers,
-      }));
+      setHeroImage(foundDraft.photoURL)
+      setMessageToAi(foundDraft.messageToAi)
+      setAiMessageData(foundDraft.aiMessageData)
+      setIncludeMembers(foundDraft.includeMembers)
+      setNewsEvents(foundDraft.newsEvents)
+      setNewsAnnouncements(foundDraft.newsAnnouncements)
+      setNewsNewMembers(foundDraft.newsNewMembers)
   
       return Promise.resolve();
     } else {
